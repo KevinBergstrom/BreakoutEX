@@ -10,4 +10,4 @@
 - **[8]** Use fully specified resource path, preload resources if possible
 
 ## Open Issues ##
- 
+- **[9]** Resource manager cannot find gameover.png
