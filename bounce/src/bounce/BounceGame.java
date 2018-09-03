@@ -55,11 +55,16 @@ public class BounceGame extends StateBasedGame {
 	public static final String BANG_EXPLOSIONSND_RSC = "bounce/resource/explosion.wav";
 	public static final String SPLASH_IMG = "bounce/resource/splashScreen.png";
 	public static final String SPLASH_SCROLL_IMG = "bounce/resource/smallOrangeBG.png";
+	public static final String FULL_PADDLEIMG_RSC = "bounce/resource/fullPaddle.png";
+	public static final String HALF_PADDLEIMG_RSC = "bounce/resource/halfPaddle.png";
+	public static final String LOW_PADDLEIMG_RSC = "bounce/resource/lowPaddle.png";
+	public static final String DEAD_PADDLEIMG_RSC = "bounce/resource/deadPaddle.png";
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
 
 	Ball ball;
+	Paddle paddle;
 	ArrayList<Bang> explosions;
 
 	/**
@@ -106,9 +111,15 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(BANG_EXPLOSIONIMG_RSC);
 		ResourceManager.loadImage(SPLASH_IMG);
 		ResourceManager.loadImage(SPLASH_SCROLL_IMG);
+		ResourceManager.loadImage(FULL_PADDLEIMG_RSC);
+		ResourceManager.loadImage(HALF_PADDLEIMG_RSC);
+		ResourceManager.loadImage(LOW_PADDLEIMG_RSC);
+		ResourceManager.loadImage(DEAD_PADDLEIMG_RSC);
 		
 		
-		ball = new Ball(ScreenWidth / 2, ScreenHeight / 2, .1f, .2f);
+		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, .2f);
+		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);
+		paddle.setMoveBounds(80, ScreenWidth-80, ScreenHeight-60, ScreenHeight-20);
 
 	}
 	

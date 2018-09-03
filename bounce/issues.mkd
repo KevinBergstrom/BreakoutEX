@@ -11,6 +11,7 @@
 - **[9]** Resource manager cannot find gameover.png
 - **[10]** Add a splash screen
 - **[11]** Update the GameOver Screen
+- **[12]** Add a paddle that collides with the ball
 
 ## Open Issues ##
 
