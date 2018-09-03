@@ -45,6 +45,7 @@ public class BounceGame extends StateBasedGame {
 	public static final int STARTUPSTATE = 0;
 	public static final int PLAYINGSTATE = 1;
 	public static final int GAMEOVERSTATE = 2;
+	public static final int SPLASHSTATE = 3;
 	
 	public static final String BALL_BALLIMG_RSC = "bounce/resource/ball.png";
 	public static final String BALL_BROKENIMG_RSC = "bounce/resource/brokenball.png";
@@ -52,6 +53,8 @@ public class BounceGame extends StateBasedGame {
 	public static final String STARTUP_BANNER_RSC = "bounce/resource/PressSpace.png";
 	public static final String BANG_EXPLOSIONIMG_RSC = "bounce/resource/explosion.png";
 	public static final String BANG_EXPLOSIONSND_RSC = "bounce/resource/explosion.wav";
+	public static final String SPLASH_IMG = "bounce/resource/splashScreen.png";
+	public static final String SPLASH_SCROLL_IMG = "bounce/resource/smallOrangeBG.png";
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
@@ -82,6 +85,7 @@ public class BounceGame extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
+		addState(new SplashState());
 		addState(new StartUpState());
 		addState(new GameOverState());
 		addState(new PlayingState());
@@ -94,11 +98,15 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadSound(BANG_EXPLOSIONSND_RSC);	
 
 		// preload all the resources to avoid warnings & minimize latency...
+		//TODO perhaps a better automated way to do this?
 		ResourceManager.loadImage(BALL_BALLIMG_RSC);
 		ResourceManager.loadImage(BALL_BROKENIMG_RSC);
 		ResourceManager.loadImage(GAMEOVER_BANNER_RSC);
 		ResourceManager.loadImage(STARTUP_BANNER_RSC);
 		ResourceManager.loadImage(BANG_EXPLOSIONIMG_RSC);
+		ResourceManager.loadImage(SPLASH_IMG);
+		ResourceManager.loadImage(SPLASH_SCROLL_IMG);
+		
 		
 		ball = new Ball(ScreenWidth / 2, ScreenHeight / 2, .1f, .2f);
 
@@ -107,7 +115,7 @@ public class BounceGame extends StateBasedGame {
 	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
-			app = new AppGameContainer(new BounceGame("Bounce!", 800, 600));
+			app = new AppGameContainer(new BounceGame("BreakoutEX", 800, 600));
 			app.setDisplayMode(800, 600, false);
 			app.setVSync(true);
 			app.start();
