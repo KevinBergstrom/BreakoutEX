@@ -13,4 +13,5 @@
 - **[11]** Update the GameOver Screen
 
 ## Open Issues ##
+- **[12]** Add a paddle that collides with the ball
 

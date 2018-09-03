@@ -40,6 +40,7 @@ class StartUpState extends BasicGameState {
 		BounceGame bg = (BounceGame)game;
 		
 		bg.ball.render(g);
+		bg.paddle.render(g);
 		g.drawString("Bounces: ?", 10, 30);
 		for (Bang b : bg.explosions)
 			b.render(g);
@@ -57,7 +58,7 @@ class StartUpState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_SPACE))
 			bg.enterState(BounceGame.PLAYINGSTATE);	
 		
-		// bounce the ball...
+		/*// bounce the ball...
 		boolean bounced = false;
 		if ((bg.ball.getVelocity().getX()>0 && bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth)
 				|| (bg.ball.getVelocity().getX()<0 && bg.ball.getCoarseGrainedMinX() < 0)) {
@@ -72,13 +73,12 @@ class StartUpState extends BasicGameState {
 			bg.explosions.add(new Bang(bg.ball.getX(), bg.ball.getY()));
 		}
 		bg.ball.update(delta);
-
 		// check if there are any finished explosions, if so remove them
 		for (Iterator<Bang> i = bg.explosions.iterator(); i.hasNext();) {
 			if (!i.next().isActive()) {
 				i.remove();
 			}
-		}
+		}*/
 
 	}
 
