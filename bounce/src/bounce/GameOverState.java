@@ -6,6 +6,7 @@ import jig.ResourceManager;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -35,7 +36,7 @@ class GameOverState extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		timer = 4000;
+		timer = 10000;
 	}
 
 	public void setUserScore(int bounces) {
@@ -50,9 +51,11 @@ class GameOverState extends BasicGameState {
 		g.drawString("Bounces: " + lastKnownBounces, 10, 30);
 		for (Bang b : bg.explosions)
 			b.render(g);
-		g.drawImage(ResourceManager.getImage(BounceGame.GAMEOVER_BANNER_RSC), 225,
-				270);
-
+		
+		Image GameOverImage = ResourceManager.getImage(BounceGame.GAMEOVER_BANNER_RSC);
+		GameOverImage.setFilter(Image.FILTER_NEAREST);
+		g.drawImage(GameOverImage,
+				0, 0, bg.ScreenWidth, bg.ScreenHeight,0, 0,400,300 );	
 	}
 
 	@Override
