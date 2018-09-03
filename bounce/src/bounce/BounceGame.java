@@ -59,6 +59,17 @@ public class BounceGame extends StateBasedGame {
 	public static final String HALF_PADDLEIMG_RSC = "bounce/resource/halfPaddle.png";
 	public static final String LOW_PADDLEIMG_RSC = "bounce/resource/lowPaddle.png";
 	public static final String DEAD_PADDLEIMG_RSC = "bounce/resource/deadPaddle.png";
+	//bricks
+	public static final String BRICK_1X1_RSC = "bounce/resource/gray1x1.png";
+	public static final String BRICK_1X2_RSC = "bounce/resource/gray1x2.png";
+	public static final String BRICK_1X3_RSC = "bounce/resource/gray1x3.png";
+	public static final String BRICK_1X4_RSC = "bounce/resource/gray1x4.png";
+	public static final String BRICK_2X1_RSC = "bounce/resource/gray2x1.png";
+	public static final String BRICK_3X1_RSC = "bounce/resource/gray3x1.png";
+	public static final String BRICK_4X1_RSC = "bounce/resource/gray4x1.png";
+	public static final String BRICK_2X2_RSC = "bounce/resource/gray2x2.png";
+	public static final String BRICK_3X3_RSC = "bounce/resource/gray3x3.png";
+	public static final String BRICK_CIRCLE_RSC = "bounce/resource/orangeCircle.png";
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
@@ -66,6 +77,7 @@ public class BounceGame extends StateBasedGame {
 	Ball ball;
 	Paddle paddle;
 	ArrayList<Bang> explosions;
+	ArrayList<Brick> bricks;
 
 	/**
 	 * Create the BounceGame frame, saving the width and height for later use.
@@ -84,6 +96,7 @@ public class BounceGame extends StateBasedGame {
 
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 		explosions = new ArrayList<Bang>(10);
+		bricks = new ArrayList<Brick>(14*6);
 				
 	}
 
@@ -115,6 +128,17 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(HALF_PADDLEIMG_RSC);
 		ResourceManager.loadImage(LOW_PADDLEIMG_RSC);
 		ResourceManager.loadImage(DEAD_PADDLEIMG_RSC);
+		//bricks
+		ResourceManager.loadImage(BRICK_1X1_RSC);
+		ResourceManager.loadImage(BRICK_1X2_RSC);
+		ResourceManager.loadImage(BRICK_1X3_RSC);
+		ResourceManager.loadImage(BRICK_1X4_RSC);
+		ResourceManager.loadImage(BRICK_2X1_RSC);
+		ResourceManager.loadImage(BRICK_3X1_RSC);
+		ResourceManager.loadImage(BRICK_4X1_RSC);
+		ResourceManager.loadImage(BRICK_2X2_RSC);
+		ResourceManager.loadImage(BRICK_3X3_RSC);
+		ResourceManager.loadImage(BRICK_CIRCLE_RSC);
 		
 		
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, .2f);

@@ -13,21 +13,62 @@ import jig.Vector;
  class Ball extends Entity {
 
 	private Vector velocity;
+	private float speed;
 	private int countdown;
+	private int damage;
 
 	public Ball(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
 		addImageWithBoundingBox(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
 		velocity = new Vector(vx, vy);
 		countdown = 0;
+		damage = 1;
+		speed = 1f;
 	}
 
 	public void setVelocity(final Vector v) {
 		velocity = v;
 	}
+	
+	public void setDamage(int d) {
+		damage = d;
+	}
 
 	public Vector getVelocity() {
 		return velocity;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	
+	public int sideOfCollision(Entity other) {
+		//check which side the ball has collided with a rectangle on
+		//	_0_
+		//2[___]3
+		//	 1
+		
+		int sideLeeway = 10;// so the ball wont always collide with top or bottom of rect
+		
+		if(this.getCoarseGrainedMinX()<other.getCoarseGrainedMaxX()-sideLeeway &&
+				this.getCoarseGrainedMaxX()>other.getCoarseGrainedMinX()+sideLeeway) {
+				if(this.getY()<=other.getY()) {
+					//hit top of rect
+					return 0;
+				}else {
+					//hit bottom of rect
+					return 1;
+				}
+			}else {
+				if(this.getX()<=other.getX()) {
+					//left side of rect
+					return 2;
+					
+				}else{
+					//left side of rect
+					return 3;
+				}
+			}
 	}
 
 	/**
@@ -53,7 +94,7 @@ import jig.Vector;
 	 *            the number of milliseconds since the last update
 	 */
 	public void update(final int delta) {
-		translate(velocity.scale(delta));
+		translate(velocity.scale(delta*speed));
 		if (countdown > 0) {
 			countdown -= delta;
 			if (countdown <= 0) {

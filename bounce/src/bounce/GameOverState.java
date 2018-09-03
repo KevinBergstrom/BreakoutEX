@@ -49,6 +49,8 @@ class GameOverState extends BasicGameState {
 
 		BounceGame bg = (BounceGame)game;
 		g.drawString("Bounces: " + lastKnownBounces, 10, 30);
+		for (Brick br : bg.bricks)
+			br.render(g);
 		for (Bang b : bg.explosions)
 			b.render(g);
 		
