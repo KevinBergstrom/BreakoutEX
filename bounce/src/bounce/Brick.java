@@ -21,7 +21,7 @@ import jig.ResourceManager;
 		//bx and by respresent how many base bricks long or wide it is (1 to 4)
 		//addImageWithBoundingBox(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
 		Image image = getBrickImageFromSize(bx, by);
-		brickImg = image.getScaledCopy(bx*5, by*5);
+		brickImg = image.getScaledCopy(bx*40, by*40);
 		brickImg.setFilter(Image.FILTER_NEAREST);
 		brickImg.setImageColor(col.r, col.g, col.b);
 		addImageWithBoundingBox(brickImg);
@@ -69,7 +69,7 @@ import jig.ResourceManager;
 		}else {
 			float brickAlpha = health/maxHealth;
 			Image image = getBrickImageFromSize(bricksX, bricksY);
-			brickImg = image.getScaledCopy(bricksX*5, bricksY*5);
+			brickImg = image.getScaledCopy(bricksX*40, bricksY*40);
 			brickImg.setFilter(Image.FILTER_NEAREST);
 			brickImg.setImageColor(brickColor.r, brickColor.g, brickColor.b,brickAlpha);
 			addImageWithBoundingBox(brickImg);

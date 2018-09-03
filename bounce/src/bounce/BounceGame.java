@@ -96,6 +96,7 @@ public class BounceGame extends StateBasedGame {
 
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 		explosions = new ArrayList<Bang>(10);
+		bricks = new ArrayList<Brick>(14*6);
 				
 	}
 

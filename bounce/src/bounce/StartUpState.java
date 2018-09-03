@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import jig.ResourceManager;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -28,9 +29,33 @@ class StartUpState extends BasicGameState {
 			throws SlickException {
 	}
 	
+	//TODO temporary location
+	public void clearLevel(StateBasedGame game) {
+		BounceGame bg = (BounceGame)game;
+		bg.bricks.clear();
+		bg.explosions.clear();
+		bg.ball.setPosition(bg.ScreenWidth/2, bg.ScreenHeight-200);
+		bg.paddle.setPosition(bg.ScreenWidth/2, bg.ScreenHeight-60);
+		bg.paddle.setHealth(3);
+	}
+	
+	public void loadLevel(StateBasedGame game) {
+		BounceGame bg = (BounceGame)game;
+		clearLevel(game);
+		for(int x = 0;x<14;x++) {
+			for(int y = 0;y<6;y++) {
+				bg.bricks.add(new Brick(140+(x*40), 60+(y*40), 1, 1, new Color(255,0,0)));
+			}
+		}
+		
+	}
+	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		container.setSoundOn(false);
+		//loading level
+		loadLevel(game);
+		
 	}
 
 
@@ -42,6 +67,8 @@ class StartUpState extends BasicGameState {
 		bg.ball.render(g);
 		bg.paddle.render(g);
 		g.drawString("Bounces: ?", 10, 30);
+		for (Brick br : bg.bricks)
+			br.render(g);
 		for (Bang b : bg.explosions)
 			b.render(g);
 		g.drawImage(ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC),
