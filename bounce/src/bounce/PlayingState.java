@@ -70,51 +70,81 @@ class PlayingState extends BasicGameState {
 			bg.paddle.setVelocity(bg.paddle.getVelocity().add(new Vector(+1.0f, 0f)));
 		}
 		
+		boolean bounced = false;
+		
 		//ball and paddle collision
 		if(bg.ball.collides(bg.paddle) != null) {
-			
-			if(bg.ball.getCoarseGrainedMinX()<bg.paddle.getCoarseGrainedMaxX()-delta &&
-				bg.ball.getCoarseGrainedMaxX()>bg.paddle.getCoarseGrainedMinX()+delta	) {
-				if(bg.ball.getY()<=bg.paddle.getY()) {
-					//hit top of paddle
-					bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMinY()-
-							bg.ball.getCoarseGrainedHeight()/2));
-					if(bg.ball.getVelocity().getY()>0) {
-						bg.ball.bounce(0);
-					}
-				}else {
-					//hit bottom of paddle
-					bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMaxY()+
-							bg.ball.getCoarseGrainedHeight()/2));
-					if(bg.ball.getVelocity().getY()<0) {
-						bg.ball.bounce(0);
-					}
+			int sideOfCol = bg.ball.sideOfCollision(bg.paddle);
+			if(sideOfCol == 0) {
+				bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMinY()-
+						bg.ball.getCoarseGrainedHeight()/2));
+				if(bg.ball.getVelocity().getY()>0) {
+					bg.ball.bounce(0);
 				}
-				
-			}else {
-				if(bg.ball.getX()<=bg.paddle.getX()) {
-					//left side of paddle
-					bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMinX()-
-							bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
-					if(bg.ball.getVelocity().getX()>0) {
-						bg.ball.bounce(90);
-					}
+			}else if(sideOfCol == 1) {
+				bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMaxY()+
+						bg.ball.getCoarseGrainedHeight()/2));
+				if(bg.ball.getVelocity().getY()<0) {
+					bg.ball.bounce(0);
+				}
+			}else if(sideOfCol == 2) {
+				bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMinX()-
+						bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
+				if(bg.ball.getVelocity().getX()>0) {
+					bg.ball.bounce(90);
+				}
+			}else if(sideOfCol == 3) {
+				bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMaxX()+
+						bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
+				if(bg.ball.getVelocity().getX()<0) {
+					bg.ball.bounce(90);
+				}
+			}
+		}
+		
+		//ball and bricks collision
+		
+		// check bricks for collision and remove dead ones
+		float nextBounce = -1;
+		for (Iterator<Brick> i = bg.bricks.iterator(); i.hasNext();) {
+			Brick nextBrick = i.next();
+			if(nextBrick.isActive()) {
+				if(bg.ball.collides(nextBrick) != null) {
+					int sideOfCol = bg.ball.sideOfCollision(nextBrick);
 					
-				}else{
-					//left side of paddle
-					bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMaxX()+
-							bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
-					if(bg.ball.getVelocity().getY()>0) {
-						bg.ball.bounce(90);
+					if(sideOfCol == 0) {
+						if(bg.ball.getVelocity().getY()>0) {
+							nextBrick.damageBrick(bg.ball.getDamage(), game);
+							nextBounce = 0;
+						}
+					}else if(sideOfCol == 1) {
+						if(bg.ball.getVelocity().getY()<0) {
+							nextBrick.damageBrick(bg.ball.getDamage(), game);
+							nextBounce = 0;
+						}
+					}else if(sideOfCol == 2) {
+						if(bg.ball.getVelocity().getX()>0) {
+							nextBrick.damageBrick(bg.ball.getDamage(), game);
+							nextBounce = 90;
+						}
+					}else if(sideOfCol == 3) {
+						if(bg.ball.getVelocity().getX()<0) {
+							nextBrick.damageBrick(bg.ball.getDamage(), game);
+							nextBounce = 90;
+						}
 					}
 				}
 			}
-
-			
+			if (!nextBrick.isActive()) {
+				nextBrick.onDeath(bg);
+				i.remove();
+			}
+		}
+		if(nextBounce>-1) {
+			bg.ball.bounce(nextBounce);
 		}
 		
 		// bounce the ball...
-		boolean bounced = false;
 		if ((bg.ball.getVelocity().getX()>0 && bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth)
 				|| (bg.ball.getVelocity().getX()<0 && bg.ball.getCoarseGrainedMinX() < 0)) {
 			bg.ball.bounce(90);

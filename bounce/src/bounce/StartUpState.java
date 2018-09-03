@@ -44,7 +44,7 @@ class StartUpState extends BasicGameState {
 		clearLevel(game);
 		for(int x = 0;x<14;x++) {
 			for(int y = 0;y<6;y++) {
-				bg.bricks.add(new Brick(140+(x*40), 60+(y*40), 1, 1, new Color(255,0,0)));
+				bg.bricks.add(new Brick(120+(x*40), 40+(y*40), 1, 1, new Color(255,0,0)));
 			}
 		}
 		
