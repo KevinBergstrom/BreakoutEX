@@ -11,7 +11,12 @@ import jig.Vector;
 
 	private Vector velocity;
 	private int countdown;
-	private int reverseControls;
+	private float speed;
+	private float minSpeed;
+	private int minBoundX;
+	private int maxBoundX;
+	private int minBoundY;
+	private int maxBoundY;
 
 	public Paddle(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
@@ -21,12 +26,29 @@ import jig.Vector;
 		
 		addImageWithBoundingBox(newImage);
 		velocity = new Vector(vx, vy);
-		reverseControls = 1;
+		speed = 0.2f;
+		minSpeed = 0.1f;
 		countdown = 0;
+		minBoundX = (int) x;
+		maxBoundX = (int) x;
+		minBoundY = (int) y;
+		maxBoundY = (int) y;
 	}
 
 	public void setVelocity(final Vector v) {
 		velocity = v;
+	}
+	
+	public void setMoveBounds(int minX, int maxX, int minY, int maxY) {
+		minBoundX = minX;
+		maxBoundX = maxX;
+		minBoundY = minY;
+		maxBoundY = maxY;
+		
+	}
+	
+	public void reverseControls() {
+		speed = speed * -1;
 	}
 	
 	public void setHealth(int health) {
@@ -59,7 +81,18 @@ import jig.Vector;
 	}
 
 	public void update(final int delta) {
-		translate(velocity.scale(delta*reverseControls));
+		translate(velocity.scale(delta*speed));
+		//keep paddle within bounds
+		if(this.getX()>maxBoundX) {
+			this.setX(maxBoundX);
+		}else if(this.getX()<minBoundX) {
+			this.setX(minBoundX);
+		}
+		if(this.getY()>maxBoundY) {
+			this.setY(maxBoundY);
+		}else if(this.getY()<minBoundY) {
+			this.setY(minBoundY);
+		}
 				//addImageWithBoundingBox(ResourceManager
 				//		.getImage(BounceGame.BALL_BALLIMG_RSC));
 				//removeImage(ResourceManager

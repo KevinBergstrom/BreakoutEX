@@ -119,6 +119,7 @@ public class BounceGame extends StateBasedGame {
 		
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, .2f);
 		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);
+		paddle.setMoveBounds(80, ScreenWidth-80, ScreenHeight-60, ScreenHeight-20);
 
 	}
 	
