@@ -62,7 +62,7 @@ class GameOverState extends BasicGameState {
 		
 		timer -= delta;
 		if (timer <= 0)
-			game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new HorizontalSplitTransition() );
+			game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new HorizontalSplitTransition() );
 
 		// check if there are any finished explosions, if so remove them
 		for (Iterator<Bang> i = ((BounceGame)game).explosions.iterator(); i.hasNext();) {
