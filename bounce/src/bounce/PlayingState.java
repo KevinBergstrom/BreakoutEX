@@ -1,7 +1,7 @@
 package bounce;
 
 import java.util.Iterator;
-
+import jig.Entity;
 import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
@@ -46,7 +46,7 @@ class PlayingState extends BasicGameState {
 		for (Bang b : bg.explosions)
 			b.render(g);
 	}
-
+	
 	@Override
 	public void update(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
@@ -66,6 +66,50 @@ class PlayingState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_D)) {
 			bg.paddle.setVelocity(bg.paddle.getVelocity().add(new Vector(+1.0f, 0f)));
 		}
+		
+		//ball and paddle collision
+		if(bg.ball.collides(bg.paddle) != null) {
+			
+			if(bg.ball.getCoarseGrainedMinX()<bg.paddle.getCoarseGrainedMaxX()-delta &&
+				bg.ball.getCoarseGrainedMaxX()>bg.paddle.getCoarseGrainedMinX()+delta	) {
+				if(bg.ball.getY()<=bg.paddle.getY()) {
+					//hit top of paddle
+					bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMinY()-
+							bg.ball.getCoarseGrainedHeight()/2));
+					if(bg.ball.getVelocity().getY()>0) {
+						bg.ball.bounce(0);
+					}
+				}else {
+					//hit bottom of paddle
+					bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMaxY()+
+							bg.ball.getCoarseGrainedHeight()/2));
+					if(bg.ball.getVelocity().getY()<0) {
+						bg.ball.bounce(0);
+					}
+				}
+				
+			}else {
+				if(bg.ball.getX()<=bg.paddle.getX()) {
+					//left side of paddle
+					bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMinX()-
+							bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
+					if(bg.ball.getVelocity().getX()>0) {
+						bg.ball.bounce(90);
+					}
+					
+				}else{
+					//left side of paddle
+					bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMaxX()+
+							bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
+					if(bg.ball.getVelocity().getY()>0) {
+						bg.ball.bounce(90);
+					}
+				}
+			}
+
+			
+		}
+		
 		// bounce the ball...
 		boolean bounced = false;
 		if ((bg.ball.getVelocity().getX()>0 && bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth)
@@ -91,6 +135,7 @@ class PlayingState extends BasicGameState {
 			}
 		}
 
+		//TODO change later
 		if (bounces >= 10) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(bounces);
 			game.enterState(BounceGame.GAMEOVERSTATE);
