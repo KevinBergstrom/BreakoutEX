@@ -9,7 +9,8 @@
 - **[7]** Use a proper Slick StateBasedGame.
 - **[8]** Use fully specified resource path, preload resources if possible
 - **[9]** Resource manager cannot find gameover.png
+- **[10]** Add a splash screen
+- **[11]** Update the GameOver Screen
 
 ## Open Issues ##
-- **[10]** Add a splash screen
 

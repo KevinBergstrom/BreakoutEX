@@ -67,12 +67,12 @@ class PlayingState extends BasicGameState {
 		}
 		// bounce the ball...
 		boolean bounced = false;
-		if (bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth
-				|| bg.ball.getCoarseGrainedMinX() < 0) {
+		if ((bg.ball.getVelocity().getX()>0 && bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth)
+				|| (bg.ball.getVelocity().getX()<0 && bg.ball.getCoarseGrainedMinX() < 0)) {
 			bg.ball.bounce(90);
 			bounced = true;
-		} else if (bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight
-				|| bg.ball.getCoarseGrainedMinY() < 0) {
+		} else if ((bg.ball.getVelocity().getY()>0 && bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight)
+				|| (bg.ball.getVelocity().getY()<0 && bg.ball.getCoarseGrainedMinY() < 0)) {
 			bg.ball.bounce(0);
 			bounced = true;
 		}
