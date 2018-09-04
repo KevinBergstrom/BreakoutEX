@@ -15,20 +15,23 @@ import jig.Vector;
  */
  class Projectile extends Entity {
 
-	private Vector velocity;
-	private float speed;
+	protected Vector velocity;
+	protected float speed;
 	private int damage;
 
 	public Projectile(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
-		Image newImage = ResourceManager.getImage(BounceGame.PROJECTILEIMG_RSC).getScaledCopy(40, 40);
-		newImage.setFilter(Image.FILTER_NEAREST);
-		addImageWithBoundingBox(newImage);
 		velocity = new Vector(vx, vy);
 		damage = 1;
 		speed = 0.2f;
 	}
 
+	public void defaultImage() {
+		Image newImage = ResourceManager.getImage(BounceGame.PROJECTILEIMG_RSC).getScaledCopy(30, 30);
+		newImage.setFilter(Image.FILTER_NEAREST);
+		addImageWithBoundingBox(newImage);
+	}
+	
 	public void setVelocity(final Vector v) {
 		velocity = v;
 	}
@@ -62,9 +65,9 @@ import jig.Vector;
 			return false;
 		}else if(this.getCoarseGrainedMinX()>ScreenWidth) {
 			return false;
-		}else if(this.getCoarseGrainedMinY()<0) {
+		}else if(this.getCoarseGrainedMaxY()<0) {
 			return false;
-		}else if(this.getCoarseGrainedMaxY()>ScreenHeight) {
+		}else if(this.getCoarseGrainedMinY()>ScreenHeight) {
 			return false;
 		}else {
 			return true;

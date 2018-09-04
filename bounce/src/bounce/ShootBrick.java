@@ -14,6 +14,7 @@ public class ShootBrick extends Brick{
 		BounceGame bg = (BounceGame)game;
 		Projectile proj = new Projectile(this.getX(),this.getY(),0,0);
 		proj.setVelocity(proj.aimAt(bg.paddle));
+		proj.defaultImage();
 		bg.projectiles.add(proj);
 	}
 
