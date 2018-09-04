@@ -71,13 +71,12 @@ import jig.Vector;
 		}else if(PUNum==2) {
 			return new MorePowerUp(PUPosX,PUPosY);
 		}else if(PUNum==3) {
-			
+			return new ProjectilePowerUp(PUPosX,PUPosY);
 		}else if(PUNum==4) {
 			
 		}else {
 			
 		}
-		
 		return null;
 	}
 }

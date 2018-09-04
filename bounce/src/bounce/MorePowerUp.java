@@ -17,7 +17,7 @@ public class MorePowerUp extends PowerUp{
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
 		delayAmount = 1000f;
-		minDelayAmount = 3000f;
+		minDelayAmount = 1000f;
 	}
 	
 	public void effect(StateBasedGame game) {
