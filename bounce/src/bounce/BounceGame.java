@@ -59,6 +59,7 @@ public class BounceGame extends StateBasedGame {
 	public static final String HALF_PADDLEIMG_RSC = "bounce/resource/halfPaddle.png";
 	public static final String LOW_PADDLEIMG_RSC = "bounce/resource/lowPaddle.png";
 	public static final String DEAD_PADDLEIMG_RSC = "bounce/resource/deadPaddle.png";
+	public static final String PROJECTILEIMG_RSC = "bounce/resource/projectile.png";
 	//bricks
 	public static final String BRICK_1X1_RSC = "bounce/resource/gray1x1.png";
 	public static final String BRICK_1X2_RSC = "bounce/resource/gray1x2.png";
@@ -78,6 +79,7 @@ public class BounceGame extends StateBasedGame {
 	Paddle paddle;
 	ArrayList<Bang> explosions;
 	ArrayList<Brick> bricks;
+	ArrayList<Projectile> projectiles;
 
 	/**
 	 * Create the BounceGame frame, saving the width and height for later use.
@@ -96,7 +98,8 @@ public class BounceGame extends StateBasedGame {
 
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 		explosions = new ArrayList<Bang>(10);
-		bricks = new ArrayList<Brick>(14*6);
+		bricks = new ArrayList<Brick>(14*6);//TODO remove magic number
+		projectiles = new ArrayList<Projectile>();
 				
 	}
 
@@ -128,6 +131,7 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(HALF_PADDLEIMG_RSC);
 		ResourceManager.loadImage(LOW_PADDLEIMG_RSC);
 		ResourceManager.loadImage(DEAD_PADDLEIMG_RSC);
+		ResourceManager.loadImage(PROJECTILEIMG_RSC);
 		//bricks
 		ResourceManager.loadImage(BRICK_1X1_RSC);
 		ResourceManager.loadImage(BRICK_1X2_RSC);

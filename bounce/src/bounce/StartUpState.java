@@ -34,6 +34,7 @@ class StartUpState extends BasicGameState {
 		BounceGame bg = (BounceGame)game;
 		bg.bricks.clear();
 		bg.explosions.clear();
+		bg.projectiles.clear();
 		bg.ball.reset();
 		bg.ball.setSpeed(1f);
 		bg.paddle.reset();
@@ -45,7 +46,7 @@ class StartUpState extends BasicGameState {
 		clearLevel(game);
 		for(int x = 0;x<14;x++) {
 			for(int y = 0;y<6;y++) {
-				bg.bricks.add(new Brick(120+(x*40), 40+(y*40), 1, 1, new Color(255,0,0)));
+				bg.bricks.add(new ShootBrick(120+(x*40), 40+(y*40), 1, 1));
 			}
 		}
 		
