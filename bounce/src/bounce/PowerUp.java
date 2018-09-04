@@ -69,7 +69,7 @@ import jig.Vector;
 		}else if(PUNum==1) {
 			return new HealPowerUp(PUPosX,PUPosY);
 		}else if(PUNum==2) {
-			
+			return new MorePowerUp(PUPosX,PUPosY);
 		}else if(PUNum==3) {
 			
 		}else if(PUNum==4) {
