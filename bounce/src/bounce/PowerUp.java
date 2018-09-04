@@ -7,12 +7,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import jig.Entity;
 import jig.Vector;
 
-/**
- * The Ball class is an Entity that has a velocity (since it's moving). When
- * the Ball bounces off a surface, it temporarily displays a image with
- * cracks for a nice visual effect.
- * 
- */
  class PowerUp extends Entity {
 
 	protected Vector velocity;
@@ -61,7 +55,7 @@ import jig.Vector;
 	public static PowerUp spawnRandomPowerUp(float ScreenWidth) {
 		Random rand = new Random();
 		int PUNum = rand.nextInt(6);
-		float PUPosX = (float)rand.nextInt((int)ScreenWidth);
+		float PUPosX = 20+(float)rand.nextInt((int)ScreenWidth-20);
 		float PUPosY = 20;
 		
 		if(PUNum==0) {

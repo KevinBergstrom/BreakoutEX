@@ -43,8 +43,8 @@ import jig.Vector;
 		defaultX = x;
 		defaultY = y;
 		projShield = false;
-		projShieldDelay = 4500f;
-		projShieldTimer = 4500f;
+		projShieldDelay = 6000f;
+		projShieldTimer = 6000f;
 	}
 
 	public void setVelocity(final Vector v) {

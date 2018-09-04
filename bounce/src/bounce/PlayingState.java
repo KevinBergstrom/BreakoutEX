@@ -2,10 +2,12 @@ package bounce;
 
 import java.util.Iterator;
 import jig.Entity;
+import jig.ResourceManager;
 import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -58,7 +60,11 @@ class PlayingState extends BasicGameState {
 			g.drawString("Invinciblility: On", 10, 30);
 		}
 		if(bg.paddle.getProjShield()) {
-			//TODO render projshield
+			Image ShieldImage = ResourceManager.getImage(BounceGame.PROJ_SHIELDIMG_RSC);
+			ShieldImage.setFilter(Image.FILTER_NEAREST);
+			g.drawImage(ShieldImage,
+					bg.paddle.getCoarseGrainedMinX()-8*5,bg.paddle.getCoarseGrainedMinY()-4*5, 
+					bg.paddle.getCoarseGrainedMaxX()+8*5, bg.paddle.getCoarseGrainedMaxY()+4*5,0, 0,40,16 );
 		}
 		
 	}
@@ -209,7 +215,7 @@ class PlayingState extends BasicGameState {
 		 bg.powerUpTimer =  bg.powerUpTimer - delta;
 		 if(bg.powerUpTimer<0) {
 			 bg.powerUpTimer = bg.powerUpDelay;
-			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth);
+			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth-20);
 			 if(newPU!=null) {
 				 bg.powerups.add(newPU);
 			 }
