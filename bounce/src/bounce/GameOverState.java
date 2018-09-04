@@ -49,6 +49,7 @@ class GameOverState extends BasicGameState {
 
 		BounceGame bg = (BounceGame)game;
 		bg.paddle.render(g);
+		bg.ball.render(g);
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)
