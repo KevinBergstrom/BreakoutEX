@@ -25,6 +25,8 @@ import org.newdawn.slick.state.StateBasedGame;
 class PlayingState extends BasicGameState {
 	private int health;
 	private float powerUpDelay;//time inbetween powerup spawns
+	private float powerUpTimer;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -34,6 +36,7 @@ class PlayingState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		health = 3;
 		powerUpDelay = 6f;
+		powerUpTimer = 6f;
 		container.setSoundOn(true);
 	}
 	@Override
@@ -58,7 +61,7 @@ class PlayingState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
-
+		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 		bg.paddle.setVelocity(new Vector(0, 0));
@@ -184,6 +187,16 @@ class PlayingState extends BasicGameState {
 				i.remove();
 			}
 		}
+		
+		//power up spawning
+		 powerUpTimer =  powerUpTimer - delta;
+		 if(powerUpTimer<0) {
+			 powerUpTimer = powerUpDelay;
+			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth);
+			 if(newPU!=null) {
+				 bg.powerups.add(newPU);
+			 }
+		 }
 		
 		//update the powerups
 		for (Iterator<PowerUp> i = bg.powerups.iterator(); i.hasNext();) {

@@ -1,5 +1,7 @@
 package bounce;
 
+import java.util.Random;
+
 import org.newdawn.slick.state.StateBasedGame;
 
 import jig.Entity;
@@ -54,5 +56,26 @@ import jig.Vector;
 
 	public void update(final int delta) {
 		translate(velocity.scale(delta*speed));
+	}
+	
+	public static PowerUp spawnRandomPowerUp(float ScreenWidth) {
+		Random rand = new Random();
+		int PUNum = rand.nextInt(5);
+		float PUPosX = (float)rand.nextInt((int)ScreenWidth);
+		if(PUNum==0) {
+			
+		}else if(PUNum==1) {
+			
+		}else if(PUNum==2) {
+			
+		}else if(PUNum==3) {
+			
+		}else if(PUNum==4) {
+			
+		}else {
+			
+		}
+		
+		return null;
 	}
 }
