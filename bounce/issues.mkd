@@ -21,12 +21,15 @@
 - **[19]** Add powerups
 - **[20]** Add updated ball and press space images
 - **[21]** Add backgrounds
+- **[22]** Add invincibility cheat
 
 ## Open Issues ##
-- **[22]** Add level complete screen
-- **[23]** Add levels
-- **[24]** Add game won screen
-- **[25]** Add cheats to access each level
+- **[23]** Add level complete screen
+- **[24]** Add levels
+- **[25]** Add game won screen
+- **[26]** Add cheats to access each level
+- **[27]** Add more sounds
+- **[28]** Refactor code
 
 
 

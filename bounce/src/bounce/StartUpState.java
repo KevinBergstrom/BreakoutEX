@@ -90,10 +90,15 @@ class StartUpState extends BasicGameState {
 			br.render(g);
 		for (Bang b : bg.explosions)
 			b.render(g);
+		
 		Image SplashImage = ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC);
 		SplashImage.setFilter(Image.FILTER_NEAREST);
 		g.drawImage(SplashImage,
 				bg.ScreenWidth/2 -127, bg.ScreenHeight/2 - 21, bg.ScreenWidth/2 + 127, bg.ScreenHeight/2 + 21,0, 0,127,21 );
+		
+		if(bg.invincibility) {
+			g.drawString("Invinciblility: On", 10, 30);
+		}
 	}
 
 	@Override
@@ -106,27 +111,8 @@ class StartUpState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_SPACE))
 			bg.enterState(BounceGame.PLAYINGSTATE);	
 		
-		/*// bounce the ball...
-		boolean bounced = false;
-		if ((bg.ball.getVelocity().getX()>0 && bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth)
-				|| (bg.ball.getVelocity().getX()<0 && bg.ball.getCoarseGrainedMinX() < 0)) {
-			bg.ball.bounce(90);
-			bounced = true;
-		} else if ((bg.ball.getVelocity().getY()>0 && bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight)
-				|| (bg.ball.getVelocity().getY()<0 && bg.ball.getCoarseGrainedMinY() < 0)) {
-			bg.ball.bounce(0);
-			bounced = true;
-		}
-		if (bounced) {
-			bg.explosions.add(new Bang(bg.ball.getX(), bg.ball.getY()));
-		}
-		bg.ball.update(delta);
-		// check if there are any finished explosions, if so remove them
-		for (Iterator<Bang> i = bg.explosions.iterator(); i.hasNext();) {
-			if (!i.next().isActive()) {
-				i.remove();
-			}
-		}*/
+		if (input.isKeyDown(Input.KEY_INSERT))
+			bg.invincibility = true;
 
 	}
 
