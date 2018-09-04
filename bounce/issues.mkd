@@ -19,9 +19,9 @@
 - **[17]** Add a brick that inverts controls on hit
 - **[18]** Add a brick that speeds up ball on hit
 - **[19]** Add powerups
+- **[20]** Add updated ball and press space images
 
 ## Open Issues ##
-- **[20]** Add updated ball and press space images
 - **[21]** Add backgrounds
 - **[22]** Add level complete screen
 - **[23]** Add levels
