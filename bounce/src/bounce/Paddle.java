@@ -56,6 +56,7 @@ import jig.Vector;
 	
 	public void reset() {
 		this.setPosition(defaultX, defaultY);
+		speed = Math.abs(speed);
 	}
 	
 	public void setHealth(int health) {
