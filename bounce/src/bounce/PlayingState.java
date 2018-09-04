@@ -23,7 +23,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * Transitions To GameOverState
  */
 class PlayingState extends BasicGameState {
-	int bounces;
+	int health;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -32,7 +32,7 @@ class PlayingState extends BasicGameState {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		bounces = 0;
+		health = 3;
 		container.setSoundOn(true);
 	}
 	@Override
@@ -42,7 +42,7 @@ class PlayingState extends BasicGameState {
 		
 		bg.ball.render(g);
 		bg.paddle.render(g);
-		g.drawString("Bounces: " + bounces, 10, 30);
+		//g.drawString("Bounces: " + bounces, 10, 30);
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)
@@ -80,24 +80,28 @@ class PlayingState extends BasicGameState {
 						bg.ball.getCoarseGrainedHeight()/2));
 				if(bg.ball.getVelocity().getY()>0) {
 					bg.ball.bounce(0);
+					bounced = true;
 				}
 			}else if(sideOfCol == 1) {
 				bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMaxY()+
 						bg.ball.getCoarseGrainedHeight()/2));
 				if(bg.ball.getVelocity().getY()<0) {
 					bg.ball.bounce(0);
+					bounced = true;
 				}
 			}else if(sideOfCol == 2) {
 				bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMinX()-
 						bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
 				if(bg.ball.getVelocity().getX()>0) {
 					bg.ball.bounce(90);
+					bounced = true;
 				}
 			}else if(sideOfCol == 3) {
 				bg.ball.setPosition(new Vector(bg.paddle.getCoarseGrainedMaxX()+
 						bg.ball.getCoarseGrainedWidth()/2,bg.ball.getY()));
 				if(bg.ball.getVelocity().getX()<0) {
 					bg.ball.bounce(90);
+					bounced = true;
 				}
 			}
 		}
@@ -142,6 +146,7 @@ class PlayingState extends BasicGameState {
 		}
 		if(nextBounce>-1) {
 			bg.ball.bounce(nextBounce);
+			bounced = true;
 		}
 		
 		// bounce the ball...
@@ -149,14 +154,17 @@ class PlayingState extends BasicGameState {
 				|| (bg.ball.getVelocity().getX()<0 && bg.ball.getCoarseGrainedMinX() < 0)) {
 			bg.ball.bounce(90);
 			bounced = true;
-		} else if ((bg.ball.getVelocity().getY()>0 && bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight)
-				|| (bg.ball.getVelocity().getY()<0 && bg.ball.getCoarseGrainedMinY() < 0)) {
+		} else if (bg.ball.getVelocity().getY()<0 && bg.ball.getCoarseGrainedMinY() < 0) {
 			bg.ball.bounce(0);
 			bounced = true;
+		}else if(bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight) {
+			bg.ball.reset();
+			health--;
+			bg.paddle.setHealth(health);
+			
 		}
 		if (bounced) {
 			bg.explosions.add(new Bang(bg.ball.getX(), bg.ball.getY()));
-			bounces++;
 		}
 		bg.ball.update(delta);
 		bg.paddle.update(delta);
@@ -169,8 +177,8 @@ class PlayingState extends BasicGameState {
 		}
 
 		//TODO change later
-		if (bounces >= 10) {
-			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(bounces);
+		if (health<=0) {
+			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}
 	}
