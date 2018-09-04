@@ -49,7 +49,7 @@ class SplashState extends BasicGameState {
 		Image SplashImage = ResourceManager.getImage(BounceGame.SPLASH_IMG);
 		SplashImage.setFilter(Image.FILTER_NEAREST);
 		g.drawImage(SplashImage,
-				0, 0, bg.ScreenWidth, bg.ScreenHeight,0, 0,400,300);		
+				0, 0, bg.ScreenWidth, bg.ScreenHeight,0, 0,400,300 );		
 		//g.drawImage(image, x, y,endx,endy, 0, 0, image sizex, image sizey);
 	}
 
@@ -67,6 +67,10 @@ class SplashState extends BasicGameState {
 
 		if (input.isKeyDown(Input.KEY_ENTER))//TODO how do I do any input?
 			bg.enterState(BounceGame.STARTUPSTATE);	
+		
+		
+		//bg.ball.update(delta);
+
 
 	}
 

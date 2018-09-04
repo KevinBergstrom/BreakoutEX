@@ -1,7 +1,5 @@
 package bounce;
 
-import org.newdawn.slick.Image;
-
 import jig.Entity;
 import jig.ResourceManager;
 import jig.Vector;
@@ -27,9 +25,7 @@ import jig.Vector;
 
 	public Ball(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
-		Image newImage = ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC).getScaledCopy(50, 50);
-		newImage.setFilter(Image.FILTER_NEAREST);
-		addImageWithBoundingBox(newImage);
+		addImageWithBoundingBox(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
 		velocity = new Vector(vx, vy);
 		countdown = 0;
 		damage = 1;
@@ -124,9 +120,9 @@ import jig.Vector;
 	 * @param surfaceTangent
 	 */
 	public void bounce(float surfaceTangent) {
-		/*removeImage(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
+		removeImage(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
 		addImageWithBoundingBox(ResourceManager
-				.getImage(BounceGame.BALL_BROKENIMG_RSC));*/
+				.getImage(BounceGame.BALL_BROKENIMG_RSC));
 		countdown = 500;
 		velocity = velocity.bounce(surfaceTangent);
 	}
@@ -139,7 +135,7 @@ import jig.Vector;
 	 */
 	public void update(final int delta) {
 		translate(velocity.scale(delta*speed));
-		/*if (countdown > 0) {
+		if (countdown > 0) {
 			countdown -= delta;
 			if (countdown <= 0) {
 				addImageWithBoundingBox(ResourceManager
@@ -147,6 +143,6 @@ import jig.Vector;
 				removeImage(ResourceManager
 						.getImage(BounceGame.BALL_BROKENIMG_RSC));
 			}
-		}*/
+		}
 	}
 }

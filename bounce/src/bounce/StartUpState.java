@@ -7,7 +7,6 @@ import jig.ResourceManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -86,11 +85,8 @@ class StartUpState extends BasicGameState {
 			br.render(g);
 		for (Bang b : bg.explosions)
 			b.render(g);
-		
-		Image StartImage = ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC);
-		StartImage.setFilter(Image.FILTER_NEAREST);
-		g.drawImage(StartImage,
-				bg.ScreenWidth/2 - 127, bg.ScreenHeight/2 - 21, bg.ScreenWidth/2 + 127, bg.ScreenHeight/2 + 21,0, 0,127,21 );		
+		g.drawImage(ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC),
+				225, 270);		
 	}
 
 	@Override
