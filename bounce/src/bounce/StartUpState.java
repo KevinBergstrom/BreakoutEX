@@ -34,8 +34,9 @@ class StartUpState extends BasicGameState {
 		BounceGame bg = (BounceGame)game;
 		bg.bricks.clear();
 		bg.explosions.clear();
-		bg.ball.setPosition(bg.ScreenWidth/2, bg.ScreenHeight-200);
-		bg.paddle.setPosition(bg.ScreenWidth/2, bg.ScreenHeight-60);
+		bg.ball.reset();
+		bg.ball.setSpeed(1f);
+		bg.paddle.reset();
 		bg.paddle.setHealth(3);
 	}
 	
@@ -66,7 +67,6 @@ class StartUpState extends BasicGameState {
 		
 		bg.ball.render(g);
 		bg.paddle.render(g);
-		g.drawString("Bounces: ?", 10, 30);
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)

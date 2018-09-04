@@ -12,6 +12,8 @@
 - **[10]** Add a splash screen
 - **[11]** Update the GameOver Screen
 - **[12]** Add a paddle that collides with the ball
+- **[13]** Add bricks that the ball can collide with
+- **[14]** Add player health and correct game over condition
 
 ## Open Issues ##
-- **[13]** Add bricks that the ball can collide with
+

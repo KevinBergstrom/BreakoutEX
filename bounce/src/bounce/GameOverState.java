@@ -48,7 +48,7 @@ class GameOverState extends BasicGameState {
 			Graphics g) throws SlickException {
 
 		BounceGame bg = (BounceGame)game;
-		g.drawString("Bounces: " + lastKnownBounces, 10, 30);
+		bg.paddle.render(g);
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)

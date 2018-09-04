@@ -16,6 +16,9 @@ import jig.Vector;
 	private float speed;
 	private int countdown;
 	private int damage;
+	private float defaultX;
+	private float defaultY;
+	private Vector defaultV;
 
 	public Ball(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
@@ -24,10 +27,17 @@ import jig.Vector;
 		countdown = 0;
 		damage = 1;
 		speed = 1f;
+		defaultX = x;
+		defaultY = y;
+		defaultV = new Vector(vx, vy);
 	}
 
 	public void setVelocity(final Vector v) {
 		velocity = v;
+	}
+	
+	public void setSpeed(float s) {
+		speed = s;
 	}
 	
 	public void setDamage(int d) {
@@ -42,13 +52,18 @@ import jig.Vector;
 		return damage;
 	}
 	
+	public void reset() {
+		this.setPosition(defaultX, defaultY);
+		this.setVelocity(defaultV);
+	}
+	
 	public int sideOfCollision(Entity other) {
 		//check which side the ball has collided with a rectangle on
 		//	_0_
 		//2[___]3
 		//	 1
 		
-		int sideLeeway = 10;// so the ball wont always collide with top or bottom of rect
+		int sideLeeway = 3;// so the ball wont always collide with top or bottom of rect
 		
 		if(this.getCoarseGrainedMinX()<other.getCoarseGrainedMaxX()-sideLeeway &&
 				this.getCoarseGrainedMaxX()>other.getCoarseGrainedMinX()+sideLeeway) {

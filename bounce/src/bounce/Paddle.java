@@ -17,6 +17,8 @@ import jig.Vector;
 	private int maxBoundX;
 	private int minBoundY;
 	private int maxBoundY;
+	private float defaultX;
+	private float defaultY;
 
 	public Paddle(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
@@ -33,6 +35,8 @@ import jig.Vector;
 		maxBoundX = (int) x;
 		minBoundY = (int) y;
 		maxBoundY = (int) y;
+		defaultX = x;
+		defaultY = y;
 	}
 
 	public void setVelocity(final Vector v) {
@@ -49,6 +53,10 @@ import jig.Vector;
 	
 	public void reverseControls() {
 		speed = speed * -1;
+	}
+	
+	public void reset() {
+		this.setPosition(defaultX, defaultY);
 	}
 	
 	public void setHealth(int health) {
