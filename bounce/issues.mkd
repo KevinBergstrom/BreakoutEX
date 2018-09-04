@@ -14,6 +14,8 @@
 - **[12]** Add a paddle that collides with the ball
 - **[13]** Add bricks that the ball can collide with
 - **[14]** Add player health and correct game over condition
+- **[15]** Add brick that shoots projectiles on hit
 
 ## Open Issues ##
+
 

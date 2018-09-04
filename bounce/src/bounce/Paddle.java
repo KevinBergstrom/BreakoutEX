@@ -22,11 +22,10 @@ import jig.Vector;
 
 	public Paddle(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
-		Image image = ResourceManager.getImage(BounceGame.FULL_PADDLEIMG_RSC);
-		Image newImage = image.getScaledCopy(160, 40);
+		Image newImage = ResourceManager.getImage(BounceGame.FULL_PADDLEIMG_RSC).getScaledCopy(160, 40);
 		newImage.setFilter(Image.FILTER_NEAREST);
-		
 		addImageWithBoundingBox(newImage);
+		
 		velocity = new Vector(vx, vy);
 		speed = 0.2f;
 		minSpeed = 0.1f;

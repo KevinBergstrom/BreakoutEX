@@ -47,6 +47,8 @@ class PlayingState extends BasicGameState {
 			br.render(g);
 		for (Bang b : bg.explosions)
 			b.render(g);
+		for (Projectile p : bg.projectiles)
+			p.render(g);
 		
 	}
 	
@@ -166,6 +168,20 @@ class PlayingState extends BasicGameState {
 		if (bounced) {
 			bg.explosions.add(new Bang(bg.ball.getX(), bg.ball.getY()));
 		}
+		
+		//update the projectiles
+		for (Iterator<Projectile> i = bg.projectiles.iterator(); i.hasNext();) {
+			Projectile nextProj = i.next();
+			nextProj.update(delta);
+			if (!nextProj.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
+				i.remove();
+			}else if(bg.paddle.collides(nextProj) != null) {
+				health = health - nextProj.getDamage();
+				bg.paddle.setHealth(health);
+				i.remove();
+			}
+		}
+		
 		bg.ball.update(delta);
 		bg.paddle.update(delta);
 		
