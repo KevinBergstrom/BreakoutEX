@@ -51,7 +51,7 @@ class StartUpState extends BasicGameState {
 		}*/
 		for(int x = 0;x<7;x++) {
 			for(int y = 0;y<3;y++) {
-				bg.bricks.add(new InversionBrick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2));
+				bg.bricks.add(new SpeedBrick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2));
 			}
 		}
 		

@@ -14,6 +14,7 @@ import jig.Vector;
 
 	private Vector velocity;
 	private float speed;
+	private float maxSpeed;
 	private int countdown;
 	private int damage;
 	private float defaultX;
@@ -27,6 +28,7 @@ import jig.Vector;
 		countdown = 0;
 		damage = 1;
 		speed = 1f;
+		maxSpeed = 2f;
 		defaultX = x;
 		defaultY = y;
 		defaultV = new Vector(vx, vy);
@@ -38,6 +40,9 @@ import jig.Vector;
 	
 	public void setSpeed(float s) {
 		speed = s;
+		if(speed>maxSpeed) {
+			speed = maxSpeed;
+		}
 	}
 	
 	public void setDamage(int d) {
@@ -48,6 +53,10 @@ import jig.Vector;
 		return velocity;
 	}
 	
+	public float getSpeed() {
+		return speed;
+	}
+	
 	public int getDamage() {
 		return damage;
 	}
@@ -55,6 +64,7 @@ import jig.Vector;
 	public void reset() {
 		this.setPosition(defaultX, defaultY);
 		this.setVelocity(defaultV);
+		setSpeed(1f);
 	}
 	
 	public int sideOfCollision(Entity other) {

@@ -17,9 +17,9 @@
 - **[15]** Add brick that shoots projectiles on hit
 - **[16]** Add radioactive brick that releases slime on hit
 - **[17]** Add a brick that inverts controls on hit
+- **[18]** Add a brick that speeds up ball on hit
 
 ## Open Issues ##
-- **[18]** Add a brick that speeds up ball on hit
 - **[19]** Add powerups
 
 
