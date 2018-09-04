@@ -7,6 +7,7 @@ import jig.ResourceManager;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -78,6 +79,15 @@ public class BounceGame extends StateBasedGame {
 	public static final String PROJ_POWERUPIMG_RSC = "bounce/resource/projPowerup.png";
 	public static final String SLOW_POWERUPIMG_RSC = "bounce/resource/slowPowerup.png";
 	public static final String X_POWERUPIMG_RSC = "bounce/resource/xPowerup.png";
+	//backgrounds
+	public static final String CAVE_BGIMG_RSC = "bounce/resource/caveBG.png";
+	public static final String CITY_BGIMG_RSC = "bounce/resource/cityScapeBG.png";
+	public static final String ROAD_BGIMG_RSC = "bounce/resource/midnightRoadBG.png";
+	public static final String MOUNTAIN_BGIMG_RSC = "bounce/resource/mountainBG.png";
+	public static final String PIPES_BGIMG_RSC = "bounce/resource/pipesBG.png";
+	public static final String STAR_BGIMG_RSC = "bounce/resource/starfieldBG.png";
+	public static final String VOID_BGIMG_RSC = "bounce/resource/voidBG.png";
+	public static final String VOLCANO_BGIMG_RSC = "bounce/resource/volcanoBG.png";
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
@@ -93,6 +103,8 @@ public class BounceGame extends StateBasedGame {
 	public int maxHealth;
 	public float powerUpDelay;//time inbetween powerup spawns
 	public float powerUpTimer;
+	
+	public Image background;
 
 	/**
 	 * Create the BounceGame frame, saving the width and height for later use.
@@ -114,6 +126,7 @@ public class BounceGame extends StateBasedGame {
 		bricks = new ArrayList<Brick>(14*6);//TODO remove magic number
 		projectiles = new ArrayList<Projectile>();
 		powerups = new ArrayList<PowerUp>();
+		background = null;
 				
 	}
 
@@ -164,7 +177,15 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(PROJ_POWERUPIMG_RSC);
 		ResourceManager.loadImage(SLOW_POWERUPIMG_RSC);
 		ResourceManager.loadImage(X_POWERUPIMG_RSC);
-		
+		//backgrounds
+		ResourceManager.loadImage(CAVE_BGIMG_RSC);
+		ResourceManager.loadImage(CITY_BGIMG_RSC);
+		ResourceManager.loadImage(ROAD_BGIMG_RSC);
+		ResourceManager.loadImage(MOUNTAIN_BGIMG_RSC);
+		ResourceManager.loadImage(PIPES_BGIMG_RSC);
+		ResourceManager.loadImage(STAR_BGIMG_RSC);
+		ResourceManager.loadImage(VOID_BGIMG_RSC);
+		ResourceManager.loadImage(VOLCANO_BGIMG_RSC);
 		
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, -.2f);
 		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);

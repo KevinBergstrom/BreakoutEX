@@ -38,6 +38,10 @@ class PlayingState extends BasicGameState {
 			Graphics g) throws SlickException {
 		BounceGame bg = (BounceGame)game;
 		
+		if(bg.background!=null) {
+			g.drawImage(bg.background, 0, 0);
+		}
+		
 		bg.ball.render(g);
 		bg.paddle.render(g);
 		//g.drawString("Bounces: " + bounces, 10, 30);

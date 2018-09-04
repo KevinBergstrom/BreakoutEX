@@ -46,8 +46,10 @@ class GameOverState extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game,
 			Graphics g) throws SlickException {
-
 		BounceGame bg = (BounceGame)game;
+		if(bg.background!=null) {
+			g.drawImage(bg.background, 0, 0);
+		}
 		bg.paddle.render(g);
 		bg.ball.render(g);
 		for (Brick br : bg.bricks)

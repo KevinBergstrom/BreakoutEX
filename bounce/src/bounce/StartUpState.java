@@ -48,6 +48,7 @@ class StartUpState extends BasicGameState {
 	public void loadLevel(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		clearLevel(game);
+		bg.background = ResourceManager.getImage(BounceGame.ROAD_BGIMG_RSC);
 		/*for(int x = 0;x<14;x++) {
 			for(int y = 0;y<6;y++) {
 				bg.bricks.add(new RadioactiveBrick(120+(x*40), 40+(y*40), 1, 1));
@@ -79,6 +80,9 @@ class StartUpState extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game,
 			Graphics g) throws SlickException {
 		BounceGame bg = (BounceGame)game;
+		if(bg.background!=null) {
+			g.drawImage(bg.background, 0, 0);
+		}
 		
 		bg.ball.render(g);
 		bg.paddle.render(g);
