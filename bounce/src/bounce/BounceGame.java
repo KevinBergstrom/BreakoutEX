@@ -47,10 +47,10 @@ public class BounceGame extends StateBasedGame {
 	public static final int GAMEOVERSTATE = 2;
 	public static final int SPLASHSTATE = 3;
 	
-	public static final String BALL_BALLIMG_RSC = "bounce/resource/ball.png";
+	public static final String BALL_BALLIMG_RSC = "bounce/resource/ballFinal.png";
 	public static final String BALL_BROKENIMG_RSC = "bounce/resource/brokenball.png";
 	public static final String GAMEOVER_BANNER_RSC = "bounce/resource/gameOverBG.png";
-	public static final String STARTUP_BANNER_RSC = "bounce/resource/PressSpace.png";
+	public static final String STARTUP_BANNER_RSC = "bounce/resource/pressSpace.png";
 	public static final String BANG_EXPLOSIONIMG_RSC = "bounce/resource/explosion.png";
 	public static final String BANG_EXPLOSIONSND_RSC = "bounce/resource/explosion.wav";
 	public static final String SPLASH_IMG = "bounce/resource/splashScreen.png";
@@ -71,7 +71,6 @@ public class BounceGame extends StateBasedGame {
 	public static final String BRICK_4X1_RSC = "bounce/resource/gray4x1.png";
 	public static final String BRICK_2X2_RSC = "bounce/resource/gray2x2.png";
 	public static final String BRICK_3X3_RSC = "bounce/resource/gray3x3.png";
-	public static final String BRICK_CIRCLE_RSC = "bounce/resource/orangeCircle.png";
 	//powerUps
 	public static final String ACCEL_POWERUPIMG_RSC = "bounce/resource/acceleratePowerup.png";
 	public static final String HEAL_POWERUPIMG_RSC = "bounce/resource/healPowerup.png";
@@ -158,7 +157,6 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(BRICK_4X1_RSC);
 		ResourceManager.loadImage(BRICK_2X2_RSC);
 		ResourceManager.loadImage(BRICK_3X3_RSC);
-		ResourceManager.loadImage(BRICK_CIRCLE_RSC);
 		//powerups
 		ResourceManager.loadImage(ACCEL_POWERUPIMG_RSC);
 		ResourceManager.loadImage(HEAL_POWERUPIMG_RSC);

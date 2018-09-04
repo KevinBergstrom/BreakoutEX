@@ -50,7 +50,6 @@ class SplashState extends BasicGameState {
 		SplashImage.setFilter(Image.FILTER_NEAREST);
 		g.drawImage(SplashImage,
 				0, 0, bg.ScreenWidth, bg.ScreenHeight,0, 0,400,300 );		
-		//g.drawImage(image, x, y,endx,endy, 0, 0, image sizex, image sizey);
 	}
 
 	@Override
