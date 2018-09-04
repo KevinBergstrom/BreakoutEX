@@ -23,9 +23,6 @@ import org.newdawn.slick.state.StateBasedGame;
  * Transitions To GameOverState
  */
 class PlayingState extends BasicGameState {
-	private int health;
-	private float powerUpDelay;//time inbetween powerup spawns
-	private float powerUpTimer;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -34,9 +31,6 @@ class PlayingState extends BasicGameState {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		health = 3;
-		powerUpDelay = 6000f;
-		powerUpTimer = 6000f;
 		container.setSoundOn(true);
 	}
 	@Override
@@ -167,8 +161,8 @@ class PlayingState extends BasicGameState {
 			bounced = true;
 		}else if(bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight) {
 			bg.ball.reset();
-			health--;
-			bg.paddle.setHealth(health);
+			bg.health = bg.health -1;
+			bg.paddle.setHealth(bg.health);
 			
 		}
 		if (bounced) {
@@ -182,16 +176,16 @@ class PlayingState extends BasicGameState {
 			if (!nextProj.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
 				i.remove();
 			}else if(bg.paddle.collides(nextProj) != null) {
-				health = health - nextProj.getDamage();
-				bg.paddle.setHealth(health);
+				bg.health = bg.health -nextProj.getDamage();
+				bg.paddle.setHealth(bg.health);
 				i.remove();
 			}
 		}
 		
 		//power up spawning
-		 powerUpTimer =  powerUpTimer - delta;
-		 if(powerUpTimer<0) {
-			 powerUpTimer = powerUpDelay;
+		 bg.powerUpTimer =  bg.powerUpTimer - delta;
+		 if(bg.powerUpTimer<0) {
+			 bg.powerUpTimer = bg.powerUpDelay;
 			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth);
 			 if(newPU!=null) {
 				 bg.powerups.add(newPU);
@@ -221,7 +215,7 @@ class PlayingState extends BasicGameState {
 		}
 
 		//TODO change later
-		if (health<=0) {
+		if (bg.health<=0) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}

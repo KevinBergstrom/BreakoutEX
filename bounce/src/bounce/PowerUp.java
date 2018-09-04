@@ -67,7 +67,7 @@ import jig.Vector;
 		if(PUNum==0) {
 			return new AcceleratePowerUp(PUPosX,PUPosY);
 		}else if(PUNum==1) {
-			
+			return new HealPowerUp(PUPosX,PUPosY);
 		}else if(PUNum==2) {
 			
 		}else if(PUNum==3) {
@@ -77,7 +77,7 @@ import jig.Vector;
 		}else {
 			
 		}
-
+		
 		return null;
 	}
 }

@@ -63,6 +63,11 @@ class StartUpState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		container.setSoundOn(false);
 		//loading level
+		BounceGame bg = (BounceGame)game;
+		bg.health = 3;
+		bg.maxHealth = 3;
+		bg.powerUpDelay = 6000f;
+		bg.powerUpTimer = 6000f;
 		loadLevel(game);
 		
 	}

@@ -89,6 +89,11 @@ public class BounceGame extends StateBasedGame {
 	ArrayList<Brick> bricks;
 	ArrayList<Projectile> projectiles;
 	ArrayList<PowerUp> powerups;
+	
+	public int health;
+	public int maxHealth;
+	public float powerUpDelay;//time inbetween powerup spawns
+	public float powerUpTimer;
 
 	/**
 	 * Create the BounceGame frame, saving the width and height for later use.
@@ -166,6 +171,11 @@ public class BounceGame extends StateBasedGame {
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, -.2f);
 		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);
 		paddle.setMoveBounds(80, ScreenWidth-80, ScreenHeight-60, ScreenHeight-20);
+		
+		health = 3;
+		maxHealth = 3;
+		powerUpDelay = 6000f;
+		powerUpTimer = 6000f;
 
 	}
 	
