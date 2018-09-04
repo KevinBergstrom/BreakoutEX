@@ -5,21 +5,21 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import jig.ResourceManager;
 
-public class AcceleratePowerUp extends PowerUp{
+public class SlowPowerUp extends PowerUp{
 
-	private float addSpeed;
+	private float loseSpeed;
 	
-	public AcceleratePowerUp(float x, float y) {
+	public SlowPowerUp(float x, float y) {
 		super(x, y, 0, 1f);
-		Image newImage = ResourceManager.getImage(BounceGame.ACCEL_POWERUPIMG_RSC).getScaledCopy(40, 40);
+		Image newImage = ResourceManager.getImage(BounceGame.SLOW_POWERUPIMG_RSC).getScaledCopy(40, 40);
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
-		addSpeed = 0.05f;
+		loseSpeed = -0.1f;
 	}
 	
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
-		bg.paddle.addSpeed(addSpeed);
+		bg.ball.addSpeed(loseSpeed);
 	}
 
 }

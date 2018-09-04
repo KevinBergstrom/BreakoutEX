@@ -73,7 +73,7 @@ import jig.Vector;
 		}else if(PUNum==3) {
 			return new ProjectilePowerUp(PUPosX,PUPosY);
 		}else if(PUNum==4) {
-			
+			return new SlowPowerUp(PUPosX,PUPosY);
 		}else {
 			
 		}

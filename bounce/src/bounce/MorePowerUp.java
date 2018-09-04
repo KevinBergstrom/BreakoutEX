@@ -16,7 +16,7 @@ public class MorePowerUp extends PowerUp{
 		Image newImage = ResourceManager.getImage(BounceGame.MORE_POWERUPIMG_RSC).getScaledCopy(40, 40);
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
-		delayAmount = 1000f;
+		delayAmount = 500f;
 		minDelayAmount = 1000f;
 	}
 	
