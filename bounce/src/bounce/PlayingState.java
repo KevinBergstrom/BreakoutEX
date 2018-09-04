@@ -44,7 +44,7 @@ class PlayingState extends BasicGameState {
 		
 		bg.ball.render(g);
 		bg.paddle.render(g);
-		//g.drawString("Bounces: " + bounces, 10, 30);
+
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)
@@ -53,6 +53,10 @@ class PlayingState extends BasicGameState {
 			p.render(g);
 		for (PowerUp pu : bg.powerups)
 			pu.render(g);
+		
+		if(bg.invincibility) {
+			g.drawString("Invinciblility: On", 10, 30);
+		}
 		
 	}
 	
@@ -75,6 +79,8 @@ class PlayingState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_D)) {
 			bg.paddle.setVelocity(bg.paddle.getVelocity().add(new Vector(+1.0f, 0f)));
 		}
+		if (input.isKeyDown(Input.KEY_INSERT))
+			bg.invincibility = true;
 		
 		boolean bounced = false;
 		
@@ -166,6 +172,9 @@ class PlayingState extends BasicGameState {
 		}else if(bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight) {
 			bg.ball.reset();
 			bg.health = bg.health -1;
+			if(bg.health<0) {
+				bg.health = 0;
+			}
 			bg.paddle.setHealth(bg.health);
 			
 		}
@@ -181,6 +190,9 @@ class PlayingState extends BasicGameState {
 				i.remove();
 			}else if(bg.paddle.collides(nextProj) != null) {
 				bg.health = bg.health -nextProj.getDamage();
+				if(bg.health<0) {
+					bg.health = 0;
+				}
 				bg.paddle.setHealth(bg.health);
 				i.remove();
 			}
@@ -218,8 +230,7 @@ class PlayingState extends BasicGameState {
 			}
 		}
 
-		//TODO change later
-		if (bg.health<=0) {
+		if (bg.health<=0 && !bg.invincibility) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}
