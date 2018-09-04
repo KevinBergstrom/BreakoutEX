@@ -60,7 +60,7 @@ import jig.Vector;
 	
 	public static PowerUp spawnRandomPowerUp(float ScreenWidth) {
 		Random rand = new Random();
-		int PUNum = rand.nextInt(5);
+		int PUNum = rand.nextInt(6);
 		float PUPosX = (float)rand.nextInt((int)ScreenWidth);
 		float PUPosY = 20;
 		
@@ -75,8 +75,7 @@ import jig.Vector;
 		}else if(PUNum==4) {
 			return new SlowPowerUp(PUPosX,PUPosY);
 		}else {
-			
+			return new XPowerUp(PUPosX,PUPosY);
 		}
-		return null;
 	}
 }

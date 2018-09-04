@@ -18,6 +18,7 @@ import jig.Vector;
 	private float minSpeed;
 	private int countdown;
 	private int damage;
+	private int maxDamage;
 	private float defaultX;
 	private float defaultY;
 	private Vector defaultV;
@@ -28,6 +29,7 @@ import jig.Vector;
 		velocity = new Vector(vx, vy);
 		countdown = 0;
 		damage = 1;
+		maxDamage = 4;
 		speed = 1f;
 		maxSpeed = 2f;
 		minSpeed = 0.4f;
@@ -58,6 +60,9 @@ import jig.Vector;
 	
 	public void setDamage(int d) {
 		damage = d;
+		if(damage>maxDamage) {
+			damage = maxDamage;
+		}
 	}
 
 	public Vector getVelocity() {
