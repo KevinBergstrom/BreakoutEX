@@ -60,6 +60,7 @@ public class BounceGame extends StateBasedGame {
 	public static final String LOW_PADDLEIMG_RSC = "bounce/resource/lowPaddle.png";
 	public static final String DEAD_PADDLEIMG_RSC = "bounce/resource/deadPaddle.png";
 	public static final String PROJECTILEIMG_RSC = "bounce/resource/projectile.png";
+	public static final String SLIMDRIPIMG_RSC = "bounce/resource/slimeDrip.png";
 	//bricks
 	public static final String BRICK_1X1_RSC = "bounce/resource/gray1x1.png";
 	public static final String BRICK_1X2_RSC = "bounce/resource/gray1x2.png";
@@ -132,6 +133,7 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(LOW_PADDLEIMG_RSC);
 		ResourceManager.loadImage(DEAD_PADDLEIMG_RSC);
 		ResourceManager.loadImage(PROJECTILEIMG_RSC);
+		ResourceManager.loadImage(SLIMDRIPIMG_RSC);
 		//bricks
 		ResourceManager.loadImage(BRICK_1X1_RSC);
 		ResourceManager.loadImage(BRICK_1X2_RSC);
