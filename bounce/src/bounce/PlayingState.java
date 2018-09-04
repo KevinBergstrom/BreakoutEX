@@ -2,10 +2,12 @@ package bounce;
 
 import java.util.Iterator;
 import jig.Entity;
+import jig.ResourceManager;
 import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -56,6 +58,13 @@ class PlayingState extends BasicGameState {
 		
 		if(bg.invincibility) {
 			g.drawString("Invinciblility: On", 10, 30);
+		}
+		if(bg.paddle.getProjShield()) {
+			Image ShieldImage = ResourceManager.getImage(BounceGame.PROJ_SHIELDIMG_RSC);
+			ShieldImage.setFilter(Image.FILTER_NEAREST);
+			g.drawImage(ShieldImage,
+					bg.paddle.getCoarseGrainedMinX()-8*5,bg.paddle.getCoarseGrainedMinY()-4*5, 
+					bg.paddle.getCoarseGrainedMaxX()+8*5, bg.paddle.getCoarseGrainedMaxY()+4*5,0, 0,40,16 );
 		}
 		
 	}
@@ -156,6 +165,7 @@ class PlayingState extends BasicGameState {
 				i.remove();
 			}
 		}
+		//TODO have one bounce for every frame?
 		if(nextBounce>-1) {
 			bg.ball.bounce(nextBounce);
 			bounced = true;
@@ -189,11 +199,14 @@ class PlayingState extends BasicGameState {
 			if (!nextProj.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
 				i.remove();
 			}else if(bg.paddle.collides(nextProj) != null) {
-				bg.health = bg.health -nextProj.getDamage();
-				if(bg.health<0) {
-					bg.health = 0;
+				
+				if(!bg.paddle.getProjShield()) {
+					bg.health = bg.health -nextProj.getDamage();
+					if(bg.health<0) {
+						bg.health = 0;
+					}
+					bg.paddle.setHealth(bg.health);
 				}
-				bg.paddle.setHealth(bg.health);
 				i.remove();
 			}
 		}
@@ -202,7 +215,7 @@ class PlayingState extends BasicGameState {
 		 bg.powerUpTimer =  bg.powerUpTimer - delta;
 		 if(bg.powerUpTimer<0) {
 			 bg.powerUpTimer = bg.powerUpDelay;
-			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth);
+			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth-20);
 			 if(newPU!=null) {
 				 bg.powerups.add(newPU);
 			 }
@@ -230,6 +243,7 @@ class PlayingState extends BasicGameState {
 			}
 		}
 
+		//check if the player has lost
 		if (bg.health<=0 && !bg.invincibility) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);

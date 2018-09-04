@@ -27,6 +27,7 @@ class GameOverState extends BasicGameState {
 	
 
 	private int timer;
+	//TODO change later
 	private int lastKnownBounces; // the user's score, to be displayed, but not updated.
 	
 	@Override
@@ -60,6 +61,10 @@ class GameOverState extends BasicGameState {
 			p.render(g);
 		for (PowerUp pu : bg.powerups)
 			pu.render(g);
+		
+		if(bg.paddle.getProjShield()) {
+			//TODO render projshield
+		}
 		
 		Image GameOverImage = ResourceManager.getImage(BounceGame.GAMEOVER_BANNER_RSC);
 		GameOverImage.setFilter(Image.FILTER_NEAREST);

@@ -24,12 +24,14 @@
 - **[22]** Add invincibility cheat
 
 ## Open Issues ##
-- **[23]** Add level complete screen
-- **[24]** Add levels
-- **[25]** Add game won screen
-- **[26]** Add cheats to access each level
-- **[27]** Add more sounds
-- **[28]** Refactor code
+- **[23]** Redo projectile powerup
+- **[24]** Add level complete screen
+- **[25]** Add levels
+- **[26]** Add game won screen
+- **[27]** Add cheats to access each level
+- **[28]** Add more sounds
+- **[29]** Refactor code
+- **[30]** Make a ball trail
 
 
 

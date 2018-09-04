@@ -17,7 +17,7 @@ public class ProjectilePowerUp extends PowerUp{
 	
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
-		bg.projectiles.clear();
+		bg.paddle.turnOnProjShield();
 	}
 
 }

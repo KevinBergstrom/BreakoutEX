@@ -20,6 +20,10 @@ import jig.Vector;
 	private int maxBoundY;
 	private float defaultX;
 	private float defaultY;
+	private boolean projShield;
+	private float projShieldDelay;
+	private float projShieldTimer;
+	
 
 	public Paddle(final float x, final float y, final float vx, final float vy) {
 		super(x, y);
@@ -38,6 +42,9 @@ import jig.Vector;
 		maxBoundY = (int) y;
 		defaultX = x;
 		defaultY = y;
+		projShield = false;
+		projShieldDelay = 6000f;
+		projShieldTimer = 6000f;
 	}
 
 	public void setVelocity(final Vector v) {
@@ -59,6 +66,8 @@ import jig.Vector;
 	public void reset() {
 		this.setPosition(defaultX, defaultY);
 		speed = Math.abs(speed);
+		projShield = false;
+		projShieldTimer = projShieldDelay;
 	}
 	
 	public void setHealth(int health) {
@@ -107,6 +116,15 @@ import jig.Vector;
 			speed = minSpeed;
 		}
 	}
+	
+	public boolean getProjShield() {
+		return projShield;
+	}
+	
+	public void turnOnProjShield() {
+		projShield = true;
+		projShieldTimer = projShieldDelay;
+	}
 
 	public void update(final int delta) {
 		translate(velocity.scale(delta*speed));
@@ -120,6 +138,14 @@ import jig.Vector;
 			this.setY(maxBoundY);
 		}else if(this.getY()<minBoundY) {
 			this.setY(minBoundY);
+		}
+
+		if(projShield) {
+			projShieldTimer -= delta;
+			if(projShieldTimer<0) {
+				projShieldTimer = projShieldDelay;
+				projShield = false;
+			}
 		}
 	}
 }

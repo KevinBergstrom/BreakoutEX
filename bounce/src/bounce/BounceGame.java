@@ -79,6 +79,7 @@ public class BounceGame extends StateBasedGame {
 	public static final String PROJ_POWERUPIMG_RSC = "bounce/resource/projPowerup.png";
 	public static final String SLOW_POWERUPIMG_RSC = "bounce/resource/slowPowerup.png";
 	public static final String X_POWERUPIMG_RSC = "bounce/resource/xPowerup.png";
+	public static final String PROJ_SHIELDIMG_RSC = "bounce/resource/projShield.png";
 	//backgrounds
 	public static final String CAVE_BGIMG_RSC = "bounce/resource/caveBG.png";
 	public static final String CITY_BGIMG_RSC = "bounce/resource/cityScapeBG.png";
@@ -179,6 +180,7 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(PROJ_POWERUPIMG_RSC);
 		ResourceManager.loadImage(SLOW_POWERUPIMG_RSC);
 		ResourceManager.loadImage(X_POWERUPIMG_RSC);
+		ResourceManager.loadImage(PROJ_SHIELDIMG_RSC);
 		//backgrounds
 		ResourceManager.loadImage(CAVE_BGIMG_RSC);
 		ResourceManager.loadImage(CITY_BGIMG_RSC);
