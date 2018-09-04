@@ -23,8 +23,8 @@ import org.newdawn.slick.state.StateBasedGame;
  * Transitions To GameOverState
  */
 class PlayingState extends BasicGameState {
-	int health;
-	
+	private int health;
+	private float powerUpDelay;//time inbetween powerup spawns
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -33,6 +33,7 @@ class PlayingState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		health = 3;
+		powerUpDelay = 6f;
 		container.setSoundOn(true);
 	}
 	@Override
@@ -49,6 +50,8 @@ class PlayingState extends BasicGameState {
 			b.render(g);
 		for (Projectile p : bg.projectiles)
 			p.render(g);
+		for (PowerUp pu : bg.powerups)
+			pu.render(g);
 		
 	}
 	
@@ -178,6 +181,18 @@ class PlayingState extends BasicGameState {
 			}else if(bg.paddle.collides(nextProj) != null) {
 				health = health - nextProj.getDamage();
 				bg.paddle.setHealth(health);
+				i.remove();
+			}
+		}
+		
+		//update the powerups
+		for (Iterator<PowerUp> i = bg.powerups.iterator(); i.hasNext();) {
+			PowerUp nextPU = i.next();
+			nextPU.update(delta);
+			if (!nextPU.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
+				i.remove();
+			}else if(bg.paddle.collides(nextPU) != null) {
+				nextPU.effect(game);
 				i.remove();
 			}
 		}

@@ -35,6 +35,7 @@ class StartUpState extends BasicGameState {
 		bg.bricks.clear();
 		bg.explosions.clear();
 		bg.projectiles.clear();
+		bg.powerups.clear();
 		bg.ball.reset();
 		bg.ball.setSpeed(1f);
 		bg.paddle.reset();
@@ -51,7 +52,7 @@ class StartUpState extends BasicGameState {
 		}*/
 		for(int x = 0;x<7;x++) {
 			for(int y = 0;y<3;y++) {
-				bg.bricks.add(new SpeedBrick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2));
+				bg.bricks.add(new Brick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2,new Color(255,255,255)));
 			}
 		}
 		

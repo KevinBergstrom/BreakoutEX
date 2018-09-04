@@ -101,9 +101,5 @@ import jig.Vector;
 		}else if(this.getY()<minBoundY) {
 			this.setY(minBoundY);
 		}
-				//addImageWithBoundingBox(ResourceManager
-				//		.getImage(BounceGame.BALL_BALLIMG_RSC));
-				//removeImage(ResourceManager
-				//		.getImage(BounceGame.BALL_BROKENIMG_RSC));
 	}
 }
