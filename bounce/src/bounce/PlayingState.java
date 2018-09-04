@@ -35,8 +35,8 @@ class PlayingState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		health = 3;
-		powerUpDelay = 6f;
-		powerUpTimer = 6f;
+		powerUpDelay = 6000f;
+		powerUpTimer = 6000f;
 		container.setSoundOn(true);
 	}
 	@Override

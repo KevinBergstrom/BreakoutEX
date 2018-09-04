@@ -39,6 +39,7 @@ class StartUpState extends BasicGameState {
 		bg.ball.reset();
 		bg.ball.setSpeed(1f);
 		bg.paddle.reset();
+		bg.paddle.setSpeed(0.2f);
 		bg.paddle.setHealth(3);
 	}
 	

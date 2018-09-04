@@ -62,8 +62,10 @@ import jig.Vector;
 		Random rand = new Random();
 		int PUNum = rand.nextInt(5);
 		float PUPosX = (float)rand.nextInt((int)ScreenWidth);
+		float PUPosY = 20;
+		
 		if(PUNum==0) {
-			
+			return new AcceleratePowerUp(PUPosX,PUPosY);
 		}else if(PUNum==1) {
 			
 		}else if(PUNum==2) {
@@ -75,7 +77,7 @@ import jig.Vector;
 		}else {
 			
 		}
-		
+
 		return null;
 	}
 }

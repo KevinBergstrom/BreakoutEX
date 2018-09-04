@@ -13,6 +13,7 @@ import jig.Vector;
 	private int countdown;
 	private float speed;
 	private float minSpeed;
+	private float maxSpeed;
 	private int minBoundX;
 	private int maxBoundX;
 	private int minBoundY;
@@ -29,6 +30,7 @@ import jig.Vector;
 		velocity = new Vector(vx, vy);
 		speed = 0.2f;
 		minSpeed = 0.1f;
+		maxSpeed = 0.5f;
 		countdown = 0;
 		minBoundX = (int) x;
 		maxBoundX = (int) x;
@@ -86,6 +88,24 @@ import jig.Vector;
 
 	public Vector getVelocity() {
 		return velocity;
+	}
+	
+	public void addSpeed(float s) {
+		speed = speed + s;
+		if(speed>maxSpeed) {
+			speed = maxSpeed;
+		}else if(speed<minSpeed) {
+			speed = minSpeed;
+		}
+	}
+	
+	public void setSpeed(float s) {
+		speed = s;
+		if(speed>maxSpeed) {
+			speed = maxSpeed;
+		}else if(speed<minSpeed) {
+			speed = minSpeed;
+		}
 	}
 
 	public void update(final int delta) {
