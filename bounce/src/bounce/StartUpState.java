@@ -35,9 +35,12 @@ class StartUpState extends BasicGameState {
 		bg.bricks.clear();
 		bg.explosions.clear();
 		bg.projectiles.clear();
+		bg.powerups.clear();
 		bg.ball.reset();
 		bg.ball.setSpeed(1f);
+		bg.ball.setDamage(1);
 		bg.paddle.reset();
+		bg.paddle.setSpeed(0.2f);
 		bg.paddle.setHealth(3);
 	}
 	
@@ -51,7 +54,7 @@ class StartUpState extends BasicGameState {
 		}*/
 		for(int x = 0;x<7;x++) {
 			for(int y = 0;y<3;y++) {
-				bg.bricks.add(new SpeedBrick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2));
+				bg.bricks.add(new Brick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2,new Color(255,255,255)));
 			}
 		}
 		
@@ -61,6 +64,11 @@ class StartUpState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		container.setSoundOn(false);
 		//loading level
+		BounceGame bg = (BounceGame)game;
+		bg.health = 3;
+		bg.maxHealth = 3;
+		bg.powerUpDelay = 6000f;
+		bg.powerUpTimer = 6000f;
 		loadLevel(game);
 		
 	}

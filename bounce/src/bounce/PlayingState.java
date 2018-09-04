@@ -23,7 +23,6 @@ import org.newdawn.slick.state.StateBasedGame;
  * Transitions To GameOverState
  */
 class PlayingState extends BasicGameState {
-	int health;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -32,7 +31,6 @@ class PlayingState extends BasicGameState {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		health = 3;
 		container.setSoundOn(true);
 	}
 	@Override
@@ -49,13 +47,15 @@ class PlayingState extends BasicGameState {
 			b.render(g);
 		for (Projectile p : bg.projectiles)
 			p.render(g);
+		for (PowerUp pu : bg.powerups)
+			pu.render(g);
 		
 	}
 	
 	@Override
 	public void update(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
-
+		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 		bg.paddle.setVelocity(new Vector(0, 0));
@@ -161,8 +161,8 @@ class PlayingState extends BasicGameState {
 			bounced = true;
 		}else if(bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight) {
 			bg.ball.reset();
-			health--;
-			bg.paddle.setHealth(health);
+			bg.health = bg.health -1;
+			bg.paddle.setHealth(bg.health);
 			
 		}
 		if (bounced) {
@@ -176,8 +176,30 @@ class PlayingState extends BasicGameState {
 			if (!nextProj.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
 				i.remove();
 			}else if(bg.paddle.collides(nextProj) != null) {
-				health = health - nextProj.getDamage();
-				bg.paddle.setHealth(health);
+				bg.health = bg.health -nextProj.getDamage();
+				bg.paddle.setHealth(bg.health);
+				i.remove();
+			}
+		}
+		
+		//power up spawning
+		 bg.powerUpTimer =  bg.powerUpTimer - delta;
+		 if(bg.powerUpTimer<0) {
+			 bg.powerUpTimer = bg.powerUpDelay;
+			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth);
+			 if(newPU!=null) {
+				 bg.powerups.add(newPU);
+			 }
+		 }
+		
+		//update the powerups
+		for (Iterator<PowerUp> i = bg.powerups.iterator(); i.hasNext();) {
+			PowerUp nextPU = i.next();
+			nextPU.update(delta);
+			if (!nextPU.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
+				i.remove();
+			}else if(bg.paddle.collides(nextPU) != null) {
+				nextPU.effect(game);
 				i.remove();
 			}
 		}
@@ -193,7 +215,7 @@ class PlayingState extends BasicGameState {
 		}
 
 		//TODO change later
-		if (health<=0) {
+		if (bg.health<=0) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}

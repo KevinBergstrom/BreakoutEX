@@ -55,6 +55,8 @@ class GameOverState extends BasicGameState {
 			b.render(g);
 		for (Projectile p : bg.projectiles)
 			p.render(g);
+		for (PowerUp pu : bg.powerups)
+			pu.render(g);
 		
 		Image GameOverImage = ResourceManager.getImage(BounceGame.GAMEOVER_BANNER_RSC);
 		GameOverImage.setFilter(Image.FILTER_NEAREST);

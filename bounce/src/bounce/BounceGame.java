@@ -72,6 +72,13 @@ public class BounceGame extends StateBasedGame {
 	public static final String BRICK_2X2_RSC = "bounce/resource/gray2x2.png";
 	public static final String BRICK_3X3_RSC = "bounce/resource/gray3x3.png";
 	public static final String BRICK_CIRCLE_RSC = "bounce/resource/orangeCircle.png";
+	//powerUps
+	public static final String ACCEL_POWERUPIMG_RSC = "bounce/resource/acceleratePowerup.png";
+	public static final String HEAL_POWERUPIMG_RSC = "bounce/resource/healPowerup.png";
+	public static final String MORE_POWERUPIMG_RSC = "bounce/resource/morePowerup.png";
+	public static final String PROJ_POWERUPIMG_RSC = "bounce/resource/projPowerup.png";
+	public static final String SLOW_POWERUPIMG_RSC = "bounce/resource/slowPowerup.png";
+	public static final String X_POWERUPIMG_RSC = "bounce/resource/xPowerup.png";
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
@@ -81,6 +88,12 @@ public class BounceGame extends StateBasedGame {
 	ArrayList<Bang> explosions;
 	ArrayList<Brick> bricks;
 	ArrayList<Projectile> projectiles;
+	ArrayList<PowerUp> powerups;
+	
+	public int health;
+	public int maxHealth;
+	public float powerUpDelay;//time inbetween powerup spawns
+	public float powerUpTimer;
 
 	/**
 	 * Create the BounceGame frame, saving the width and height for later use.
@@ -101,6 +114,7 @@ public class BounceGame extends StateBasedGame {
 		explosions = new ArrayList<Bang>(10);
 		bricks = new ArrayList<Brick>(14*6);//TODO remove magic number
 		projectiles = new ArrayList<Projectile>();
+		powerups = new ArrayList<PowerUp>();
 				
 	}
 
@@ -145,11 +159,23 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(BRICK_2X2_RSC);
 		ResourceManager.loadImage(BRICK_3X3_RSC);
 		ResourceManager.loadImage(BRICK_CIRCLE_RSC);
+		//powerups
+		ResourceManager.loadImage(ACCEL_POWERUPIMG_RSC);
+		ResourceManager.loadImage(HEAL_POWERUPIMG_RSC);
+		ResourceManager.loadImage(MORE_POWERUPIMG_RSC);
+		ResourceManager.loadImage(PROJ_POWERUPIMG_RSC);
+		ResourceManager.loadImage(SLOW_POWERUPIMG_RSC);
+		ResourceManager.loadImage(X_POWERUPIMG_RSC);
 		
 		
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, -.2f);
 		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);
 		paddle.setMoveBounds(80, ScreenWidth-80, ScreenHeight-60, ScreenHeight-20);
+		
+		health = 3;
+		maxHealth = 3;
+		powerUpDelay = 6000f;
+		powerUpTimer = 6000f;
 
 	}
 	

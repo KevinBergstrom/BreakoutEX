@@ -11,7 +11,6 @@ public class GravityProjectile extends Projectile{
 	
 	public GravityProjectile(float x, float y) {
 		super(x, y, 0,0.1f);
-		removeImage(ResourceManager.getImage(BounceGame.PROJECTILEIMG_RSC));
 		Image newImage = ResourceManager.getImage(BounceGame.SLIMDRIPIMG_RSC).getScaledCopy(30, 60);
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
