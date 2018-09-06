@@ -247,6 +247,9 @@ class PlayingState extends BasicGameState {
 		if (bg.health<=0 && !bg.invincibility) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
+		}else if(bg.bricks.size()==0) {
+			//((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(0);
+			game.enterState(BounceGame.RESULTSSCREENSTATE);
 		}
 	}
 
