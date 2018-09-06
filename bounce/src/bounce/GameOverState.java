@@ -3,10 +3,12 @@ package bounce;
 import java.util.Iterator;
 
 import jig.ResourceManager;
+import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -52,7 +54,6 @@ class GameOverState extends BasicGameState {
 			g.drawImage(bg.background, 0, 0);
 		}
 		bg.paddle.render(g);
-		bg.ball.render(g);
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)
@@ -63,7 +64,7 @@ class GameOverState extends BasicGameState {
 			pu.render(g);
 		
 		if(bg.paddle.getProjShield()) {
-			//TODO render projshield
+			bg.paddle.renderProjShield(g);
 		}
 		
 		Image GameOverImage = ResourceManager.getImage(BounceGame.GAMEOVER_BANNER_RSC);
@@ -76,6 +77,10 @@ class GameOverState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
 		
+		Input input = container.getInput();
+		if (input.isKeyDown(Input.KEY_SPACE)) {
+			timer = 0;
+		}
 		
 		timer -= delta;
 		if (timer <= 0)

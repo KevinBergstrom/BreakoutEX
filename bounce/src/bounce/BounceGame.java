@@ -91,6 +91,12 @@ public class BounceGame extends StateBasedGame {
 	public static final String STAR_BGIMG_RSC = "bounce/resource/starfieldBG.png";
 	public static final String VOID_BGIMG_RSC = "bounce/resource/voidBG.png";
 	public static final String VOLCANO_BGIMG_RSC = "bounce/resource/volcanoBG.png";
+	//ranks
+	public static final String S_RANKIMG_RSC = "bounce/resource/sRank.png";
+	public static final String A_RANKIMG_RSC = "bounce/resource/aRank.png";
+	public static final String B_RANKIMG_RSC = "bounce/resource/bRank.png";
+	public static final String C_RANKIMG_RSC = "bounce/resource/cRank.png";
+	
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
@@ -194,6 +200,11 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(STAR_BGIMG_RSC);
 		ResourceManager.loadImage(VOID_BGIMG_RSC);
 		ResourceManager.loadImage(VOLCANO_BGIMG_RSC);
+		//ranks
+		ResourceManager.loadImage(S_RANKIMG_RSC);
+		ResourceManager.loadImage(A_RANKIMG_RSC);
+		ResourceManager.loadImage(B_RANKIMG_RSC);
+		ResourceManager.loadImage(C_RANKIMG_RSC);
 		
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, -.2f);
 		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);

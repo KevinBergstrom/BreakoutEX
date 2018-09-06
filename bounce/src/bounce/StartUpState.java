@@ -61,7 +61,7 @@ class StartUpState extends BasicGameState {
 			}
 		}*/
 		
-		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 2, 2,new Color(255,255,255)));
+		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
 		
 	}
 	
