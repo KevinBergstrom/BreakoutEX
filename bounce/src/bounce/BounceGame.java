@@ -112,9 +112,10 @@ public class BounceGame extends StateBasedGame {
 	
 	public int health;
 	public int maxHealth;
-	public float powerUpDelay;//time inbetween powerup spawns
+	public float powerUpDelay;//time in between powerup spawns
 	public float powerUpTimer;
 	public int currentLevel;
+	public int[] ranks = {0,0,0,0};//stores the ranks received for win state
 	
 	public boolean invincibility;
 	

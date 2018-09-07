@@ -254,7 +254,6 @@ class PlayingState extends BasicGameState {
 
 		//check if the player has lost
 		if (bg.health<=0 && !bg.invincibility) {
-			bg.currentLevel = 0;
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}else if(bg.bricks.size()==0) {
 			((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(timeTaken,powerUpsGot,damageTaken);

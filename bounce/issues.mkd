@@ -25,9 +25,9 @@
 - **[23]** Redo projectile powerup
 - **[24]** Add level complete screen
 - **[25]** Add multiple levels capability
+- **[26]** Add game won screen
 
 ## Open Issues ##
-- **[26]** Add game won screen
 - **[27]** Add cheats to access each level
 - **[28]** Refactor code
 - **[29]** Make a ball trail

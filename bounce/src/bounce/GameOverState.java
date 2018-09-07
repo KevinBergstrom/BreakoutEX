@@ -12,6 +12,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 
@@ -72,14 +73,19 @@ class GameOverState extends BasicGameState {
 			int delta) throws SlickException {
 		
 		Input input = container.getInput();
+		BounceGame bg = (BounceGame)game;
 		if (input.isKeyDown(Input.KEY_SPACE)) {
 			timer = 0;
 		}
 		
 		timer -= delta;
 		if (timer <= 0)
-			game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new HorizontalSplitTransition() );
-
+			bg.currentLevel = 0;
+			for(int i = 0;i<bg.ranks.length;i++) {
+				bg.ranks[i] = 0;
+			}
+			game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new BlobbyTransition() );
+	
 		// check if there are any finished explosions, if so remove them
 		for (Iterator<Bang> i = ((BounceGame)game).explosions.iterator(); i.hasNext();) {
 			if (!i.next().isActive()) {
