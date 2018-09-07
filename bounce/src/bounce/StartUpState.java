@@ -48,20 +48,8 @@ class StartUpState extends BasicGameState {
 	public void loadLevel(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		clearLevel(game);
-		bg.background = ResourceManager.getImage(BounceGame.ROAD_BGIMG_RSC);
-		/*for(int x = 0;x<14;x++) {
-			for(int y = 0;y<6;y++) {
-				bg.bricks.add(new RadioactiveBrick(120+(x*40), 40+(y*40), 1, 1));
-			}
-		}*/
-		
-		/*for(int x = 0;x<7;x++) {
-			for(int y = 0;y<3;y++) {
-				bg.bricks.add(new Brick(120+40+(x*2*40), 40+40+(y*2*40), 2, 2,new Color(255,255,255)));
-			}
-		}*/
-		
-		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
+		bg.currentLevel = bg.currentLevel+1;
+		Levels.loadLevel(bg.currentLevel, game);
 		
 	}
 	
