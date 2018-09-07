@@ -59,6 +59,7 @@ class PlayingState extends BasicGameState {
 		for (Bang b : bg.explosions)
 			b.render(g);
 		for (Projectile p : bg.projectiles)
+			p.render(g);
 		for (PowerUp pu : bg.powerups)
 			pu.render(g);
 		
@@ -167,7 +168,7 @@ class PlayingState extends BasicGameState {
 			if(nextBrick.isActive()) {
 				if(bg.ball.collides(nextBrick) != null) {
 					int sideOfCol = bg.ball.sideOfCollision(nextBrick);
-					
+					nextBrick.onHit(bg);
 					if(sideOfCol == 0) {
 						if(bg.ball.getVelocity().getY()>0) {
 							nextBrick.damageBrick(bg.ball.getDamage(), game);

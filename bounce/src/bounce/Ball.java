@@ -34,7 +34,7 @@ import jig.Vector;
 		countdown = 0;
 		damage = 1;
 		maxDamage = 4;
-		speed = 1f;
+		speed = 1.1f;
 		maxSpeed = 2f;
 		minSpeed = 0.4f;
 		defaultX = x;

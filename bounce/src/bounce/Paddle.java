@@ -101,11 +101,22 @@ import jig.Vector;
 	}
 	
 	public void addSpeed(float s) {
-		speed = speed + s;
-		if(speed>maxSpeed) {
-			speed = maxSpeed;
-		}else if(speed<minSpeed) {
-			speed = minSpeed;
+		if(speed<0) {
+			reverseControls();
+			speed = speed + s;
+			if(speed>maxSpeed) {
+				speed = maxSpeed;
+			}else if(speed<minSpeed) {
+				speed = minSpeed;
+			}
+			reverseControls();
+		}else {
+			speed = speed + s;
+			if(speed>maxSpeed) {
+				speed = maxSpeed;
+			}else if(speed<minSpeed) {
+				speed = minSpeed;
+			}
 		}
 	}
 	

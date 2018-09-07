@@ -26,8 +26,8 @@ class ResultsScreenState extends BasicGameState {
 	private int rankScore;
 	
 	//Determines the value to beat to get {S,A,B,C}
-	final private int[] timeRankTiers = {60000,120000,180000};
-	final private int[] powerUpRankTiers = {20,15,10};
+	final private int[] timeRankTiers = {140000,200000,260000};
+	final private int[] powerUpRankTiers = {15,10,5};
 	final private int[] damageRankTiers = {0,3,6};
 	
 	@Override

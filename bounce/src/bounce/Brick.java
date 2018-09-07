@@ -73,7 +73,6 @@ import jig.ResourceManager;
 			brickImg.setFilter(Image.FILTER_NEAREST);
 			brickImg.setImageColor(brickColor.r, brickColor.g, brickColor.b,brickAlpha);
 			addImageWithBoundingBox(brickImg);
-			onHit(game);
 		}
 		
 	}
