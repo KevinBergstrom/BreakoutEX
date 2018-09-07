@@ -161,7 +161,6 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.STAR_BGIMG_RSC);
 		//load bricks
-		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
 	}
 	
 	private static void level7(StateBasedGame game) {
@@ -169,7 +168,22 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.VOID_BGIMG_RSC);
 		//load bricks
-		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
+		for(int x = 0;x<5;x++) {
+			for(int y = 0;y<2;y++) {
+				bg.bricks.add(new PowerUpBrick(20+(x*4*40), 60+(y*4*40), 1, 1));
+			}
+		}
+		for(int x = 0;x<20;x++) {
+			for(int y = 0;y<6;y++) {
+				Brick.spawnRandomBrick(20+(x*40), 20+(y*40), 1, 1, game);
+			}
+		}
+		for(int x = 0;x<10;x++) {
+			for(int y = 0;y<3;y++) {
+				bg.bricks.add(new Brick(40+(x*2*40), 40+(y*2*40), 2, 2,new Color(0+(x*20)+(y*20),200+(x*10),200+(y*10))));
+			}
+		}
+		
 	}
 	
 }

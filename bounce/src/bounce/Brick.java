@@ -1,5 +1,7 @@
 package bounce;
 
+import java.util.Random;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
@@ -92,8 +94,25 @@ import jig.ResourceManager;
 			return true;
 		}
 	}
-
-	/*public void update(final int delta) {
+	
+	public static void spawnRandomBrick(final float x, final float y, final int bx, final int by,StateBasedGame game) {
+		BounceGame bg = (BounceGame)game;
+		Random rand = new Random();
+		int BNum = rand.nextInt(6);
 		
-	}*/
+		if(BNum==0) {
+			bg.bricks.add(new PowerUpBrick(x, y, bx, by));
+		}else if(BNum==1) {
+			bg.bricks.add(new ShootBrick(x, y, bx, by));
+		}else if(BNum==2) {
+			bg.bricks.add(new SpeedBrick(x, y, bx, by));
+		}else if(BNum==3) {
+			bg.bricks.add(new RadioactiveBrick(x, y, bx, by));
+		}else if(BNum==4) {
+			bg.bricks.add(new InversionBrick(x, y, bx, by));
+		}else {
+			bg.bricks.add(new Brick(x, y, bx, by,new Color(255,255,255)));
+		}
+	}
+
 }
