@@ -225,17 +225,17 @@ public class Levels {
 		//load bricks
 		for(int x = 0;x<5;x++) {
 			for(int y = 0;y<2;y++) {
-				bg.bricks.add(new PowerUpBrick(20+(x*4*40), 60+(y*4*40), 1, 1));
+				bg.bricks.add(new PowerUpBrick(20+(x*4*40), 80+(y*4*40), 1, 1));
 			}
 		}
 		for(int x = 0;x<20;x++) {
 			for(int y = 0;y<6;y++) {
-				Brick.spawnRandomBrick(20+(x*40), 20+(y*40), 1, 1, game);
+				Brick.spawnRandomBrick(20+(x*40), 40+(y*40), 1, 1, game);
 			}
 		}
 		for(int x = 0;x<10;x++) {
 			for(int y = 0;y<3;y++) {
-				bg.bricks.add(new Brick(40+(x*2*40), 40+(y*2*40), 2, 2,new Color(0+(x*20)+(y*20),200+(x*10),200+(y*10))));
+				bg.bricks.add(new Brick(40+(x*2*40), 60+(y*2*40), 2, 2,new Color(0+(x*20)+(y*20),200+(x*10),200+(y*10))));
 			}
 		}
 		
