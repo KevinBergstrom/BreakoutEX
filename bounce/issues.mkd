@@ -22,9 +22,9 @@
 - **[20]** Add updated ball and press space images
 - **[21]** Add backgrounds
 - **[22]** Add invincibility cheat
+- **[23]** Redo projectile powerup
 
 ## Open Issues ##
-- **[23]** Redo projectile powerup
 - **[24]** Add level complete screen
 - **[25]** Add levels
 - **[26]** Add game won screen
@@ -32,6 +32,7 @@
 - **[28]** Add more sounds
 - **[29]** Refactor code
 - **[30]** Make a ball trail
+- **[31]** Balancing
 
 
 

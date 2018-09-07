@@ -1,5 +1,6 @@
 package bounce;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import jig.Entity;
@@ -124,6 +125,14 @@ import jig.Vector;
 	public void turnOnProjShield() {
 		projShield = true;
 		projShieldTimer = projShieldDelay;
+	}
+	
+	public void renderProjShield(Graphics g) {
+		Image ShieldImage = ResourceManager.getImage(BounceGame.PROJ_SHIELDIMG_RSC);
+		ShieldImage.setFilter(Image.FILTER_NEAREST);
+		g.drawImage(ShieldImage,
+				this.getCoarseGrainedMinX()-8*5,this.getCoarseGrainedMinY()-4*5, 
+				this.getCoarseGrainedMaxX()+8*5, this.getCoarseGrainedMaxY()+4*5,0, 0,40,16 );
 	}
 
 	public void update(final int delta) {

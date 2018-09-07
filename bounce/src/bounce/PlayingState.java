@@ -26,6 +26,10 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 class PlayingState extends BasicGameState {
 	
+	private float timeTaken;
+	private int powerUpsGot;
+	private int damageTaken;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -34,6 +38,9 @@ class PlayingState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		container.setSoundOn(true);
+		timeTaken = 0f;
+		powerUpsGot = 0;
+		damageTaken = 0;
 	}
 	@Override
 	public void render(GameContainer container, StateBasedGame game,
@@ -52,19 +59,15 @@ class PlayingState extends BasicGameState {
 		for (Bang b : bg.explosions)
 			b.render(g);
 		for (Projectile p : bg.projectiles)
-			p.render(g);
 		for (PowerUp pu : bg.powerups)
 			pu.render(g);
 		
 		if(bg.invincibility) {
 			g.drawString("Invinciblility: On", 10, 30);
 		}
+		
 		if(bg.paddle.getProjShield()) {
-			Image ShieldImage = ResourceManager.getImage(BounceGame.PROJ_SHIELDIMG_RSC);
-			ShieldImage.setFilter(Image.FILTER_NEAREST);
-			g.drawImage(ShieldImage,
-					bg.paddle.getCoarseGrainedMinX()-8*5,bg.paddle.getCoarseGrainedMinY()-4*5, 
-					bg.paddle.getCoarseGrainedMaxX()+8*5, bg.paddle.getCoarseGrainedMaxY()+4*5,0, 0,40,16 );
+			bg.paddle.renderProjShield(g);
 		}
 		
 	}
@@ -75,7 +78,10 @@ class PlayingState extends BasicGameState {
 		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
+		
 		bg.paddle.setVelocity(new Vector(0, 0));
+		timeTaken += delta;
+		
 		if (input.isKeyDown(Input.KEY_W)) {
 			bg.paddle.setVelocity(bg.paddle.getVelocity().add(new Vector(0f, -1.0f)));
 		}
@@ -182,6 +188,7 @@ class PlayingState extends BasicGameState {
 		}else if(bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight) {
 			bg.ball.reset();
 			bg.health = bg.health -1;
+			damageTaken += 1;
 			if(bg.health<0) {
 				bg.health = 0;
 			}
@@ -201,7 +208,8 @@ class PlayingState extends BasicGameState {
 			}else if(bg.paddle.collides(nextProj) != null) {
 				
 				if(!bg.paddle.getProjShield()) {
-					bg.health = bg.health -nextProj.getDamage();
+					bg.health -= nextProj.getDamage();
+					damageTaken += nextProj.getDamage();
 					if(bg.health<0) {
 						bg.health = 0;
 					}
@@ -228,6 +236,7 @@ class PlayingState extends BasicGameState {
 			if (!nextPU.inRange(bg.ScreenWidth, bg.ScreenHeight)) {
 				i.remove();
 			}else if(bg.paddle.collides(nextPU) != null) {
+				powerUpsGot++;
 				nextPU.effect(game);
 				i.remove();
 			}
@@ -247,6 +256,9 @@ class PlayingState extends BasicGameState {
 		if (bg.health<=0 && !bg.invincibility) {
 			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
+		}else if(bg.bricks.size()==0) {
+			((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(timeTaken,powerUpsGot,damageTaken);
+			game.enterState(BounceGame.RESULTSSCREENSTATE);
 		}
 	}
 

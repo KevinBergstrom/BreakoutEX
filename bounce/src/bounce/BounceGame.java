@@ -47,6 +47,7 @@ public class BounceGame extends StateBasedGame {
 	public static final int PLAYINGSTATE = 1;
 	public static final int GAMEOVERSTATE = 2;
 	public static final int SPLASHSTATE = 3;
+	public static final int RESULTSSCREENSTATE = 4;
 	
 	public static final String BALL_BALLIMG_RSC = "bounce/resource/ballFinal.png";
 	public static final String BALL_BROKENIMG_RSC = "bounce/resource/brokenball.png";
@@ -62,6 +63,7 @@ public class BounceGame extends StateBasedGame {
 	public static final String DEAD_PADDLEIMG_RSC = "bounce/resource/deadPaddle.png";
 	public static final String PROJECTILEIMG_RSC = "bounce/resource/projectile.png";
 	public static final String SLIMDRIPIMG_RSC = "bounce/resource/slimeDrip.png";
+	public static final String RESULTSIMG_RSC = "bounce/resource/resultsScreen.png";
 	//bricks
 	public static final String BRICK_1X1_RSC = "bounce/resource/gray1x1.png";
 	public static final String BRICK_1X2_RSC = "bounce/resource/gray1x2.png";
@@ -89,6 +91,12 @@ public class BounceGame extends StateBasedGame {
 	public static final String STAR_BGIMG_RSC = "bounce/resource/starfieldBG.png";
 	public static final String VOID_BGIMG_RSC = "bounce/resource/voidBG.png";
 	public static final String VOLCANO_BGIMG_RSC = "bounce/resource/volcanoBG.png";
+	//ranks
+	public static final String S_RANKIMG_RSC = "bounce/resource/sRank.png";
+	public static final String A_RANKIMG_RSC = "bounce/resource/aRank.png";
+	public static final String B_RANKIMG_RSC = "bounce/resource/bRank.png";
+	public static final String C_RANKIMG_RSC = "bounce/resource/cRank.png";
+	
 
 	public final int ScreenWidth;
 	public final int ScreenHeight;
@@ -140,6 +148,7 @@ public class BounceGame extends StateBasedGame {
 		addState(new StartUpState());
 		addState(new GameOverState());
 		addState(new PlayingState());
+		addState(new ResultsScreenState());
 		
 		// the sound resource takes a particularly long time to load,
 		// we preload it here to (1) reduce latency when we first play it
@@ -163,6 +172,7 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(DEAD_PADDLEIMG_RSC);
 		ResourceManager.loadImage(PROJECTILEIMG_RSC);
 		ResourceManager.loadImage(SLIMDRIPIMG_RSC);
+		ResourceManager.loadImage(RESULTSIMG_RSC);
 		//bricks
 		ResourceManager.loadImage(BRICK_1X1_RSC);
 		ResourceManager.loadImage(BRICK_1X2_RSC);
@@ -190,6 +200,11 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(STAR_BGIMG_RSC);
 		ResourceManager.loadImage(VOID_BGIMG_RSC);
 		ResourceManager.loadImage(VOLCANO_BGIMG_RSC);
+		//ranks
+		ResourceManager.loadImage(S_RANKIMG_RSC);
+		ResourceManager.loadImage(A_RANKIMG_RSC);
+		ResourceManager.loadImage(B_RANKIMG_RSC);
+		ResourceManager.loadImage(C_RANKIMG_RSC);
 		
 		ball = new Ball(ScreenWidth/2, ScreenHeight - 200, .1f, -.2f);
 		paddle = new Paddle(ScreenWidth/2, ScreenHeight-60, .0f, .0f);
