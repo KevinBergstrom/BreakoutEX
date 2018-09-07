@@ -15,21 +15,12 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.HorizontalSplitTransition;
+import org.newdawn.slick.state.transition.VerticalSplitTransition;
 
 
-/**
- * This state is active when the Game is over. In this state, the ball is
- * neither drawn nor updated; and a gameover banner is displayed. A timer
- * automatically transitions back to the StartUp State.
- * 
- * Transitions From PlayingState
- * 
- * Transitions To StartUpState
- */
-class GameOverState extends BasicGameState {
+class WinState extends BasicGameState {
 	
-
-	private int timer;
+	private int finalRank;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -38,34 +29,28 @@ class GameOverState extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		timer = 10000;
+		finalRank = 0;
+		int ranksSize = 0;
+		BounceGame bg = (BounceGame)game;
+		for(int i = 0;i<bg.ranks.length;i++) {
+			if(bg.ranks[i]>ranksSize) {
+				finalRank = i;
+				ranksSize = bg.ranks[i];
+			}
+		}
+		
 	}
-
+	
 	@Override
 	public void render(GameContainer container, StateBasedGame game,
 			Graphics g) throws SlickException {
 		BounceGame bg = (BounceGame)game;
-		if(bg.background!=null) {
-			g.drawImage(bg.background, 0, 0);
-		}
-		bg.paddle.render(g);
-		for (Brick br : bg.bricks)
-			br.render(g);
-		for (Bang b : bg.explosions)
-			b.render(g);
-		for (Projectile p : bg.projectiles)
-			p.render(g);
-		for (PowerUp pu : bg.powerups)
-			pu.render(g);
 		
-		if(bg.paddle.getProjShield()) {
-			bg.paddle.renderProjShield(g);
-		}
+		Image WinImage = ResourceManager.getImage(BounceGame.WINIMG_RSC);
+		WinImage.setFilter(Image.FILTER_NEAREST);
+		g.drawImage(WinImage, 0, 0, bg.ScreenWidth, bg.ScreenHeight,0, 0,400,300 );
 		
-		Image GameOverImage = ResourceManager.getImage(BounceGame.GAMEOVER_BANNER_RSC);
-		GameOverImage.setFilter(Image.FILTER_NEAREST);
-		g.drawImage(GameOverImage,
-				0, 0, bg.ScreenWidth, bg.ScreenHeight,0, 0,400,300 );	
+		ResultsScreenState.drawRankLetter(g, finalRank, 460, 380);
 	}
 
 	@Override
@@ -75,29 +60,18 @@ class GameOverState extends BasicGameState {
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 		if (input.isKeyDown(Input.KEY_SPACE)) {
-			timer = 0;
-		}
-		
-		timer -= delta;
-		if (timer <= 0)
 			bg.currentLevel = 0;
 			for(int i = 0;i<bg.ranks.length;i++) {
 				bg.ranks[i] = 0;
 			}
 			game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new BlobbyTransition() );
-	
-		// check if there are any finished explosions, if so remove them
-		for (Iterator<Bang> i = ((BounceGame)game).explosions.iterator(); i.hasNext();) {
-			if (!i.next().isActive()) {
-				i.remove();
-			}
 		}
 
 	}
 
 	@Override
 	public int getID() {
-		return BounceGame.GAMEOVERSTATE;
+		return BounceGame.WINSTATE;
 	}
 	
 }

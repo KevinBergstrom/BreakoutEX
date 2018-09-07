@@ -254,19 +254,10 @@ class PlayingState extends BasicGameState {
 
 		//check if the player has lost
 		if (bg.health<=0 && !bg.invincibility) {
-			bg.currentLevel = 0;
-			((GameOverState)game.getState(BounceGame.GAMEOVERSTATE)).setUserScore(0);
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}else if(bg.bricks.size()==0) {
-			if(bg.currentLevel==Levels.lastLevel) {
-				//TODO win
-				bg.currentLevel = 0;
-				((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(timeTaken,powerUpsGot,damageTaken);
-				game.enterState(BounceGame.RESULTSSCREENSTATE);
-			}else {
-				((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(timeTaken,powerUpsGot,damageTaken);
-				game.enterState(BounceGame.RESULTSSCREENSTATE);
-			}
+			((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(timeTaken,powerUpsGot,damageTaken);
+			game.enterState(BounceGame.RESULTSSCREENSTATE);
 		}
 	}
 
