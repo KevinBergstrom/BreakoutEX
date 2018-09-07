@@ -112,6 +112,7 @@ public class BounceGame extends StateBasedGame {
 	public int maxHealth;
 	public float powerUpDelay;//time inbetween powerup spawns
 	public float powerUpTimer;
+	public int currentLevel;
 	
 	public boolean invincibility;
 	
@@ -214,6 +215,7 @@ public class BounceGame extends StateBasedGame {
 		maxHealth = 3;
 		powerUpDelay = 6000f;
 		powerUpTimer = 6000f;
+		currentLevel = 0;
 		
 		invincibility = false;
 

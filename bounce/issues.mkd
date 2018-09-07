@@ -23,16 +23,16 @@
 - **[21]** Add backgrounds
 - **[22]** Add invincibility cheat
 - **[23]** Redo projectile powerup
+- **[24]** Add level complete screen
+- **[25]** Add multiple levels capability
 
 ## Open Issues ##
-- **[24]** Add level complete screen
-- **[25]** Add levels
 - **[26]** Add game won screen
 - **[27]** Add cheats to access each level
-- **[28]** Add more sounds
-- **[29]** Refactor code
-- **[30]** Make a ball trail
-- **[31]** Balancing
+- **[28]** Refactor code
+- **[29]** Make a ball trail
+- **[30]** Balancing
+- **[31]** Add more sounds
 
 
 
