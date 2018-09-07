@@ -50,7 +50,7 @@ import jig.Vector;
 		projShieldDelay = 6000f;
 		projShieldTimer = 6000f;
 		iFrameTimer = 1000f;
-		iFrameDelay = 0;
+		iFrameDelay = 1000f;
 		iFrame = false;
 		
 	}
