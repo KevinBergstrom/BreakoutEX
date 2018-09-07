@@ -122,9 +122,13 @@ class ResultsScreenState extends BasicGameState {
 			int delta) throws SlickException {
 		
 		Input input = container.getInput();
+		BounceGame bg = (BounceGame)game;
 		if (input.isKeyDown(Input.KEY_ENTER)) {
-			//set startup to load next level?
-			game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new VerticalSplitTransition() );
+			if(bg.currentLevel==Levels.lastLevel) {
+				game.enterState(BounceGame.WINSTATE, new EmptyTransition(), new VerticalSplitTransition() );
+			}else {
+				game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new VerticalSplitTransition() );	
+			}
 		}
 
 	}
