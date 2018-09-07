@@ -10,7 +10,7 @@ public class ShootBrick extends Brick{
 		
 	}
 	
-	public void onDeath(StateBasedGame game) {
+	public void onHit(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		Projectile proj = new Projectile(this.getX(),this.getY(),0,0);
 		proj.setVelocity(proj.aimAt(bg.paddle));

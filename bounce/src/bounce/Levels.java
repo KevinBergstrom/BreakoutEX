@@ -32,22 +32,19 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.CITY_BGIMG_RSC);
 		//load bricks
-		/*
 		for(int x = 0;x<7;x++) {
 			for(int y = 0;y<6;y++) {
-				bg.bricks.add(new Brick(160+(x*2*40), 60+(y*40), 2, 1,new Color(100+(x*22),255-(x*20)-(y*20),0+(y*42))));
+				bg.bricks.add(new Brick(160+(x*2*40), 60+(y*40), 2, 1,new Color(0+(x*36),255-(x*20)-(y*20),0+(y*42))));
 			}
-		}*/
-		/*for(int x = 0;x<5;x++) {
-				bg.bricks.add(new PowerUpBrick(80+(x*4*40), 60, 4, 1));
-		}*/
+		}
+		
 		
 	}
 	
 	private static void level2(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		//background
-		bg.background = ResourceManager.getImage(BounceGame.ROAD_BGIMG_RSC);
+		bg.background = ResourceManager.getImage(BounceGame.CAVE_BGIMG_RSC);
 		//load bricks
 		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
 	}
@@ -55,7 +52,7 @@ public class Levels {
 	private static void level3(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		//background
-		bg.background = ResourceManager.getImage(BounceGame.CAVE_BGIMG_RSC);
+		bg.background = ResourceManager.getImage(BounceGame.ROAD_BGIMG_RSC);
 		//load bricks
 		for(int x = 0;x<5;x++) {
 			for(int y = 0;y<5;y++) {
