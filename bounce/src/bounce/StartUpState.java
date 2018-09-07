@@ -104,6 +104,31 @@ class StartUpState extends BasicGameState {
 		
 		if (input.isKeyDown(Input.KEY_INSERT))
 			bg.invincibility = true;
+		
+		if (input.isKeyDown(Input.KEY_L)) {
+			if(input.isKeyDown(Input.KEY_1)) {
+				bg.currentLevel = 0;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}else if(input.isKeyDown(Input.KEY_2)) {
+				bg.currentLevel = 1;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}else if(input.isKeyDown(Input.KEY_3)) {
+				bg.currentLevel = 2;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}else if(input.isKeyDown(Input.KEY_4)) {
+				bg.currentLevel = 3;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}else if(input.isKeyDown(Input.KEY_5)) {
+				bg.currentLevel = 4;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}else if(input.isKeyDown(Input.KEY_6)) {
+				bg.currentLevel = 5;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}else if(input.isKeyDown(Input.KEY_7)) {
+				bg.currentLevel = 6;
+				bg.enterState(BounceGame.STARTUPSTATE);	
+			}
+		}
 
 	}
 
