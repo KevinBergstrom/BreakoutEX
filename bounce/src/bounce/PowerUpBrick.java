@@ -19,15 +19,5 @@ public class PowerUpBrick extends Brick{
 			 bg.powerups.add(newPU);
 		 }
 	}
-	
-	public void onDeath(StateBasedGame game) {
-		BounceGame bg = (BounceGame)game;
-		
-		PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth);
-		 if(newPU!=null) {
-			 newPU.setPosition(this.getX(),this.getY());
-			 bg.powerups.add(newPU);
-		 }
-	}
 
 }

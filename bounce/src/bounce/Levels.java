@@ -88,13 +88,6 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.MOUNTAIN_BGIMG_RSC);
 		//load bricks
-		/*for(int x = 0;x<5;x++) {
-			for(int y = 0;y<5;y++) {
-				if(x>=y) {
-					bg.bricks.add(new RadioactiveBrick(280+(x*40), 20+(y*40), 1, 1));
-				}
-			}
-		}*/
 		for(int x = 0;x<6;x++) {
 				bg.bricks.add(new ShootBrick(180+(x*40), 20+(x*40), 1, 1));
 		}
@@ -129,7 +122,38 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.PIPES_BGIMG_RSC);
 		//load bricks
-		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
+		
+		for(int x = 0;x<2;x++) {
+			for(int y = 0;y<4;y++) {
+				bg.bricks.add(new RadioactiveBrick(380+(x*40), 40+(y*80), 1, 2));
+			}
+		}
+		for(int x = 0;x<6;x++) {
+			for(int y = 0;y<6;y++) {
+				if(x<=y) {
+					bg.bricks.add(new ShootBrick(20+(x*40), 60+(y*40), 1, 1));
+				}
+			}
+		}
+		for(int x = 0;x<6;x++) {
+			for(int y = 0;y<6;y++) {
+				if(x<=y) {
+					bg.bricks.add(new ShootBrick(780-(x*40), 60+(y*40), 1, 1));
+				}
+			}
+		}
+		for(int x = 0;x<3;x++) {
+			bg.bricks.add(new SpeedBrick(60+(x*3*40), 20, 3, 1));
+		}
+		for(int x = 0;x<3;x++) {
+			bg.bricks.add(new SpeedBrick(500+(x*3*40), 20, 3, 1));
+		}
+		for(int x = 0;x<2;x++) {
+			bg.bricks.add(new PowerUpBrick(60+(x*3*40), 300, 3, 1));
+		}
+		for(int x = 0;x<2;x++) {
+			bg.bricks.add(new PowerUpBrick(620+(x*3*40), 300, 3, 1));
+		}
 	}
 	
 	private static void level6(StateBasedGame game) {
