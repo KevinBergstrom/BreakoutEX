@@ -233,9 +233,10 @@ class PlayingState extends BasicGameState {
 				i.remove();
 			}else if(bg.paddle.collides(nextProj) != null) {
 				
-				if(!bg.paddle.getProjShield()) {
+				if(!bg.paddle.getProjShield() && !bg.paddle.getiFrame()) {
 					bg.health -= nextProj.getDamage();
 					damageTaken += nextProj.getDamage();
+					bg.paddle.turnOniFrame();
 					if(bg.health<0) {
 						bg.health = 0;
 					}

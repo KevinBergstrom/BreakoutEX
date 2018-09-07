@@ -161,6 +161,61 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.STAR_BGIMG_RSC);
 		//load bricks
+		
+		for(int x = 0;x<5;x++) {
+			for(int y = 0;y<5;y++) {
+				if(x == 0 || y == 0 || x == 4| y == 4) {
+					Brick.spawnRandomBrick(120+(x*40), 80+(y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(200, 160, 3, 3));
+		
+		for(int x = 0;x<5;x++) {
+			for(int y = 0;y<5;y++) {
+				if(x == 0 || y == 0 || x == 4| y == 4) {
+					Brick.spawnRandomBrick(400+(x*40), 120+(y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(480, 200, 3, 3));
+		
+		for(int x = 0;x<4;x++) {
+			for(int y = 0;y<4;y++) {
+				if(x == 0 || y == 0 || x == 3| y == 3) {
+					Brick.spawnRandomBrick(600+(x*40), 40+(y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(660, 100, 2, 2));
+		
+		for(int x = 0;x<4;x++) {
+			for(int y = 0;y<4;y++) {
+				if(x == 0 || y == 0 || x == 3| y == 3) {
+					Brick.spawnRandomBrick(80+(x*40), 280+(y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(140, 340, 2, 2));
+		
+		for(int x = 0;x<3;x++) {
+			for(int y = 0;y<3;y++) {
+				if(x == 0 || y == 0 || x == 2| y == 2) {
+					Brick.spawnRandomBrick(320+(x*40), (y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(360, 40, 1, 1));
+		
+		for(int x = 0;x<3;x++) {
+			for(int y = 0;y<3;y++) {
+				if(x == 0 || y == 0 || x == 2| y == 2) {
+					Brick.spawnRandomBrick(600+(x*40), 240+(y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(640, 280, 1, 1));
+		
 	}
 	
 	private static void level7(StateBasedGame game) {
