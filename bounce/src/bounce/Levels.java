@@ -37,8 +37,6 @@ public class Levels {
 				bg.bricks.add(new Brick(160+(x*2*40), 60+(y*40), 2, 1,new Color(0+(x*36),255-(x*20)-(y*20),0+(y*42))));
 			}
 		}
-		
-		
 	}
 	
 	private static void level2(StateBasedGame game) {
@@ -46,7 +44,21 @@ public class Levels {
 		//background
 		bg.background = ResourceManager.getImage(BounceGame.CAVE_BGIMG_RSC);
 		//load bricks
-		bg.bricks.add(new Brick(bg.ScreenWidth/2, bg.ScreenHeight/2, 1, 1,new Color(255,255,255)));
+		for(int x = 0;x<20;x++) {
+			for(int y = 0;y<2;y++) {
+				bg.bricks.add(new RadioactiveBrick(20+(x*40), 100+(y*40), 1, 1));
+			}
+		}
+		for(int x = 0;x<5;x++) {
+			for(int y = 0;y<1;y++) {
+				bg.bricks.add(new PowerUpBrick(80+(x*4*40), 60+(y*40), 4, 1));
+			}
+		}
+		for(int x = 0;x<5;x++) {
+			for(int y = 0;y<1;y++) {
+				bg.bricks.add(new Brick(80+(x*4*40), 180+(y*40), 4, 1,new Color(255,255,255)));
+			}
+		}
 	}
 	
 	private static void level3(StateBasedGame game) {
