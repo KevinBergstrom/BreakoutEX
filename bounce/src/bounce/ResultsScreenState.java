@@ -1,7 +1,5 @@
 package bounce;
 
-import java.util.Iterator;
-
 import jig.ResourceManager;
 
 import org.newdawn.slick.GameContainer;
@@ -12,7 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.EmptyTransition;
-import org.newdawn.slick.state.transition.HorizontalSplitTransition;
+import org.newdawn.slick.state.transition.VerticalSplitTransition;
 
 
 class ResultsScreenState extends BasicGameState {
@@ -124,9 +122,9 @@ class ResultsScreenState extends BasicGameState {
 			int delta) throws SlickException {
 		
 		Input input = container.getInput();
-		if (input.isKeyDown(Input.KEY_SPACE)) {
+		if (input.isKeyDown(Input.KEY_ENTER)) {
 			//set startup to load next level?
-			//game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new HorizontalSplitTransition() );
+			game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new VerticalSplitTransition() );
 		}
 
 	}
