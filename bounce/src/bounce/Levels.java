@@ -64,6 +64,33 @@ public class Levels {
 	private static void level3(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		//background
+		bg.background = ResourceManager.getImage(BounceGame.MOUNTAIN_BGIMG_RSC);
+		//load bricks
+		int startX = 160;
+		int startY = 20;
+		float radius = 3.5f;
+		int sizeX = 2;
+		int sizeY = 1;
+		
+		for(int x = 0;x<2*radius;x++) {
+			for(int y = 0;y<2*radius;y++) {
+				float midX = radius-x-0.5f;
+				float midY = radius-y-0.5f;
+				if(Math.sqrt(midX*midX + midY*midY)<=radius) {
+					if(y%2==0) {
+						bg.bricks.add(new Brick(startX+(x*(40*sizeX)), startY+(y*(40*sizeY)), sizeX, sizeY, new Color(0,255-(y*10),255-(y*20))));
+					}else {
+						bg.bricks.add(new RadioactiveBrick(startX+(x*(40*sizeX)), startY+(y*(40*sizeY)), sizeX, sizeY));
+					}
+				}
+			}
+		}
+		
+	}
+	
+	private static void level4(StateBasedGame game) {
+		BounceGame bg = (BounceGame)game;
+		//background
 		bg.background = ResourceManager.getImage(BounceGame.ROAD_BGIMG_RSC);
 		//load bricks
 		for(int x = 0;x<5;x++) {
@@ -81,40 +108,6 @@ public class Levels {
 				bg.bricks.add(new PowerUpBrick(280+(x*8*40), 100+(y*40), 1, 1));
 			}
 		}
-	}
-	
-	private static void level4(StateBasedGame game) {
-		BounceGame bg = (BounceGame)game;
-		//background
-		bg.background = ResourceManager.getImage(BounceGame.MOUNTAIN_BGIMG_RSC);
-		//load bricks
-		for(int x = 0;x<6;x++) {
-				bg.bricks.add(new ShootBrick(180+(x*40), 20+(x*40), 1, 1));
-		}
-		for(int x = 0;x<5;x++) {
-			bg.bricks.add(new PowerUpBrick(220+(x*40), 20+(x*40), 1, 1));
-		}
-		for(int x = 0;x<4;x++) {
-			bg.bricks.add(new RadioactiveBrick(260+(x*40), 20+(x*40), 1, 1));
-		}
-		for(int x = 0;x<3;x++) {
-			bg.bricks.add(new SpeedBrick(300+(x*40), 20+(x*40), 1, 1));
-		}
-		bg.bricks.add(new InversionBrick(400, 20, 4, 1));
-		bg.bricks.add(new InversionBrick(400, 60, 2, 1));
-		for(int x = 0;x<6;x++) {
-			bg.bricks.add(new SpeedBrick(620-(x*40), 20+(x*40), 1, 1));
-		}
-		for(int x = 0;x<5;x++) {
-			bg.bricks.add(new RadioactiveBrick(580-(x*40), 20+(x*40), 1, 1));
-		}
-		for(int x = 0;x<4;x++) {
-			bg.bricks.add(new PowerUpBrick(540-(x*40), 20+(x*40), 1, 1));
-		}
-		for(int x = 0;x<3;x++) {
-			bg.bricks.add(new ShootBrick(500-(x*40), 20+(x*40), 1, 1));
-		}
-		
 	}
 	
 	private static void level5(StateBasedGame game) {
