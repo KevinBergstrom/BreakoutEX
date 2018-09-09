@@ -107,6 +107,8 @@ class ResultsScreenState extends BasicGameState {
 		if(bg.background!=null) {
 			g.drawImage(bg.background, 0, 0);
 		}
+		for (BallTrail t : bg.trails)
+			t.render(g);
 		bg.paddle.render(g);
 		bg.ball.render(g);
 		for (Brick br : bg.bricks)

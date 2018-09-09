@@ -30,9 +30,9 @@
 - **[28]** Create levels
 - **[29]** Refactor code, comment code
 - **[30]** Make all states progress with the space key
+- **[31]** Make a ball trail
 
 ## Open Issues ##
-- **[31]** Make a ball trail
 - **[32]** Remove unused images
 
 
