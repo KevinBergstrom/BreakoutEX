@@ -24,6 +24,9 @@ import jig.Vector;
 	private boolean projShield;
 	private float projShieldDelay;
 	private float projShieldTimer;
+	private float iFrameDelay;
+	private float iFrameTimer;
+	private boolean iFrame;
 	
 
 	public Paddle(final float x, final float y, final float vx, final float vy) {
@@ -46,6 +49,10 @@ import jig.Vector;
 		projShield = false;
 		projShieldDelay = 6000f;
 		projShieldTimer = 6000f;
+		iFrameTimer = 1000f;
+		iFrameDelay = 1000f;
+		iFrame = false;
+		
 	}
 
 	public void setVelocity(final Vector v) {
@@ -101,11 +108,22 @@ import jig.Vector;
 	}
 	
 	public void addSpeed(float s) {
-		speed = speed + s;
-		if(speed>maxSpeed) {
-			speed = maxSpeed;
-		}else if(speed<minSpeed) {
-			speed = minSpeed;
+		if(speed<0) {
+			reverseControls();
+			speed = speed + s;
+			if(speed>maxSpeed) {
+				speed = maxSpeed;
+			}else if(speed<minSpeed) {
+				speed = minSpeed;
+			}
+			reverseControls();
+		}else {
+			speed = speed + s;
+			if(speed>maxSpeed) {
+				speed = maxSpeed;
+			}else if(speed<minSpeed) {
+				speed = minSpeed;
+			}
 		}
 	}
 	
@@ -122,9 +140,18 @@ import jig.Vector;
 		return projShield;
 	}
 	
+	public boolean getiFrame() {
+		return iFrame;
+	}
+	
 	public void turnOnProjShield() {
 		projShield = true;
 		projShieldTimer = projShieldDelay;
+	}
+	
+	public void turnOniFrame() {
+		iFrame = true;
+		iFrameTimer = iFrameDelay;
 	}
 	
 	public void renderProjShield(Graphics g) {
@@ -156,5 +183,13 @@ import jig.Vector;
 				projShield = false;
 			}
 		}
+		if(iFrame) {
+			iFrameTimer -= delta;
+			if(iFrameTimer<0) {
+				iFrameTimer = iFrameDelay;
+				iFrame = false;
+			}
+		}
+
 	}
 }

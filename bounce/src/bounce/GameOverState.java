@@ -29,7 +29,7 @@ import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 class GameOverState extends BasicGameState {
 	
 
-	private int timer;
+	private float timer;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -38,7 +38,7 @@ class GameOverState extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		timer = 10000;
+		timer = 10000f;
 	}
 
 	@Override
@@ -79,13 +79,13 @@ class GameOverState extends BasicGameState {
 		}
 		
 		timer -= delta;
-		if (timer <= 0)
+		if (timer <= 0) {
 			bg.currentLevel = 0;
 			for(int i = 0;i<bg.ranks.length;i++) {
 				bg.ranks[i] = 0;
 			}
 			game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new BlobbyTransition() );
-	
+		}
 		// check if there are any finished explosions, if so remove them
 		for (Iterator<Bang> i = ((BounceGame)game).explosions.iterator(); i.hasNext();) {
 			if (!i.next().isActive()) {
