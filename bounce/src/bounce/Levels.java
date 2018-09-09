@@ -193,6 +193,9 @@ public class Levels {
 			}
 		}
 		bg.bricks.add(new PowerUpBrick(140, 320, 2, 2));
+		for(int x = 0;x<4;x++) {
+			bg.bricks.add(new Brick(80+(x*40), 380, 1, 1,new Color(190,190,190)));
+		}
 		
 		for(int x = 0;x<3;x++) {
 			for(int y = 0;y<2;y++) {

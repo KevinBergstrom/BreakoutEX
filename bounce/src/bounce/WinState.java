@@ -35,16 +35,14 @@ class WinState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		readyToProgress = false;
 		finalRank = 0;
-		int ranksSize = 0;
+		float ranksSize = 0;
 		BounceGame bg = (BounceGame)game;
 		//calculate the player's final rank
 		for(int i = 0;i<bg.ranks.length;i++) {
-			if(bg.ranks[i]>ranksSize) {
-				finalRank = i;
-				ranksSize = bg.ranks[i];
-			}
+			ranksSize += bg.ranks[i]*i;
 		}
-		
+		ranksSize = (ranksSize/(Levels.lastLevel*3));
+		finalRank = Math.round(ranksSize);
 	}
 	
 	@Override

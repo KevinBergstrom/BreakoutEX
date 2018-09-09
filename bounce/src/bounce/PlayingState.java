@@ -82,6 +82,7 @@ class PlayingState extends BasicGameState {
 			int delta) throws SlickException {
 		
 		if(delta>100) {
+			//ignore large deltas
 			return;
 		}
 		
