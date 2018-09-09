@@ -6,7 +6,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import jig.ResourceManager;
 
 /**
- * The AcceleratePowerUp class is an Entity that moves downward. When it
+ * The AcceleratePowerUp class is a PowerUp that moves downward. When it
  * collides with the paddle, the paddle will gain speed.
  * 
  */

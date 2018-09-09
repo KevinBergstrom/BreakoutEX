@@ -3,6 +3,11 @@ package bounce;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The RadioactiveBrick class is a Brick that spawns 
+ * a slime GravityProjectile when hit by the ball.
+ * 
+ */
 public class RadioactiveBrick extends Brick{
 
 	public RadioactiveBrick(float x, float y, int bx, int by) {

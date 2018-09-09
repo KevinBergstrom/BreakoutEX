@@ -3,6 +3,11 @@ package bounce;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The SpeedBrick class is a Brick that increases the speed
+ * of the ball when hit by the ball.
+ * 
+ */
 public class SpeedBrick extends Brick{
 
 	private float addSpeed;

@@ -12,7 +12,7 @@ import jig.ResourceManager;
 /**
  * The Brick class is an Entity that is stationary. It can take
  * a number of hits before it breaks. When damaged it will turn
- * transparent to symbolize how much damage it has taken
+ * transparent to symbolize how much damage it has taken.
  * 
  */
  class Brick extends Entity {

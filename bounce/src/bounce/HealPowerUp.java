@@ -6,6 +6,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import jig.ResourceManager;
 
+/**
+ * The HealPowerUp class is a PowerUp that moves downward. When it
+ * collides with the paddle, the player will gain health.
+ * 
+ */
 public class HealPowerUp extends PowerUp{
 
 	private int healAmount;

@@ -31,6 +31,7 @@
 
 ## Open Issues ##
 - **[29]** Refactor code, comment code
+- **[29]** Make all states progress with the space key
 - **[30]** Make a ball trail
 - **[31]** Add more sounds
 

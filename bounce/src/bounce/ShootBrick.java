@@ -3,6 +3,11 @@ package bounce;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The ShootBrick class is a Brick that shoots
+ * a Projectile at the paddle when hit by the ball.
+ * 
+ */
 public class ShootBrick extends Brick{
 
 	public ShootBrick(float x, float y, int bx, int by) {

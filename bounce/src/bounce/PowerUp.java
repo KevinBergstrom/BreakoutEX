@@ -7,6 +7,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import jig.Entity;
 import jig.Vector;
 
+/**
+ * The PowerUp class is an Entity that moves downward. When it
+ * collides with the paddle its effect() method will be called.
+ * 
+ */
  class PowerUp extends Entity {
 
 	protected Vector velocity;
@@ -45,7 +50,7 @@ import jig.Vector;
 	}
 	
 	public void effect(StateBasedGame game) {
-		
+		//Will trigger when colliding with the paddle
 	}
 
 	public void update(final int delta) {

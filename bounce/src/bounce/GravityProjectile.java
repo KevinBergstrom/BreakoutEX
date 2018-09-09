@@ -5,6 +5,12 @@ import org.newdawn.slick.Image;
 import jig.ResourceManager;
 import jig.Vector;
 
+/**
+ * The GravityProjectile class is an Entity that moves downward.
+ * It has an constant acceleration to give a gravity falling effect.
+ *  When it collides with the paddle, the player will take damage. 
+ * 
+ */
 public class GravityProjectile extends Projectile{
 
 	private float acc = 0.2f;

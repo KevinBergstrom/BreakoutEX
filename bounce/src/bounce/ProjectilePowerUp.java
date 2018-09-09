@@ -6,6 +6,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import jig.ResourceManager;
 
+/**
+ * The ProjectilePowerUp class is a PowerUp that moves downward. When it
+ * collides with the paddle, the player will temporarily gain a shield
+ * that grants immunity from projectile damage.
+ * 
+ */
 public class ProjectilePowerUp extends PowerUp{
 	
 	public ProjectilePowerUp(float x, float y) {
