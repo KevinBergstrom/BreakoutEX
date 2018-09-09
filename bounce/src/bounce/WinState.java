@@ -24,6 +24,7 @@ import org.newdawn.slick.state.transition.EmptyTransition;
 class WinState extends BasicGameState {
 	
 	private int finalRank;
+	private boolean readyToProgress;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -32,6 +33,7 @@ class WinState extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
+		readyToProgress = false;
 		finalRank = 0;
 		int ranksSize = 0;
 		BounceGame bg = (BounceGame)game;
@@ -65,13 +67,17 @@ class WinState extends BasicGameState {
 		BounceGame bg = (BounceGame)game;
 		
 		if (input.isKeyDown(Input.KEY_SPACE)) {
-			//reset to the first level
-			bg.currentLevel = 0;
-			//reset player stats
-			for(int i = 0;i<bg.ranks.length;i++) {
-				bg.ranks[i] = 0;
+			if(readyToProgress) {
+				//reset to the first level
+				bg.currentLevel = 0;
+				//reset player stats
+				for(int i = 0;i<bg.ranks.length;i++) {
+					bg.ranks[i] = 0;
+				}
+				game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new BlobbyTransition() );
 			}
-			game.enterState(BounceGame.SPLASHSTATE, new EmptyTransition(), new BlobbyTransition() );
+		}else {
+			readyToProgress = true;
 		}
 
 	}
