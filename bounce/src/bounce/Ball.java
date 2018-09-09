@@ -14,7 +14,7 @@ import jig.Vector;
  class Ball extends Entity {
 
 	 
-	final private float maxSpeed = 1.9f;
+	final private float maxSpeed = 1.8f;
 	final private float minSpeed = 0.4f;
 	final private int maxDamage = 4;
 	 

@@ -32,9 +32,10 @@
 - **[30]** Make all states progress with the space key
 - **[31]** Make a ball trail
 - **[32]** Remove unused images
+- **[33]** Balance the game (make it winnable)
 
 ## Open Issues ##
-- **[33]** Update to version 2.0
+- **[34]** Update to version 2.0
 
 
 
