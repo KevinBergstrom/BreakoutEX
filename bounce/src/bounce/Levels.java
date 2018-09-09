@@ -5,6 +5,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import jig.ResourceManager;
 
+/**
+ * Contains data for generating all of the levels used in this game.
+ */
 public class Levels {
 
 	final public static int lastLevel = 7;
@@ -56,7 +59,7 @@ public class Levels {
 		}
 		for(int x = 0;x<5;x++) {
 			for(int y = 0;y<1;y++) {
-				bg.bricks.add(new Brick(80+(x*4*40), 180+(y*40), 4, 1,new Color(255,255,255)));
+				bg.bricks.add(new Brick(80+(x*4*40), 180+(y*40), 4, 1,new Color(200,200,200)));
 			}
 		}
 	}

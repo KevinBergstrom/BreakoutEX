@@ -9,7 +9,12 @@ import org.newdawn.slick.state.StateBasedGame;
 import jig.Entity;
 import jig.ResourceManager;
 
-
+/**
+ * The Brick class is an Entity that is stationary. It can take
+ * a number of hits before it breaks. When damaged it will turn
+ * transparent to symbolize how much damage it has taken.
+ * 
+ */
  class Brick extends Entity {
 
 	private Image brickImg;
@@ -19,11 +24,14 @@ import jig.ResourceManager;
 	private int maxHealth;
 	private int health;
 
+	/**
+	 * bx and by respresent how many base brick lengths long or wide it is (1 to 4)x
+	 */
 	public Brick(final float x, final float y, final int bx, final int by, Color col) {
 		super(x, y);
-		//bx and by respresent how many base bricks long or wide it is (1 to 4)
-		//addImageWithBoundingBox(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
+		//get the correct brick image
 		Image image = getBrickImageFromSize(bx, by);
+		//scale and color the image
 		brickImg = image.getScaledCopy(bx*40, by*40);
 		brickImg.setFilter(Image.FILTER_NEAREST);
 		brickImg.setImageColor(col.r, col.g, col.b);
@@ -69,22 +77,24 @@ import jig.ResourceManager;
 		if(health<0) {
 			health = 0;
 		}else {
+			//change the bricks transparency based on health remaining
 			float brickAlpha = (float)health/(float)maxHealth;
 			Image image = getBrickImageFromSize(bricksX, bricksY);
 			brickImg = image.getScaledCopy(bricksX*40, bricksY*40);
 			brickImg.setFilter(Image.FILTER_NEAREST);
 			brickImg.setImageColor(brickColor.r, brickColor.g, brickColor.b,brickAlpha);
+			//remake the bounding box
 			addImageWithBoundingBox(brickImg);
 		}
 		
 	}
 	
 	public void onHit(StateBasedGame game) {
-		
+		//Will trigger when hit by the ball
 	}
 	
 	public void onDeath(StateBasedGame game) {
-		
+		//Will trigger when health fully depleted
 	}
 	
 	public boolean isActive() {
@@ -95,6 +105,9 @@ import jig.ResourceManager;
 		}
 	}
 	
+	/**
+	 * Spawns one of the Brick types chosen at random
+	 */
 	public static void spawnRandomBrick(final float x, final float y, final int bx, final int by,StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		Random rand = new Random();

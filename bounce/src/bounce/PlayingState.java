@@ -1,13 +1,10 @@
 package bounce;
 
 import java.util.Iterator;
-import jig.Entity;
-import jig.ResourceManager;
 import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -16,13 +13,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * This state is active when the Game is being played. In this state, sound is
- * turned on, the bounce counter begins at 0 and increases until 10 at which
- * point a transition to the Game Over state is initiated. The user can also
- * control the ball using the WAS & D keys.
+ * turned on, the ball moves freely. The players health and score are decided
+ * in this state. Destroying all of the bricks will move to the ResultsScreenState. 
+ * . Losing all of your health will move to the GameOverState.
+ *  The user can also control the paddle using the WAS & D keys.
  * 
  * Transitions From StartUpState
  * 
- * Transitions To GameOverState
+ * Transitions To GameOverState or ResultsScreenState
  */
 class PlayingState extends BasicGameState {
 	
@@ -38,6 +36,7 @@ class PlayingState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		container.setSoundOn(true);
+		//set up variables for score calculating
 		timeTaken = 0f;
 		powerUpsGot = 0;
 		damageTaken = 0;
@@ -63,8 +62,10 @@ class PlayingState extends BasicGameState {
 		for (PowerUp pu : bg.powerups)
 			pu.render(g);
 		
+		g.drawString("Level: " + bg.currentLevel, 10, 30);
+			
 		if(bg.invincibility) {
-			g.drawString("Invinciblility: On", 10, 30);
+			g.drawString("Invinciblility: On", 10, 50);
 		}
 		
 		if(bg.paddle.getProjShield()) {
@@ -79,10 +80,11 @@ class PlayingState extends BasicGameState {
 		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
-		
-		bg.paddle.setVelocity(new Vector(0, 0));
 		timeTaken += delta;
 		
+		//give the paddle velocity only if the player is pressing a key
+		bg.paddle.setVelocity(new Vector(0, 0));
+
 		if (input.isKeyDown(Input.KEY_W)) {
 			bg.paddle.setVelocity(bg.paddle.getVelocity().add(new Vector(0f, -1.0f)));
 		}
@@ -95,9 +97,10 @@ class PlayingState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_D)) {
 			bg.paddle.setVelocity(bg.paddle.getVelocity().add(new Vector(+1.0f, 0f)));
 		}
+		//Invincibility cheat
 		if (input.isKeyDown(Input.KEY_INSERT))
 			bg.invincibility = true;
-		//cheats
+		//level warp cheats
 		if (input.isKeyDown(Input.KEY_L)) {
 			if(input.isKeyDown(Input.KEY_1)) {
 				bg.currentLevel = 0;
@@ -127,10 +130,12 @@ class PlayingState extends BasicGameState {
 		
 		//ball and paddle collision
 		if(bg.ball.collides(bg.paddle) != null) {
+			//check the side of the collision
 			int sideOfCol = bg.ball.sideOfCollision(bg.paddle);
 			if(sideOfCol == 0) {
 				bg.ball.setPosition(new Vector(bg.ball.getX(),bg.paddle.getCoarseGrainedMinY()-
 						bg.ball.getCoarseGrainedHeight()/2));
+				//only collide if the ball is moving towards the paddle
 				if(bg.ball.getVelocity().getY()>0) {
 					bg.ball.bounce(0);
 					bounced = true;
@@ -197,13 +202,14 @@ class PlayingState extends BasicGameState {
 				i.remove();
 			}
 		}
-		//TODO have one bounce for every frame?
+		//only bounce off of bricks once each frame
 		if(nextBounce>-1) {
 			bg.ball.bounce(nextBounce);
 			bounced = true;
 		}
 		
-		// bounce the ball...
+		//check if the ball is out of bounds
+		//only bounce the ball out if it is moving towards the bound and colliding with it
 		if ((bg.ball.getVelocity().getX()>0 && bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth)
 				|| (bg.ball.getVelocity().getX()<0 && bg.ball.getCoarseGrainedMinX() < 0)) {
 			bg.ball.bounce(90);
@@ -212,6 +218,7 @@ class PlayingState extends BasicGameState {
 			bg.ball.bounce(0);
 			bounced = true;
 		}else if(bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight) {
+			//the ball hit the bottom of the screen
 			bg.ball.reset();
 			bg.health = bg.health -1;
 			damageTaken += 1;
@@ -221,6 +228,7 @@ class PlayingState extends BasicGameState {
 			bg.paddle.setHealth(bg.health);
 			
 		}
+		//add an explosion if the ball bounced
 		if (bounced) {
 			bg.explosions.add(new Bang(bg.ball.getX(), bg.ball.getY()));
 		}
@@ -234,6 +242,7 @@ class PlayingState extends BasicGameState {
 			}else if(bg.paddle.collides(nextProj) != null) {
 				
 				if(!bg.paddle.getProjShield() && !bg.paddle.getiFrame()) {
+					//if the player isn't invulnerable
 					bg.health -= nextProj.getDamage();
 					damageTaken += nextProj.getDamage();
 					bg.paddle.turnOniFrame();
@@ -250,13 +259,14 @@ class PlayingState extends BasicGameState {
 		 bg.powerUpTimer =  bg.powerUpTimer - delta;
 		 if(bg.powerUpTimer<0) {
 			 bg.powerUpTimer = bg.powerUpDelay;
+			 //generate a random PowerUp
 			 PowerUp newPU = PowerUp.spawnRandomPowerUp(bg.ScreenWidth-20);
 			 if(newPU!=null) {
 				 bg.powerups.add(newPU);
 			 }
 		 }
 		
-		//update the powerups
+		//update the PowerUps
 		for (Iterator<PowerUp> i = bg.powerups.iterator(); i.hasNext();) {
 			PowerUp nextPU = i.next();
 			nextPU.update(delta);
@@ -269,20 +279,22 @@ class PlayingState extends BasicGameState {
 			}
 		}
 		
-		bg.ball.update(delta);
-		bg.paddle.update(delta);
-		
 		// check if there are any finished explosions, if so remove them
 		for (Iterator<Bang> i = bg.explosions.iterator(); i.hasNext();) {
 			if (!i.next().isActive()) {
 				i.remove();
 			}
 		}
+		
+		bg.ball.update(delta);
+		bg.paddle.update(delta);
 
 		//check if the player has lost
 		if (bg.health<=0 && !bg.invincibility) {
+			//player lost
 			game.enterState(BounceGame.GAMEOVERSTATE);
 		}else if(bg.bricks.size()==0) {
+			//player won
 			((ResultsScreenState)game.getState(BounceGame.RESULTSSCREENSTATE)).setUserScore(timeTaken,powerUpsGot,damageTaken);
 			game.enterState(BounceGame.RESULTSSCREENSTATE);
 		}

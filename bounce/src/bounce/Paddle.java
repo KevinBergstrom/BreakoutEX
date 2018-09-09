@@ -7,26 +7,31 @@ import jig.Entity;
 import jig.ResourceManager;
 import jig.Vector;
 
-
+/**
+ * The Paddle class is an Entity that has a velocity only when the player
+ * is moving it. It can be used to bounce the ball.
+ * 
+ */
  class Paddle extends Entity {
 
+	final private float minSpeed = 0.1f;
+	final private float maxSpeed = 0.5f;
+	final private float projShieldDelay = 6000f;
+	final private float iFrameDelay = 1000f;
+	 
 	private Vector velocity;
-	private int countdown;
 	private float speed;
-	private float minSpeed;
-	private float maxSpeed;
 	private int minBoundX;
 	private int maxBoundX;
 	private int minBoundY;
 	private int maxBoundY;
 	private float defaultX;
 	private float defaultY;
+	
 	private boolean projShield;
-	private float projShieldDelay;
 	private float projShieldTimer;
-	private float iFrameDelay;
-	private float iFrameTimer;
 	private boolean iFrame;
+	private float iFrameTimer;
 	
 
 	public Paddle(final float x, final float y, final float vx, final float vy) {
@@ -37,21 +42,17 @@ import jig.Vector;
 		
 		velocity = new Vector(vx, vy);
 		speed = 0.2f;
-		minSpeed = 0.1f;
-		maxSpeed = 0.5f;
-		countdown = 0;
 		minBoundX = (int) x;
 		maxBoundX = (int) x;
 		minBoundY = (int) y;
 		maxBoundY = (int) y;
 		defaultX = x;
 		defaultY = y;
+		
 		projShield = false;
-		projShieldDelay = 6000f;
-		projShieldTimer = 6000f;
-		iFrameTimer = 1000f;
-		iFrameDelay = 1000f;
+		projShieldTimer = projShieldDelay;
 		iFrame = false;
+		iFrameTimer = iFrameDelay;
 		
 	}
 
@@ -72,14 +73,15 @@ import jig.Vector;
 	}
 	
 	public void reset() {
+		//return the paddle to its default position and speed
 		this.setPosition(defaultX, defaultY);
 		speed = Math.abs(speed);
+		
 		projShield = false;
 		projShieldTimer = projShieldDelay;
 	}
 	
 	public void setHealth(int health) {
-		//TODO remove image?
 		if(health <= 0) {
 			Image image = ResourceManager.getImage(BounceGame.DEAD_PADDLEIMG_RSC);
 			Image newImage = image.getScaledCopy(160, 40);
@@ -109,15 +111,19 @@ import jig.Vector;
 	
 	public void addSpeed(float s) {
 		if(speed<0) {
+			//controls are reversed
 			reverseControls();
 			speed = speed + s;
 			if(speed>maxSpeed) {
+				//too much speed
 				speed = maxSpeed;
 			}else if(speed<minSpeed) {
+				//too little speed
 				speed = minSpeed;
 			}
 			reverseControls();
 		}else {
+			//controls are correct
 			speed = speed + s;
 			if(speed>maxSpeed) {
 				speed = maxSpeed;
@@ -130,8 +136,10 @@ import jig.Vector;
 	public void setSpeed(float s) {
 		speed = s;
 		if(speed>maxSpeed) {
+			//too much speed
 			speed = maxSpeed;
 		}else if(speed<minSpeed) {
+			//too little speed
 			speed = minSpeed;
 		}
 	}
@@ -177,6 +185,7 @@ import jig.Vector;
 		}
 
 		if(projShield) {
+			//update Projectile Shield
 			projShieldTimer -= delta;
 			if(projShieldTimer<0) {
 				projShieldTimer = projShieldDelay;
@@ -184,6 +193,7 @@ import jig.Vector;
 			}
 		}
 		if(iFrame) {
+			//update iFrames
 			iFrameTimer -= delta;
 			if(iFrameTimer<0) {
 				iFrameTimer = iFrameDelay;

@@ -1,9 +1,6 @@
 package bounce;
 
-import java.util.Iterator;
-
 import jig.ResourceManager;
-import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,10 +11,16 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.EmptyTransition;
-import org.newdawn.slick.state.transition.HorizontalSplitTransition;
-import org.newdawn.slick.state.transition.VerticalSplitTransition;
 
-
+/**
+ * This state shows up after the last level is completed. It displays
+ * the player's final performance grade and a win message.
+ * Exiting will restart the game.
+ * 
+ * Transitions From ResultsScreenState
+ * 
+ * Transitions To SplashState
+ */
 class WinState extends BasicGameState {
 	
 	private int finalRank;
@@ -32,6 +35,7 @@ class WinState extends BasicGameState {
 		finalRank = 0;
 		int ranksSize = 0;
 		BounceGame bg = (BounceGame)game;
+		//calculate the player's final rank
 		for(int i = 0;i<bg.ranks.length;i++) {
 			if(bg.ranks[i]>ranksSize) {
 				finalRank = i;
@@ -59,8 +63,11 @@ class WinState extends BasicGameState {
 		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
+		
 		if (input.isKeyDown(Input.KEY_SPACE)) {
+			//reset to the first level
 			bg.currentLevel = 0;
+			//reset player stats
 			for(int i = 0;i<bg.ranks.length;i++) {
 				bg.ranks[i] = 0;
 			}
