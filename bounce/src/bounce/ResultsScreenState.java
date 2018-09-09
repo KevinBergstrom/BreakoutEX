@@ -39,6 +39,8 @@ class ResultsScreenState extends BasicGameState {
 	final private int[] powerUpRankTiers = {15,10,5};
 	final private int[] damageRankTiers = {0,2,5};
 	
+	private boolean readyToProgress;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -46,6 +48,7 @@ class ResultsScreenState extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
+		readyToProgress = false;
 	}
 
 	public void setUserScore(float t, int p, int d) {
@@ -133,16 +136,20 @@ class ResultsScreenState extends BasicGameState {
 		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
-		if (input.isKeyDown(Input.KEY_ENTER)) {
-			//update the players score
-			bg.ranks[rankScore] = bg.ranks[rankScore] + 1;
-			if(bg.currentLevel==Levels.lastLevel) {
-				//completed last level
-				game.enterState(BounceGame.WINSTATE, new EmptyTransition(), new VerticalSplitTransition() );
-			}else {
-				//there are still more levels
-				game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new VerticalSplitTransition() );	
+		if (input.isKeyDown(Input.KEY_SPACE)) {
+			if(readyToProgress) {
+				//update the players score
+				bg.ranks[rankScore] = bg.ranks[rankScore] + 1;
+				if(bg.currentLevel==Levels.lastLevel) {
+					//completed last level
+					game.enterState(BounceGame.WINSTATE, new EmptyTransition(), new VerticalSplitTransition() );
+				}else {
+					//there are still more levels
+					game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new VerticalSplitTransition() );	
+				}
 			}
+		}else {
+			readyToProgress = true;
 		}
 		//level warp cheats
 		if (input.isKeyDown(Input.KEY_L)) {

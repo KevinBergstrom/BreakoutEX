@@ -23,6 +23,7 @@ class SplashState extends BasicGameState {
 
 	int ScrollPos = 0;
 	float ScrollSpeed = 0.1f;
+	private boolean readyToProgress;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -32,6 +33,7 @@ class SplashState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		//container.setSoundOn(false);
+		readyToProgress = false;
 	}
 
 
@@ -72,8 +74,13 @@ class SplashState extends BasicGameState {
 			ScrollPos = 0;
 		}
 
-		if (input.isKeyDown(Input.KEY_ENTER))//TODO how do I do any input?
-			bg.enterState(BounceGame.STARTUPSTATE);	
+		if (input.isKeyDown(Input.KEY_SPACE)) {
+			if(readyToProgress) {
+				bg.enterState(BounceGame.STARTUPSTATE);
+			}
+		}else {
+			readyToProgress = true;
+		}
 		
 		
 		//bg.ball.update(delta);

@@ -28,12 +28,12 @@
 - **[26]** Add game won screen
 - **[27]** Add cheats to access each level
 - **[28]** Create levels
+- **[29]** Refactor code, comment code
+- **[30]** Make all states progress with the space key
 
 ## Open Issues ##
-- **[29]** Refactor code, comment code
-- **[29]** Make all states progress with the space key
-- **[30]** Make a ball trail
-- **[31]** Remove unused images
+- **[31]** Make a ball trail
+- **[32]** Remove unused images
 
 
 

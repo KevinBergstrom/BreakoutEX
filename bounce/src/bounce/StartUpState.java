@@ -21,6 +21,8 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 class StartUpState extends BasicGameState {
 
+	private boolean readyToProgress;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -46,7 +48,6 @@ class StartUpState extends BasicGameState {
 		clearLevel(game);
 		bg.currentLevel = bg.currentLevel+1;
 		Levels.loadLevel(bg.currentLevel, game);
-		
 	}
 	
 	@Override
@@ -54,6 +55,7 @@ class StartUpState extends BasicGameState {
 		container.setSoundOn(false);
 		//loading level
 		BounceGame bg = (BounceGame)game;
+		readyToProgress = false;
 		bg.health = 3;
 		bg.maxHealth = 3;
 		bg.powerUpDelay = 6000f;
@@ -97,8 +99,13 @@ class StartUpState extends BasicGameState {
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 
-		if (input.isKeyDown(Input.KEY_SPACE))
-			bg.enterState(BounceGame.PLAYINGSTATE);	
+		if (input.isKeyDown(Input.KEY_SPACE)) {
+			if(readyToProgress) {
+				bg.enterState(BounceGame.PLAYINGSTATE);
+			}
+		}else {
+			readyToProgress = true;
+		}
 		
 		if (input.isKeyDown(Input.KEY_INSERT))
 			bg.invincibility = true;
