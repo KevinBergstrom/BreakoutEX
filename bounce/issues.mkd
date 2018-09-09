@@ -27,13 +27,12 @@
 - **[25]** Add multiple levels capability
 - **[26]** Add game won screen
 - **[27]** Add cheats to access each level
+- **[28]** Create levels
 
 ## Open Issues ##
-- **[28]** Create levels
 - **[29]** Refactor code
 - **[30]** Make a ball trail
-- **[31]** Balancing
-- **[32]** Add more sounds
+- **[31]** Add more sounds
 
 
 

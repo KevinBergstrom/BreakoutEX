@@ -6,7 +6,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class RadioactiveBrick extends Brick{
 
 	public RadioactiveBrick(float x, float y, int bx, int by) {
-		super(x, y, bx, by, new Color(0,255,0));
+		super(x, y, bx, by, new Color(0,225,0));
 		
 	}
 	

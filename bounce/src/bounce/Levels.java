@@ -77,8 +77,8 @@ public class Levels {
 				float midX = radius-x-0.5f;
 				float midY = radius-y-0.5f;
 				if(Math.sqrt(midX*midX + midY*midY)<=radius) {
-					if(y%2==0) {
-						bg.bricks.add(new Brick(startX+(x*(40*sizeX)), startY+(y*(40*sizeY)), sizeX, sizeY, new Color(0,255-(y*10),255-(y*20))));
+					if(y%2==0 || x%2==0) {
+						bg.bricks.add(new Brick(startX+(x*(40*sizeX)), startY+(y*(40*sizeY)), sizeX, sizeY, new Color(0,255-(y*30),255-(y*20))));
 					}else {
 						bg.bricks.add(new RadioactiveBrick(startX+(x*(40*sizeX)), startY+(y*(40*sizeY)), sizeX, sizeY));
 					}

@@ -8,8 +8,8 @@ public class SpeedBrick extends Brick{
 	private float addSpeed;
 	
 	public SpeedBrick(float x, float y, int bx, int by) {
-		super(x, y, bx, by, new Color(255,120,0));
-		addSpeed = 0.1f;
+		super(x, y, bx, by, new Color(225,120,0));
+		addSpeed = 0.08f;
 	}
 	
 	public void onHit(StateBasedGame game) {

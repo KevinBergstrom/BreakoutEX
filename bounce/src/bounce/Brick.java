@@ -111,7 +111,7 @@ import jig.ResourceManager;
 		}else if(BNum==4) {
 			bg.bricks.add(new InversionBrick(x, y, bx, by));
 		}else {
-			bg.bricks.add(new Brick(x, y, bx, by,new Color(255,255,255)));
+			bg.bricks.add(new Brick(x, y, bx, by,new Color(190,190,190)));
 		}
 	}
 
