@@ -14,7 +14,7 @@ public class SpeedBrick extends Brick{
 	
 	public SpeedBrick(float x, float y, int bx, int by) {
 		super(x, y, bx, by, new Color(225,120,0));
-		addSpeed = 0.08f;
+		addSpeed = 0.07f;
 	}
 	@Override
 	public void onHit(StateBasedGame game) {

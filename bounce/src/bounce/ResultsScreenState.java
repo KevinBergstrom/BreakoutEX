@@ -141,7 +141,9 @@ class ResultsScreenState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_SPACE)) {
 			if(readyToProgress) {
 				//update the players score
-				bg.ranks[rankScore] = bg.ranks[rankScore] + 1;
+				bg.ranks[timeRank] = bg.ranks[timeRank] + 1;
+				bg.ranks[powerUpRank] = bg.ranks[powerUpRank] + 1;
+				bg.ranks[damageRank] = bg.ranks[damageRank] + 1;
 				if(bg.currentLevel==Levels.lastLevel) {
 					//completed last level
 					game.enterState(BounceGame.WINSTATE, new EmptyTransition(), new VerticalSplitTransition() );

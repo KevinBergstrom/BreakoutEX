@@ -81,6 +81,11 @@ class PlayingState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game,
 			int delta) throws SlickException {
 		
+		if(delta>100) {
+			//ignore large deltas
+			return;
+		}
+		
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 		timeTaken += delta;

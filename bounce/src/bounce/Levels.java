@@ -139,10 +139,10 @@ public class Levels {
 			}
 		}
 		for(int x = 0;x<3;x++) {
-			bg.bricks.add(new SpeedBrick(60+(x*3*40), 20, 3, 1));
+			bg.bricks.add(new Brick(60+(x*3*40), 20, 3, 1,new Color(100,100,100)));
 		}
 		for(int x = 0;x<3;x++) {
-			bg.bricks.add(new SpeedBrick(500+(x*3*40), 20, 3, 1));
+			bg.bricks.add(new Brick(500+(x*3*40), 20, 3, 1, new Color(100,100,100)));
 		}
 		for(int x = 0;x<2;x++) {
 			bg.bricks.add(new PowerUpBrick(60+(x*3*40), 300, 3, 1));
@@ -160,57 +160,60 @@ public class Levels {
 		
 		for(int x = 0;x<5;x++) {
 			for(int y = 0;y<5;y++) {
-				if(x == 0 || y == 0 || x == 4| y == 4) {
-					Brick.spawnRandomBrick(120+(x*40), 80+(y*40), 1, 1, game);
+				if(x == 0 || y == 0 || x == 4|| y == 4) {
+					Brick.spawnRandomBrick(120+(x*40), 60+(y*40), 1, 1, game);
 				}
 			}
 		}
-		bg.bricks.add(new PowerUpBrick(200, 160, 3, 3));
+		bg.bricks.add(new PowerUpBrick(200, 140, 3, 3));
 		
 		for(int x = 0;x<5;x++) {
 			for(int y = 0;y<5;y++) {
-				if(x == 0 || y == 0 || x == 4| y == 4) {
-					Brick.spawnRandomBrick(400+(x*40), 120+(y*40), 1, 1, game);
+				if(x == 0 || y == 0 || x == 4|| y == 4) {
+					Brick.spawnRandomBrick(400+(x*40), 100+(y*40), 1, 1, game);
 				}
 			}
 		}
-		bg.bricks.add(new PowerUpBrick(480, 200, 3, 3));
+		bg.bricks.add(new PowerUpBrick(480, 180, 3, 3));
 		
 		for(int x = 0;x<4;x++) {
 			for(int y = 0;y<4;y++) {
-				if(x == 0 || y == 0 || x == 3| y == 3) {
-					Brick.spawnRandomBrick(600+(x*40), 40+(y*40), 1, 1, game);
+				if(x == 0 || y == 0 || x == 3|| y == 3) {
+					Brick.spawnRandomBrick(600+(x*40), 20+(y*40), 1, 1, game);
 				}
 			}
 		}
-		bg.bricks.add(new PowerUpBrick(660, 100, 2, 2));
+		bg.bricks.add(new PowerUpBrick(660, 80, 2, 2));
 		
 		for(int x = 0;x<4;x++) {
 			for(int y = 0;y<4;y++) {
-				if(x == 0 || y == 0 || x == 3| y == 3) {
-					Brick.spawnRandomBrick(80+(x*40), 280+(y*40), 1, 1, game);
+				if((y!=3)&&(x == 0 || y == 0 || x == 3)) {
+					Brick.spawnRandomBrick(80+(x*40), 260+(y*40), 1, 1, game);
 				}
 			}
 		}
-		bg.bricks.add(new PowerUpBrick(140, 340, 2, 2));
+		bg.bricks.add(new PowerUpBrick(140, 320, 2, 2));
+		for(int x = 0;x<4;x++) {
+			bg.bricks.add(new Brick(80+(x*40), 380, 1, 1,new Color(190,190,190)));
+		}
+		
+		for(int x = 0;x<3;x++) {
+			for(int y = 0;y<2;y++) {
+				if(!(y==1&&x==1)) {
+					Brick.spawnRandomBrick(320+(x*40), 20+(y*40), 1, 1, game);
+				}
+			}
+		}
+		bg.bricks.add(new PowerUpBrick(360, 60, 1, 1));
 		
 		for(int x = 0;x<3;x++) {
 			for(int y = 0;y<3;y++) {
-				if(x == 0 || y == 0 || x == 2| y == 2) {
-					Brick.spawnRandomBrick(320+(x*40), (y*40), 1, 1, game);
+				if(x == 0 || y == 0 || x == 2|| y == 2) {
+					Brick.spawnRandomBrick(600+(x*40), 220+(y*40), 1, 1, game);
 				}
 			}
 		}
-		bg.bricks.add(new PowerUpBrick(360, 40, 1, 1));
-		
-		for(int x = 0;x<3;x++) {
-			for(int y = 0;y<3;y++) {
-				if(x == 0 || y == 0 || x == 2| y == 2) {
-					Brick.spawnRandomBrick(600+(x*40), 240+(y*40), 1, 1, game);
-				}
-			}
-		}
-		bg.bricks.add(new PowerUpBrick(640, 280, 1, 1));
+		bg.bricks.add(new PowerUpBrick(640, 260, 1, 1));
 		
 	}
 	
@@ -221,13 +224,19 @@ public class Levels {
 		//load bricks
 		for(int x = 0;x<5;x++) {
 			for(int y = 0;y<2;y++) {
-				bg.bricks.add(new PowerUpBrick(20+(x*4*40), 80+(y*4*40), 1, 1));
+				bg.bricks.add(new PowerUpBrick(20+(x*4*40), 80+(y*2*40), 1, 1));
 			}
 		}
 		for(int x = 0;x<20;x++) {
-			for(int y = 0;y<6;y++) {
+			for(int y = 0;y<5;y++) {
 				Brick.spawnRandomBrick(20+(x*40), 40+(y*40), 1, 1, game);
 			}
+		}
+		for(int x = 0;x<10;x++) {
+			bg.bricks.add(new ShootBrick(20+(x*2*40), 240, 1, 1));
+		}
+		for(int x = 0;x<10;x++) {
+			bg.bricks.add(new Brick(60+(x*2*40), 240, 1, 1,new Color(150,150,150)));
 		}
 		for(int x = 0;x<10;x++) {
 			for(int y = 0;y<3;y++) {
