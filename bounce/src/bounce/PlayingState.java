@@ -50,6 +50,9 @@ class PlayingState extends BasicGameState {
 			g.drawImage(bg.background, 0, 0);
 		}
 		
+		for (BallTrail t : bg.trails)
+			t.render(g);
+		
 		bg.ball.render(g);
 		bg.paddle.render(g);
 
@@ -255,7 +258,7 @@ class PlayingState extends BasicGameState {
 			}
 		}
 		
-		//power up spawning
+		//PowerUp spawning
 		 bg.powerUpTimer =  bg.powerUpTimer - delta;
 		 if(bg.powerUpTimer<0) {
 			 bg.powerUpTimer = bg.powerUpDelay;
@@ -282,6 +285,26 @@ class PlayingState extends BasicGameState {
 		// check if there are any finished explosions, if so remove them
 		for (Iterator<Bang> i = bg.explosions.iterator(); i.hasNext();) {
 			if (!i.next().isActive()) {
+				i.remove();
+			}
+		}
+		
+		//BallTrail spawning
+		 bg.trailTimer =  bg.trailTimer - delta;
+		 if(bg.trailTimer<0) {
+			 bg.trailTimer = bg.trailDelay;
+			 //generate a new trail
+			 BallTrail newT = new BallTrail(bg.ball.getX(),bg.ball.getY());
+			 if(newT!=null) {
+				 bg.trails.add(newT);
+			 }
+		 }
+		 
+		//update the BallTrails
+		for (Iterator<BallTrail> i = bg.trails.iterator(); i.hasNext();) {
+			BallTrail nextT = i.next();
+			nextT.update(delta);
+			if(!nextT.isActive()) {
 				i.remove();
 			}
 		}

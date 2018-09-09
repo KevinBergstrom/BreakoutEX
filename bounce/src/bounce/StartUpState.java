@@ -35,6 +35,7 @@ class StartUpState extends BasicGameState {
 		bg.explosions.clear();
 		bg.projectiles.clear();
 		bg.powerups.clear();
+		bg.trails.clear();
 		bg.ball.reset();
 		bg.ball.setSpeed(1f);
 		bg.ball.setDamage(1);
@@ -59,7 +60,9 @@ class StartUpState extends BasicGameState {
 		bg.health = 3;
 		bg.maxHealth = 3;
 		bg.powerUpDelay = 6000f;
-		bg.powerUpTimer = 6000f;
+		bg.powerUpTimer = bg.powerUpDelay;
+		bg.trailDelay = 100f;
+		bg.trailTimer = bg.trailDelay;
 		loadLevel(game);
 		
 	}
@@ -77,8 +80,6 @@ class StartUpState extends BasicGameState {
 		bg.paddle.render(g);
 		for (Brick br : bg.bricks)
 			br.render(g);
-		for (Bang b : bg.explosions)
-			b.render(g);
 		
 		Image SplashImage = ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC);
 		SplashImage.setFilter(Image.FILTER_NEAREST);

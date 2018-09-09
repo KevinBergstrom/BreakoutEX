@@ -124,11 +124,14 @@ public class BounceGame extends StateBasedGame {
 	ArrayList<Brick> bricks;
 	ArrayList<Projectile> projectiles;
 	ArrayList<PowerUp> powerups;
+	ArrayList<BallTrail> trails;
 	
 	public int health;
 	public int maxHealth;
-	public float powerUpDelay;//time in between powerup spawns
+	public float powerUpDelay;//time in between PowerUp spawns
 	public float powerUpTimer;
+	public float trailDelay;//time in between BallTrail spawns
+	public float trailTimer;
 	public int currentLevel;
 	public int[] ranks = {0,0,0,0};//stores the ranks received for win state
 	
@@ -153,9 +156,10 @@ public class BounceGame extends StateBasedGame {
 
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 		explosions = new ArrayList<Bang>(10);
-		bricks = new ArrayList<Brick>(14*6);//TODO remove magic number
+		bricks = new ArrayList<Brick>();
 		projectiles = new ArrayList<Projectile>();
 		powerups = new ArrayList<PowerUp>();
+		trails = new ArrayList<BallTrail>();
 		background = null;
 				
 	}
@@ -234,7 +238,9 @@ public class BounceGame extends StateBasedGame {
 		health = 3;
 		maxHealth = 3;
 		powerUpDelay = 6000f;
-		powerUpTimer = 6000f;
+		trailDelay = 100f;
+		powerUpTimer = powerUpDelay;
+		trailTimer = trailDelay;
 		currentLevel = 0;
 		
 		invincibility = false;
