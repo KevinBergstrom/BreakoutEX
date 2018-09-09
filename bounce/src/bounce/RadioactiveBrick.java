@@ -9,7 +9,7 @@ public class RadioactiveBrick extends Brick{
 		super(x, y, bx, by, new Color(0,225,0));
 		
 	}
-	
+	@Override
 	public void onHit(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		Projectile proj = new GravityProjectile(this.getX(),this.getY());

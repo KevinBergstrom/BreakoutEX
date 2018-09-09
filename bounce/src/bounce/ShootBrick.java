@@ -9,7 +9,7 @@ public class ShootBrick extends Brick{
 		super(x, y, bx, by, new Color(200,0,0));
 		
 	}
-	
+	@Override
 	public void onHit(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		Projectile proj = new Projectile(this.getX(),this.getY(),0,0);

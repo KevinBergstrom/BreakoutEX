@@ -7,20 +7,20 @@ import jig.ResourceManager;
 import jig.Vector;
 
 /**
- * The Ball class is an Entity that has a velocity (since it's moving). When
- * the Ball bounces off a surface, it temporarily displays a image with
- * cracks for a nice visual effect.
+ * The Ball class is an Entity that has a velocity (since it's moving). When it
+ * collides with something is bounces off at an opposite angle. 
  * 
  */
  class Ball extends Entity {
 
+	 
+	final private float maxSpeed = 1.9f;
+	final private float minSpeed = 0.4f;
+	final private int maxDamage = 4;
+	 
 	private Vector velocity;
 	private float speed;
-	private float maxSpeed;
-	private float minSpeed;
-	private int countdown;
 	private int damage;
-	private int maxDamage;
 	private float defaultX;
 	private float defaultY;
 	private Vector defaultV;
@@ -30,16 +30,13 @@ import jig.Vector;
 		Image newImage = ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC).getScaledCopy(50, 50);
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
+		
 		velocity = new Vector(vx, vy);
-		countdown = 0;
-		damage = 1;
-		maxDamage = 4;
-		speed = 1.1f;
-		maxSpeed = 1.9f;
-		minSpeed = 0.4f;
+		defaultV = new Vector(vx, vy);
 		defaultX = x;
 		defaultY = y;
-		defaultV = new Vector(vx, vy);
+		damage = 1;
+		speed = 1.1f;
 	}
 
 	public void setVelocity(final Vector v) {
@@ -49,15 +46,21 @@ import jig.Vector;
 	public void setSpeed(float s) {
 		speed = s;
 		if(speed>maxSpeed) {
+			//too much speed
 			speed = maxSpeed;
+		}else if(speed<minSpeed) {
+			//too little speed
+			speed = minSpeed;
 		}
 	}
 	
 	public void addSpeed(float s) {
 		speed = speed += s;
 		if(speed>maxSpeed) {
+			//too much speed
 			speed = maxSpeed;
 		}else if(speed<minSpeed) {
+			//too little speed
 			speed = minSpeed;
 		}
 	}
@@ -86,17 +89,17 @@ import jig.Vector;
 		this.setVelocity(defaultV);
 	}
 	
-	public int sideOfCollision(Entity other) {
-		//check which side the ball has collided with a rectangle on
-		//	_0_
-		//2[___]3
-		//	 1
-		
+	/**
+	 *Check which side the ball has collided with a rectangle on:
+	 * 0 = top, 1 = bottom, 2 = left, 3 = right
+	 * @param rect
+	 */
+	public int sideOfCollision(Entity rect) {
 		int sideLeeway = 3;// so the ball wont always collide with top or bottom of rect
 		
-		if(this.getCoarseGrainedMinX()<other.getCoarseGrainedMaxX()-sideLeeway &&
-				this.getCoarseGrainedMaxX()>other.getCoarseGrainedMinX()+sideLeeway) {
-				if(this.getY()<=other.getY()) {
+		if(this.getCoarseGrainedMinX()<rect.getCoarseGrainedMaxX()-sideLeeway &&
+				this.getCoarseGrainedMaxX()>rect.getCoarseGrainedMinX()+sideLeeway) {
+				if(this.getY()<=rect.getY()) {
 					//hit top of rect
 					return 0;
 				}else {
@@ -104,7 +107,7 @@ import jig.Vector;
 					return 1;
 				}
 			}else {
-				if(this.getX()<=other.getX()) {
+				if(this.getX()<=rect.getX()) {
 					//left side of rect
 					return 2;
 					
@@ -124,10 +127,6 @@ import jig.Vector;
 	 * @param surfaceTangent
 	 */
 	public void bounce(float surfaceTangent) {
-		/*removeImage(ResourceManager.getImage(BounceGame.BALL_BALLIMG_RSC));
-		addImageWithBoundingBox(ResourceManager
-				.getImage(BounceGame.BALL_BROKENIMG_RSC));*/
-		countdown = 500;
 		velocity = velocity.bounce(surfaceTangent);
 	}
 
@@ -139,14 +138,5 @@ import jig.Vector;
 	 */
 	public void update(final int delta) {
 		translate(velocity.scale(delta*speed));
-		/*if (countdown > 0) {
-			countdown -= delta;
-			if (countdown <= 0) {
-				addImageWithBoundingBox(ResourceManager
-						.getImage(BounceGame.BALL_BALLIMG_RSC));
-				removeImage(ResourceManager
-						.getImage(BounceGame.BALL_BROKENIMG_RSC));
-			}
-		}*/
 	}
 }

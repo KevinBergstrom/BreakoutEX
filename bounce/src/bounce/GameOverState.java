@@ -19,12 +19,14 @@ import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 
 /**
  * This state is active when the Game is over. In this state, the ball is
- * neither drawn nor updated; and a gameover banner is displayed. A timer
- * automatically transitions back to the StartUp State.
+ * neither drawn nor updated while everything else is drawn.
+ * A gameover banner is displayed. A timer automatically transitions 
+ * back to the Splash State. Space can be pressed to transition to Splash State
+ * early.
  * 
  * Transitions From PlayingState
  * 
- * Transitions To StartUpState
+ * Transitions To SplashState
  */
 class GameOverState extends BasicGameState {
 	

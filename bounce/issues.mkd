@@ -30,7 +30,7 @@
 - **[28]** Create levels
 
 ## Open Issues ##
-- **[29]** Refactor code
+- **[29]** Refactor code, comment code
 - **[30]** Make a ball trail
 - **[31]** Add more sounds
 

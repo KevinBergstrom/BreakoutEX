@@ -15,7 +15,7 @@ public class GravityProjectile extends Projectile{
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
 	}
-
+	@Override
 	public void update(final int delta) {
 		translate(velocity.scale(delta*speed));
 		setVelocity(new Vector(0,this.getVelocity().getY()+acc));

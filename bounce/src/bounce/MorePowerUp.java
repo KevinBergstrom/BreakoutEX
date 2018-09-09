@@ -19,7 +19,7 @@ public class MorePowerUp extends PowerUp{
 		delayAmount = 500f;
 		minDelayAmount = 1000f;
 	}
-	
+	@Override
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.powerUpDelay = bg.powerUpDelay - delayAmount;

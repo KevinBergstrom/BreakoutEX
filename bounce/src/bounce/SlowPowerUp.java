@@ -16,7 +16,7 @@ public class SlowPowerUp extends PowerUp{
 		addImageWithBoundingBox(newImage);
 		loseSpeed = -0.1f;
 	}
-	
+	@Override
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.ball.addSpeed(loseSpeed);

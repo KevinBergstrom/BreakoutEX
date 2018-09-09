@@ -14,7 +14,7 @@ public class ProjectilePowerUp extends PowerUp{
 		newImage.setFilter(Image.FILTER_NEAREST);
 		addImageWithBoundingBox(newImage);
 	}
-	
+	@Override
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.paddle.turnOnProjShield();

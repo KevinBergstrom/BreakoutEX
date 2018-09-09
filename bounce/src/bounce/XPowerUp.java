@@ -19,6 +19,7 @@ public class XPowerUp extends PowerUp{
 		damage = 1;
 	}
 	
+	@Override
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.ball.setDamage(bg.ball.getDamage()+damage);

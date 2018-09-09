@@ -9,7 +9,7 @@ public class InversionBrick extends Brick{
 		super(x, y, bx, by, new Color(0,0,200));
 		
 	}
-	
+	@Override
 	public void onHit(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.paddle.reverseControls();

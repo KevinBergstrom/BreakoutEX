@@ -11,7 +11,7 @@ public class SpeedBrick extends Brick{
 		super(x, y, bx, by, new Color(225,120,0));
 		addSpeed = 0.08f;
 	}
-	
+	@Override
 	public void onHit(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.ball.setSpeed(bg.ball.getSpeed()+addSpeed);

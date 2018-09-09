@@ -17,7 +17,7 @@ public class HealPowerUp extends PowerUp{
 		addImageWithBoundingBox(newImage);
 		healAmount = 1;
 	}
-	
+	@Override
 	public void effect(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.health = bg.health + healAmount;
