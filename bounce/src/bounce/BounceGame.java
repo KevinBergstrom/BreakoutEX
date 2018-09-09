@@ -66,7 +66,6 @@ public class BounceGame extends StateBasedGame {
 	public static final int WINSTATE = 5;
 	
 	public static final String BALL_BALLIMG_RSC = "bounce/resource/ballFinal.png";
-	public static final String BALL_BROKENIMG_RSC = "bounce/resource/brokenball.png";
 	public static final String GAMEOVER_BANNER_RSC = "bounce/resource/gameOverBG.png";
 	public static final String STARTUP_BANNER_RSC = "bounce/resource/pressSpace.png";
 	public static final String BANG_EXPLOSIONIMG_RSC = "bounce/resource/explosion.png";
@@ -107,7 +106,6 @@ public class BounceGame extends StateBasedGame {
 	public static final String PIPES_BGIMG_RSC = "bounce/resource/pipesBG.png";
 	public static final String STAR_BGIMG_RSC = "bounce/resource/starfieldBG.png";
 	public static final String VOID_BGIMG_RSC = "bounce/resource/voidBG.png";
-	public static final String VOLCANO_BGIMG_RSC = "bounce/resource/volcanoBG.png";
 	//ranks
 	public static final String S_RANKIMG_RSC = "bounce/resource/sRank.png";
 	public static final String A_RANKIMG_RSC = "bounce/resource/aRank.png";
@@ -184,7 +182,6 @@ public class BounceGame extends StateBasedGame {
 		// preload all the resources to avoid warnings & minimize latency...
 		//TODO perhaps a better automated way to do this?
 		ResourceManager.loadImage(BALL_BALLIMG_RSC);
-		ResourceManager.loadImage(BALL_BROKENIMG_RSC);
 		ResourceManager.loadImage(GAMEOVER_BANNER_RSC);
 		ResourceManager.loadImage(STARTUP_BANNER_RSC);
 		ResourceManager.loadImage(BANG_EXPLOSIONIMG_RSC);
@@ -224,7 +221,6 @@ public class BounceGame extends StateBasedGame {
 		ResourceManager.loadImage(PIPES_BGIMG_RSC);
 		ResourceManager.loadImage(STAR_BGIMG_RSC);
 		ResourceManager.loadImage(VOID_BGIMG_RSC);
-		ResourceManager.loadImage(VOLCANO_BGIMG_RSC);
 		//ranks
 		ResourceManager.loadImage(S_RANKIMG_RSC);
 		ResourceManager.loadImage(A_RANKIMG_RSC);

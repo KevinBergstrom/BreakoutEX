@@ -4,7 +4,6 @@ import org.newdawn.slick.Image;
 
 import jig.Entity;
 import jig.ResourceManager;
-import jig.Vector;
 
 /**
  * The Ball Trail class is an entity that simulates the trail
