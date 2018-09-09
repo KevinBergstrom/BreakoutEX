@@ -36,6 +36,7 @@ import jig.Vector;
 	}
 	
 	public boolean inRange(float ScreenWidth, float ScreenHeight) {
+		//check if the power up is within screen bounds
 		if(this.getCoarseGrainedMaxX()<0) {
 			return false;
 		}else if(this.getCoarseGrainedMinX()>ScreenWidth) {
@@ -57,6 +58,9 @@ import jig.Vector;
 		translate(velocity.scale(delta*speed));
 	}
 	
+	/**
+	 * Spawns one of the PowerUp types chosen at random
+	 */
 	public static PowerUp spawnRandomPowerUp(float ScreenWidth) {
 		Random rand = new Random();
 		int PUNum = rand.nextInt(6);

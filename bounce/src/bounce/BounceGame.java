@@ -12,24 +12,39 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * A Simple Game of Bounce.
+ * A Slightly complex Game of Bounce.
  * 
- * The game has three states: StartUp, Playing, and GameOver, the game
+ * The game has six states: Splash, StartUp, Playing, Results, Win and GameOver, the game
  * progresses through these states based on the user's input and the events that
  * occur. Each state is modestly different in terms of what is displayed and
  * what input is accepted.
  * 
- * In the playing state, our game displays a moving rectangular "ball" that
- * bounces off the sides of the game container. The ball can be controlled by
- * input from the user.
+ * In the playing state, our game displays a moving ball that
+ * bounces off the sides of the game container, bricks, and the paddle.
+ * If the ball hits the bottom of the screen, the player loses health.
  * 
- * When the ball bounces, it appears broken for a short time afterwards and an
- * explosion animation is played at the impact site to add a bit of eye-candy
- * additionally, we play a short explosion sound effect when the game is
- * actively being played.
+ * The paddle is used to bounce the ball, collect PowerUps, and 
+ * dodge projectiles.
  * 
- * Our game also tracks the number of bounces and syncs the game update loop
- * with the monitor's refresh rate.
+ * When the ball bounces an explosion animation is played at the impact 
+ * site to add a bit of eye-candy additionally, we play a short explosion 
+ * sound effect when the game is actively being played.
+ * 
+ * The game generates patterns of bricks based on what level the player is
+ * playing. Each level has different bricks. Each brick does a unique effect
+ * when the ball hits it or it breaks.
+ * 
+ * At certain intervals PowerUps will spawn at the top of the screen and float
+ * down for the player to collect. 
+ * 
+ * If the player runs out of health, they lose. The default amount of health
+ * is 3.
+ * 
+ * The player's performance is evaluated and scored at the end of each level.
+ * Completion time, number of PowerUps collected, and damage taken are tested.
+ * 
+ * If the player completes all of the levels, they will receive an overall rank of 
+ * their performance.
  * 
  * Graphics resources courtesy of qubodup:
  * http://opengameart.org/content/bomb-explosion-animation
@@ -38,7 +53,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * http://www.freesound.org/people/DJ%20Chronos/sounds/123236/
  * 
  * 
- * @author wallaces
+ * @author wallaces and bergstromk
  * 
  */
 public class BounceGame extends StateBasedGame {

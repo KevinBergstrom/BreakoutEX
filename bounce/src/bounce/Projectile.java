@@ -1,7 +1,6 @@
 package bounce;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.state.StateBasedGame;
 
 import jig.Entity;
 import jig.ResourceManager;
@@ -53,6 +52,7 @@ import jig.Vector;
 	}
 	
 	public Vector aimAt(Entity target) {
+		//return a unit vector pointing toward the target
 		float xDist = target.getX()-this.getX();
 		float yDist = target.getY()-this.getY();
 		float targetDist = (float) Math.sqrt(xDist*xDist + yDist*yDist);
@@ -61,6 +61,7 @@ import jig.Vector;
 	}
 	
 	public boolean inRange(float ScreenWidth, float ScreenHeight) {
+		//check if the projectile up is within screen bounds
 		if(this.getCoarseGrainedMaxX()<0) {
 			return false;
 		}else if(this.getCoarseGrainedMinX()>ScreenWidth) {

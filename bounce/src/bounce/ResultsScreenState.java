@@ -12,7 +12,16 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.VerticalSplitTransition;
 
-
+/**
+ * This comes after the PlayingState when a player has completed a level.
+ * This state shows how well the player performed during the level.
+ * Exiting this state will start loading the next level or go on to
+ * the win screen.
+ * 
+ * Transitions From PlayingState
+ * 
+ * Transitions To StartUpState, WinState
+ */
 class ResultsScreenState extends BasicGameState {
 	
 	
@@ -28,7 +37,7 @@ class ResultsScreenState extends BasicGameState {
 	//Determines the value to beat to get {S,A,B,C}
 	final private int[] timeRankTiers = {140000,200000,260000};
 	final private int[] powerUpRankTiers = {15,10,5};
-	final private int[] damageRankTiers = {0,3,6};
+	final private int[] damageRankTiers = {0,2,5};
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -43,7 +52,7 @@ class ResultsScreenState extends BasicGameState {
 		timeTaken = t;
 		powerUpsGot = p;
 		damageTaken = d;
-		
+		//calculate the player's scores
 		timeRank = getRank((int)timeTaken, timeRankTiers, false);
 		powerUpRank = getRank(powerUpsGot, powerUpRankTiers, true);
 		damageRank = getRank(damageTaken, damageRankTiers, false);
@@ -51,6 +60,7 @@ class ResultsScreenState extends BasicGameState {
 	}
 	
 	public int getRank(int value, int[] tierList, boolean greaterThan) {
+		//check which rank value falls into
 		for(int i = 0;i<tierList.length;i++) {
 			if(greaterThan && value>=tierList[i]) {
 					return i;
@@ -124,14 +134,17 @@ class ResultsScreenState extends BasicGameState {
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 		if (input.isKeyDown(Input.KEY_ENTER)) {
+			//update the players score
 			bg.ranks[rankScore] = bg.ranks[rankScore] + 1;
 			if(bg.currentLevel==Levels.lastLevel) {
+				//completed last level
 				game.enterState(BounceGame.WINSTATE, new EmptyTransition(), new VerticalSplitTransition() );
 			}else {
+				//there are still more levels
 				game.enterState(BounceGame.STARTUPSTATE, new EmptyTransition(), new VerticalSplitTransition() );	
 			}
 		}
-		//cheats
+		//level warp cheats
 		if (input.isKeyDown(Input.KEY_L)) {
 			if(input.isKeyDown(Input.KEY_1)) {
 				bg.currentLevel = 0;

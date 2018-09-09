@@ -3,7 +3,6 @@ package bounce;
 import java.util.Iterator;
 
 import jig.ResourceManager;
-import jig.Vector;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,7 +13,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.EmptyTransition;
-import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 
 
 /**
@@ -47,10 +45,13 @@ class GameOverState extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game,
 			Graphics g) throws SlickException {
 		BounceGame bg = (BounceGame)game;
+		
 		if(bg.background!=null) {
 			g.drawImage(bg.background, 0, 0);
 		}
+		
 		bg.paddle.render(g);
+		
 		for (Brick br : bg.bricks)
 			br.render(g);
 		for (Bang b : bg.explosions)
@@ -82,7 +83,9 @@ class GameOverState extends BasicGameState {
 		
 		timer -= delta;
 		if (timer <= 0) {
+			//reset to first level
 			bg.currentLevel = 0;
+			//remove player performance data
 			for(int i = 0;i<bg.ranks.length;i++) {
 				bg.ranks[i] = 0;
 			}

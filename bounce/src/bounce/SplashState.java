@@ -10,7 +10,15 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-
+/**
+ * This state is the state that shows up when the game is first turned on.
+ * When ever a player loses the game and exits the GameOverState they are 
+ * redirected to this state.
+ * 
+ * Transitions From (Initialization), GameOverState
+ * 
+ * Transitions To StartUpState
+ */
 class SplashState extends BasicGameState {
 
 	int ScrollPos = 0;

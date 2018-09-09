@@ -68,6 +68,7 @@ import jig.Vector;
 	public void setDamage(int d) {
 		damage = d;
 		if(damage>maxDamage) {
+			//too much damage
 			damage = maxDamage;
 		}
 	}
@@ -85,6 +86,7 @@ import jig.Vector;
 	}
 	
 	public void reset() {
+		//return the ball to its default position and speed
 		this.setPosition(defaultX, defaultY);
 		this.setVelocity(defaultV);
 	}

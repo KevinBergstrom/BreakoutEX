@@ -29,7 +29,9 @@ import jig.ResourceManager;
 	 */
 	public Brick(final float x, final float y, final int bx, final int by, Color col) {
 		super(x, y);
+		//get the correct brick image
 		Image image = getBrickImageFromSize(bx, by);
+		//scale and color the image
 		brickImg = image.getScaledCopy(bx*40, by*40);
 		brickImg.setFilter(Image.FILTER_NEAREST);
 		brickImg.setImageColor(col.r, col.g, col.b);
@@ -81,6 +83,7 @@ import jig.ResourceManager;
 			brickImg = image.getScaledCopy(bricksX*40, bricksY*40);
 			brickImg.setFilter(Image.FILTER_NEAREST);
 			brickImg.setImageColor(brickColor.r, brickColor.g, brickColor.b,brickAlpha);
+			//remake the bounding box
 			addImageWithBoundingBox(brickImg);
 		}
 		
@@ -103,7 +106,7 @@ import jig.ResourceManager;
 	}
 	
 	/**
-	 * Spawns one of the brick types chosen at random
+	 * Spawns one of the Brick types chosen at random
 	 */
 	public static void spawnRandomBrick(final float x, final float y, final int bx, final int by,StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;

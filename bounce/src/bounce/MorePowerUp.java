@@ -30,6 +30,7 @@ public class MorePowerUp extends PowerUp{
 		bg.powerUpDelay = bg.powerUpDelay - delayAmount;
 		bg.powerUpTimer = bg.powerUpTimer - delayAmount;
 		if(bg.powerUpDelay<minDelayAmount) {
+			//too little delay
 			bg.powerUpDelay = minDelayAmount;
 		}
 	}

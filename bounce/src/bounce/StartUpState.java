@@ -1,10 +1,7 @@
 package bounce;
 
-import java.util.Iterator;
-
 import jig.ResourceManager;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -14,12 +11,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * This state is active prior to the Game starting. In this state, sound is
- * turned off, and the bounce counter shows '?'. The user can only interact with
- * the game by pressing the SPACE key which transitions to the Playing State.
- * Otherwise, all game objects are rendered and updated normally.
+ * This state is used to load everything in the level before the player
+ * can interact with it. This state comes whenever the player is starting
+ * a level.
  * 
- * Transitions From (Initialization), GameOverState
+ * Transitions From SplashState, ResultsScreenState
  * 
  * Transitions To PlayingState
  */
@@ -87,8 +83,10 @@ class StartUpState extends BasicGameState {
 		g.drawImage(SplashImage,
 				bg.ScreenWidth/2 -127, bg.ScreenHeight/2 - 21, bg.ScreenWidth/2 + 127, bg.ScreenHeight/2 + 21,0, 0,127,21 );
 		
+		g.drawString("Level: " + bg.currentLevel, 10, 30);
+		
 		if(bg.invincibility) {
-			g.drawString("Invinciblility: On", 10, 30);
+			g.drawString("Invinciblility: On", 10, 50);
 		}
 	}
 
