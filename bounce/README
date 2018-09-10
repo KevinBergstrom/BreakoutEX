@@ -1,0 +1,91 @@
+Name: Kevin Bergstrom
+Email: kevin.bergstrom@wsu.edu
+
+Overview:
+	This is a game called BreakoutEX. It is a game
+	where the player controls a paddle and must 
+	bounce a ball to destroy bricks. If the ball
+	hits the bottom of the screen the player will
+	lose health. If the player has lost all health
+	they will get a gameover. The game contains 7
+	unique levels. The player must destroy all bricks
+	to advance to the next level. There are multiple 
+	types of bricks and powerups that the player will
+	come across. After completing the last level, the
+	player will win.
+	
+How To Run in Eclipse
+	bounce->src->bounce->BounceGame.java->
+	RunAs->Java Application
+
+Controls:
+	Space		Continue
+	W			Move paddle up
+	A			Move paddle left
+	S			Move paddle down
+	D			Move paddle right
+
+Cheat Codes:
+note:These cannot be used in menus
+	F1			Load level 1
+	F2			Load level 2
+	F3			Load level 3
+	F4			Load level 4
+	F5			Load level 5
+	F6			Load level 6
+	F7			Load level 7
+	F12			Clear current level
+	insert		Turn on invincibility
+
+External Resources:
+	This project was built on top of Scott Wallace's skeleton code
+	
+	This project uses JIG
+	
+	explosion.png animation resource courtesy of qubodup:
+	http://opengameart.org/content/bomb-explosion-animation
+	 
+	explosion.wav resource courtesy of DJ Chronos:
+	http://www.freesound.org/people/DJ%20Chronos/sounds/123236/
+	
+	All other images included in this project were created by Kevin Bergstrom:
+	acceleratePowerup.png
+	aRank.png
+	ballFinal.png
+	bRank.png
+	caveBG.png
+	cityScapeBG.png
+	cRank.png
+	deadPaddle.png
+	fullPaddle.png
+	gameOverBG.png
+	gray1x1.png
+	gray1x2.png
+	gray1x3.png
+	gray1x4.png
+	gray2x1.png
+	gray2x2.png
+	gray3x1.png
+	gray3x3.png
+	gray4x1.png
+	halfPaddle.png
+	healPowerup.png
+	lowPaddle.png
+	midnightRoadBG.png
+	morePowerup.png
+	mountainBG.png
+	pipesBG.png
+	pressSpace.png
+	projectile.png
+	projPowerup.png
+	projShield.png
+	resultsScreen.png
+	slimeDrip.png
+	slowPowerup.png
+	smallOrangeBG.png
+	splashScreen.png
+	sRank.png
+	starfieldBG.png
+	voidBG.png
+	winnerBG.png
+	xPowerup.png
