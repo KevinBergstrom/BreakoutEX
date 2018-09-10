@@ -8,6 +8,36 @@
 - **[6]** Add explosion sound
 - **[7]** Use a proper Slick StateBasedGame.
 - **[8]** Use fully specified resource path, preload resources if possible
+- **[9]** Resource manager cannot find gameover.png
+- **[10]** Add a splash screen
+- **[11]** Update the GameOver Screen
+- **[12]** Add a paddle that collides with the ball
+- **[13]** Add bricks that the ball can collide with
+- **[14]** Add player health and correct game over condition
+- **[15]** Add brick that shoots projectiles on hit
+- **[16]** Add radioactive brick that releases slime on hit
+- **[17]** Add a brick that inverts controls on hit
+- **[18]** Add a brick that speeds up ball on hit
+- **[19]** Add powerups
+- **[20]** Add updated ball and press space images
+- **[21]** Add backgrounds
+- **[22]** Add invincibility cheat
+- **[23]** Redo projectile powerup
+- **[24]** Add level complete screen
+- **[25]** Add multiple levels capability
+- **[26]** Add game won screen
+- **[27]** Add cheats to access each level
+- **[28]** Create levels
+- **[29]** Refactor code, comment code
+- **[30]** Make all states progress with the space key
+- **[31]** Make a ball trail
+- **[32]** Remove unused images
+- **[33]** Balance the game (make it winnable)
+- **[34]** Update cheats
+- **[35]** Add README
 
 ## Open Issues ##
- 
+
+
+
+

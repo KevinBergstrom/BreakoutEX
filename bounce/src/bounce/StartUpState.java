@@ -1,36 +1,69 @@
 package bounce;
 
-import java.util.Iterator;
-
 import jig.ResourceManager;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * This state is active prior to the Game starting. In this state, sound is
- * turned off, and the bounce counter shows '?'. The user can only interact with
- * the game by pressing the SPACE key which transitions to the Playing State.
- * Otherwise, all game objects are rendered and updated normally.
+ * This state is used to load everything in the level before the player
+ * can interact with it. This state comes whenever the player is starting
+ * a level.
  * 
- * Transitions From (Initialization), GameOverState
+ * Transitions From SplashState, ResultsScreenState
  * 
  * Transitions To PlayingState
  */
 class StartUpState extends BasicGameState {
 
+	private boolean readyToProgress;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 	}
 	
+	public void clearLevel(StateBasedGame game) {
+		BounceGame bg = (BounceGame)game;
+		bg.bricks.clear();
+		bg.explosions.clear();
+		bg.projectiles.clear();
+		bg.powerups.clear();
+		bg.trails.clear();
+		bg.ball.reset();
+		bg.ball.setSpeed(1f);
+		bg.ball.setDamage(1);
+		bg.paddle.reset();
+		bg.paddle.setSpeed(0.2f);
+		bg.paddle.setHealth(3);
+	}
+	
+	public void loadLevel(StateBasedGame game) {
+		BounceGame bg = (BounceGame)game;
+		clearLevel(game);
+		bg.currentLevel = bg.currentLevel+1;
+		Levels.loadLevel(bg.currentLevel, game);
+	}
+	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
 		container.setSoundOn(false);
+		//loading level
+		BounceGame bg = (BounceGame)game;
+		readyToProgress = false;
+		bg.health = 3;
+		bg.maxHealth = 3;
+		bg.powerUpDelay = 6000f;
+		bg.powerUpTimer = bg.powerUpDelay;
+		bg.trailDelay = 100f;
+		bg.trailTimer = bg.trailDelay;
+		loadLevel(game);
+		
 	}
 
 
@@ -38,13 +71,25 @@ class StartUpState extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game,
 			Graphics g) throws SlickException {
 		BounceGame bg = (BounceGame)game;
+		if(bg.background!=null) {
+			g.drawImage(bg.background, 0, 0);
+		}
 		
 		bg.ball.render(g);
-		g.drawString("Bounces: ?", 10, 30);
-		for (Bang b : bg.explosions)
-			b.render(g);
-		g.drawImage(ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC),
-				225, 270);		
+		bg.paddle.render(g);
+		for (Brick br : bg.bricks)
+			br.render(g);
+		
+		Image SplashImage = ResourceManager.getImage(BounceGame.STARTUP_BANNER_RSC);
+		SplashImage.setFilter(Image.FILTER_NEAREST);
+		g.drawImage(SplashImage,
+				bg.ScreenWidth/2 -127, bg.ScreenHeight/2 - 21, bg.ScreenWidth/2 + 127, bg.ScreenHeight/2 + 21,0, 0,127,21 );
+		
+		g.drawString("Level: " + bg.currentLevel, 10, 30);
+		
+		if(bg.invincibility) {
+			g.drawString("Invinciblility: On", 10, 50);
+		}
 	}
 
 	@Override
@@ -54,30 +99,43 @@ class StartUpState extends BasicGameState {
 		Input input = container.getInput();
 		BounceGame bg = (BounceGame)game;
 
-		if (input.isKeyDown(Input.KEY_SPACE))
-			bg.enterState(BounceGame.PLAYINGSTATE);	
-		
-		// bounce the ball...
-		boolean bounced = false;
-		if (bg.ball.getCoarseGrainedMaxX() > bg.ScreenWidth
-				|| bg.ball.getCoarseGrainedMinX() < 0) {
-			bg.ball.bounce(90);
-			bounced = true;
-		} else if (bg.ball.getCoarseGrainedMaxY() > bg.ScreenHeight
-				|| bg.ball.getCoarseGrainedMinY() < 0) {
-			bg.ball.bounce(0);
-			bounced = true;
-		}
-		if (bounced) {
-			bg.explosions.add(new Bang(bg.ball.getX(), bg.ball.getY()));
-		}
-		bg.ball.update(delta);
-
-		// check if there are any finished explosions, if so remove them
-		for (Iterator<Bang> i = bg.explosions.iterator(); i.hasNext();) {
-			if (!i.next().isActive()) {
-				i.remove();
+		if (input.isKeyDown(Input.KEY_SPACE)) {
+			if(readyToProgress) {
+				bg.enterState(BounceGame.PLAYINGSTATE);
 			}
+		}else {
+			readyToProgress = true;
+		}
+		
+		//Invincibility cheat
+		if (input.isKeyDown(Input.KEY_INSERT))
+			bg.invincibility = true;
+		
+		//level warp cheats
+		if(input.isKeyDown(Input.KEY_F1)) {
+			bg.currentLevel = 0;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F2)) {
+			bg.currentLevel = 1;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F3)) {
+			bg.currentLevel = 2;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F4)) {
+			bg.currentLevel = 3;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F5)) {
+			bg.currentLevel = 4;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F6)) {
+			bg.currentLevel = 5;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F7)) {
+			bg.currentLevel = 6;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F12)) {
+			//instantly win level
+			bg.bricks.clear();
 		}
 
 	}
