@@ -28,7 +28,6 @@ class StartUpState extends BasicGameState {
 			throws SlickException {
 	}
 	
-	//TODO temporary location
 	public void clearLevel(StateBasedGame game) {
 		BounceGame bg = (BounceGame)game;
 		bg.bricks.clear();
@@ -108,32 +107,35 @@ class StartUpState extends BasicGameState {
 			readyToProgress = true;
 		}
 		
+		//Invincibility cheat
 		if (input.isKeyDown(Input.KEY_INSERT))
 			bg.invincibility = true;
 		
-		if (input.isKeyDown(Input.KEY_L)) {
-			if(input.isKeyDown(Input.KEY_1)) {
-				bg.currentLevel = 0;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}else if(input.isKeyDown(Input.KEY_2)) {
-				bg.currentLevel = 1;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}else if(input.isKeyDown(Input.KEY_3)) {
-				bg.currentLevel = 2;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}else if(input.isKeyDown(Input.KEY_4)) {
-				bg.currentLevel = 3;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}else if(input.isKeyDown(Input.KEY_5)) {
-				bg.currentLevel = 4;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}else if(input.isKeyDown(Input.KEY_6)) {
-				bg.currentLevel = 5;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}else if(input.isKeyDown(Input.KEY_7)) {
-				bg.currentLevel = 6;
-				bg.enterState(BounceGame.STARTUPSTATE);	
-			}
+		//level warp cheats
+		if(input.isKeyDown(Input.KEY_F1)) {
+			bg.currentLevel = 0;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F2)) {
+			bg.currentLevel = 1;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F3)) {
+			bg.currentLevel = 2;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F4)) {
+			bg.currentLevel = 3;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F5)) {
+			bg.currentLevel = 4;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F6)) {
+			bg.currentLevel = 5;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F7)) {
+			bg.currentLevel = 6;
+			bg.enterState(BounceGame.STARTUPSTATE);	
+		}else if(input.isKeyDown(Input.KEY_F12)) {
+			//instantly win level
+			bg.bricks.clear();
 		}
 
 	}
