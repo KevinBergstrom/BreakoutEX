@@ -34,9 +34,9 @@
 - **[32]** Remove unused images
 - **[33]** Balance the game (make it winnable)
 - **[34]** Update cheats
+- **[35]** Add README
 
 ## Open Issues ##
-- **[35]** Update to version 2.0
 
 
 
